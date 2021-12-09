@@ -1,0 +1,25 @@
+<%= bootstrap_form_for(task) do |form| %>
+  <% if task.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.collection_select :category_id, Category.all, :id, :title, include_blank: true %>
+
+  <%= form.text_field :title %>
+
+  <%= form.text_area :description %>
+
+  <%= form.date_field :completed_at %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
