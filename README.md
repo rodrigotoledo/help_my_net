@@ -1,24 +1,19 @@
-# README
+# Setup project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Basic instructions to setup the project. After clone the project, run the commands:
 
-Things you may want to cover:
+```
+gem install bundler --no-doc
+bundle install
+rails db:drop db:create db:migrate db:seed
+./bin/dev
+```
 
-* Ruby version
+## After you can access the application with the credentials:
 
-* System dependencies
+http://localhost:3000
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+username: test@test.com.br
+password: aassdd
+```
