@@ -1,40 +1,14 @@
-<div id="<%= dom_id employee %>">
-  <p>
-    <strong>Name:</strong>
-    <%= employee.name %>
-  </p>
-
-  <p>
-    <strong>Document:</strong>
-    <%= employee.document %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= employee.email %>
-  </p>
-
-  <p>
-    <strong>Phone number:</strong>
-    <%= employee.phone_number %>
-  </p>
-
-  <p>
-    <strong>Mobile number:</strong>
-    <%= employee.mobile_number %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= employee.address %>
-  </p>
-
-  <p>
-    <strong>Alternative email:</strong>
-    <%= employee.alternative_email %>
-  </p>
-
-  <p>
-    <%= link_to "Show this employee", employee %>
-  </p>
-</div>
+<tr id="<%= dom_id employee %>">
+  <td>
+    <%= employee.id %>
+  </td>
+  <td>
+    <%= link_to employee.name, edit_employee_path(employee) %>
+  </td>
+  <td>
+    <%= link_to employee.email %>
+  </td>
+  <td>
+    <%= button_to "Remove this", employee_path(employee), method: :delete, class: 'btn btn-danger' %>
+  </td>
+</tr>

@@ -67,7 +67,7 @@ group :development, :test do
 
   gem 'letter_opener'
   gem 'to_factory'
-  
+
 end
 
 group :development do
@@ -95,3 +95,6 @@ gem 'bootstrap_form', '~> 5.0'
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'faker'
 gem 'cpf_faker'
+gem 'will_paginate', '~> 3.3'
+gem 'will_paginate-bootstrap'
+gem "font-awesome-rails"

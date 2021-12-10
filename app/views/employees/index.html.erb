@@ -1,5 +1,19 @@
 <h1>Employees</h1>
+<%=link_to 'New Register', url_for(action: :new), class: 'btn btn-primary' %>
 
-<div id="employees">
-  <%= render @employees %>
-</div>
+<%= will_paginate @employees %>
+<table class="table" id="employees">
+  <thead class="thead-light">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @employees %>
+  </tbody>
+</table>
+
+<%= will_paginate @employees %>
