@@ -25,6 +25,10 @@ RSpec.describe '/tasks', type: :request do
     { title: '' }
   end
 
+  before do
+    sign_in create(:user)
+  end
+
   describe 'GET /index' do
     it 'renders a successful response' do
       Task.create! valid_attributes

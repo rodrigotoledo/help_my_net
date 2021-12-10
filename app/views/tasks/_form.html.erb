@@ -20,6 +20,9 @@
   <%= form.date_field :completed_at %>
 
   <div>
-    <%= form.submit %>
+    <div class="btn-group" role="group" aria-label="Actions">
+      <%= form.submit %>
+      <%= link_to 'Back to list', url_for(action: :index), class: 'btn btn-outline-secondary' %>
+    </div>
   </div>
 <% end %>
