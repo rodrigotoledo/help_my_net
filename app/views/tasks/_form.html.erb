@@ -18,6 +18,7 @@
   <%= form.text_area :description %>
 
   <%= form.date_field :completed_at %>
+  <%= form.collection_select :employee_ids, Employee.all, :id, :name, {}, {multiple: true} %>
 
   <div>
     <div class="btn-group" role="group" aria-label="Actions">
