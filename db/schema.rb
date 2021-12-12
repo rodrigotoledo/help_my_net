@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_12_140446) do
+ActiveRecord::Schema.define(version: 2021_12_12_140251) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2021_12_12_140446) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
-    t.string "location"
   end
 
   create_table "employees_tasks", id: false, force: :cascade do |t|
