@@ -45,3 +45,7 @@
     font-size: 3.5rem;
   }
 }
+
+#map {
+  height: 400px !important;
+}

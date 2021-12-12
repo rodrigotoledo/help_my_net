@@ -98,3 +98,4 @@ gem 'cpf_faker'
 gem 'will_paginate', '~> 3.3'
 gem 'will_paginate-bootstrap'
 gem "font-awesome-rails"
+gem 'geocoder'

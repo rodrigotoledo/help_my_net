@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-lg-12">
+
+  </div>
+</div>
+<div id="map" style="height: 400px"></div>
+<% content_for :maps do %>
+  <script>
+    function initMap() {
+      const myLatLng = { lat: <%=task.latitude%>, lng: <%=task.longitude%> };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: myLatLng,
+      });
+      const contentString =
+        '<div id="content">' +
+          '<div id="siteNotice">' +
+          "</div>" +
+          '<h5 id="firstHeading" class="firstHeading"><%=task.title%></h5>' +
+          '<div id="bodyContent">' +
+            "<p><%=task.description%></p>"
+          "</div>" +
+        "</div>";
+      const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
+      const marker = new google.maps.Marker({
+        position: myLatLng,
+        map,
+        title: "<%=task.title%>",
+      });
+
+      marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          map,
+          shouldFocus: false,
+        });
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaTn_usj9Wm4Zwwd1kNNVPUR9aZwwXIkQ&callback=initMap&libraries=places&v=weekly"></script>
+<% end %>
