@@ -5,5 +5,6 @@ FactoryBot.define do
     category_id { create(:category).id }
     description { Faker::Lorem.paragraph }
     title { Faker::Movie.title }
+    address { Faker::Address.full_address }
   end
 end

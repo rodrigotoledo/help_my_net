@@ -60,21 +60,12 @@
 
 
     function setMarkers(map) {
-      // Adds markers to the map.
-      // Marker sizes are expressed as a Size of X,Y where the origin of the image
-      // (0,0) is located in the top left of the image.
-      // Origins, anchor positions and coordinates of the marker increase in the X
-      // direction to the right and in the Y direction down.
-      // Shapes define the clickable region of the icon. The type defines an HTML
-      // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-      // The final coordinate closes the poly by connecting to the first coordinate.
-      var employees = <%= raw Employee.actives.pluck(:name, :latitude, :longitude, :address) %>
-      var task = <%= raw [task.title, task.address] %>
-      var taskTitle = task[0]
-      var taskAddress = task[1]
+      var employees = <%= raw Employee.actives.pluck(:name, :latitude, :longitude, :address) %>;
+      var task = <%= raw [task.title, task.address] %>;
+      var taskTitle = task[0];
+      var taskAddress = task[1];
 
       employees.forEach(employee => {
-        console.log(employee)
         var employeeName = employee[0];
         var employeeLatitude = employee[1];
         var employeeLongitude = employee[2];
@@ -91,7 +82,8 @@
           title: employeeName
         });
 
-        var contentString = '<div><p class="firstHeading">Operador: '+employeeName+'</p><a class="btn btn-primary btn-sm" href="javascript:;" onClick="calcRoute(directionsService, directionsRenderer,\''+employeeAddress+'\', \''+taskAddress+'\')">Ativar operador para esta tarefa</a></div>';
+        var contentString = '<div><p class="firstHeading">Operador: '+employeeName+'</p>'+
+          '<a class="btn btn-primary btn-sm" data-reflex="click->AssociateEmployee#associate" href="javascript:;">Ativar operador para esta tarefa</a></div>';
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
         });
@@ -107,8 +99,5 @@
       });
     }
   </script>
-  <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaTn_usj9Wm4Zwwd1kNNVPUR9aZwwXIkQ&callback=initMap&v=weekly"
-      async
-    ></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-du27hJok1T6knOhB4kyy5HGV1CCvjVI&callback=initMap&v=weekly" async></script>
 <% end %>

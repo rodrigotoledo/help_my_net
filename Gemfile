@@ -17,6 +17,8 @@ gem 'sqlite3', '~> 1.4'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
+# gem "importmap-rails", ">= 0.3.4"
+
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails', '>= 0.2.2'
 
@@ -100,3 +102,5 @@ gem 'will_paginate-bootstrap'
 gem "font-awesome-rails"
 gem 'geocoder'
 gem 'paper_trail'
+
+gem "stimulus_reflex", "~> 3.4"

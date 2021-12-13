@@ -83,6 +83,9 @@ GEM
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     builder (3.2.4)
+    cable_ready (4.5.0)
+      rails (>= 5.2)
+      thread-local (>= 1.1.0)
     capybara (3.36.0)
       addressable
       matrix
@@ -307,7 +310,14 @@ GEM
     sqlite3 (1.4.2)
     stimulus-rails (0.7.3)
       rails (>= 6.0.0)
+    stimulus_reflex (3.4.1)
+      cable_ready (>= 4.5)
+      nokogiri
+      rack
+      rails (>= 5.2)
+      redis
     thor (1.1.0)
+    thread-local (1.1.0)
     to_factory (2.1.0)
       activerecord (> 4.0)
       factory_girl (~> 4.5)
@@ -374,6 +384,7 @@ DEPENDENCIES
   sprockets-rails (>= 3.4.1)
   sqlite3 (~> 1.4)
   stimulus-rails (>= 0.7.3)
+  stimulus_reflex (~> 3.4)
   to_factory
   turbo-rails (>= 0.9.0)
   tzinfo-data
