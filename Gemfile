@@ -104,3 +104,4 @@ gem 'geocoder'
 gem 'paper_trail'
 
 gem "stimulus_reflex", "= 3.5.0.pre8"
+gem 'hotwire-rails'

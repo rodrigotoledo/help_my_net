@@ -6668,13 +6668,6 @@
   application.debug = false;
   window.Stimulus = application;
 
-  // app/javascript/controllers/hello_controller.js
-  var hello_controller_default = class extends Controller {
-    connect() {
-      this.element.textContent = "Hello World!";
-    }
-  };
-
   // node_modules/stimulus_reflex/javascript/utils.js
   var uuidv4 = () => {
     const crypto = window.crypto || window.msCrypto;
@@ -8893,7 +8886,6 @@ Please set ${schema_default.reflexSerializeForm}="true" on your Reflex Controlle
   };
 
   // app/javascript/controllers/index.js
-  application.register("hello", hello_controller_default);
   application.consumer = consumer_default;
   stimulus_reflex_default.initialize(application, { controller: application_controller_default, isolate: false });
   javascript_default.initialize({ consumer: consumer_default });
