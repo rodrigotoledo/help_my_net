@@ -35,8 +35,11 @@ class AssociateEmployeeReflex < ApplicationReflex
   def associate
     task = Task.find(element.dataset[:task_id])
     employee = Employee.find(element.dataset[:employee_id])
+    task.employees.destroy_all
     task.employees << employee
     task.save!
-    morph '#test', 'Sucesso'
+
+
+    morph '#select_employee_ids', render(partial: 'tasks/select_employee_ids', locals: { task: task })
   end
 end

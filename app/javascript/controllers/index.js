@@ -10,5 +10,5 @@ import controller from '../controllers/application_controller'
 import CableReady from 'cable_ready'
 application.register('hello', HelloController)
 application.consumer = consumer
-StimulusReflex.initialize(application, { controller, isolate: true })
+StimulusReflex.initialize(application, { controller, isolate: false })
 CableReady.initialize({ consumer })

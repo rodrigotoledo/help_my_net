@@ -4,7 +4,6 @@ class TestChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    puts data["message"]
     ActionCable.server.broadcast("test", "ActionCable is connected")
   end
 end

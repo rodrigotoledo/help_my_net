@@ -1,14 +1,8 @@
-<div class="row">
-  <div class="col-lg-12">
-
-  </div>
-</div>
 <div id="map" style="height: 400px"></div>
 <% content_for :maps do %>
   <script>
     function initMap() {
       const directionsRenderer = new google.maps.DirectionsRenderer();
-      const directionsService = new google.maps.DirectionsService();
       const myLatLng = { lat: <%=task.latitude%>, lng: <%=task.longitude%> };
       const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 13,
@@ -43,22 +37,6 @@
       directionsRenderer.setMap(map);
     }
 
-    function calcRoute(directionsService, directionsRenderer,start,end) {
-      var request = {
-        origin: start,
-        destination: end,
-        travelMode: 'DRIVING'
-      };
-      directionsService.route(request, function(result, status) {
-        directionsRenderer.setDirections(null);
-        if (status == 'OK') {
-          directionsRenderer.setDirections(result);
-        }
-      });
-    }
-
-
-
     function setMarkers(map) {
       var employees = <%= raw Employee.actives.pluck(:id, :name, :latitude, :longitude, :address) %>;
       var task = <%= raw [task.id, task.title, task.address] %>;
@@ -85,7 +63,7 @@
         });
 
         var contentString = '<div><p class="firstHeading">Operador: '+employeeName+'</p>'+
-          '<a class="btn btn-primary btn-sm" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->AssociateEmployee#associate" href="javascript:;">Ativar operador para esta tarefa</a></div>';
+          '<a class="btn btn-primary btn-sm" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->AssociateEmployee#associate" href="javascript:;">Active for this task</a></div>';
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
         });

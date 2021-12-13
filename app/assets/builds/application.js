@@ -8895,7 +8895,7 @@ Please set ${schema_default.reflexSerializeForm}="true" on your Reflex Controlle
   // app/javascript/controllers/index.js
   application.register("hello", hello_controller_default);
   application.consumer = consumer_default;
-  stimulus_reflex_default.initialize(application, { controller: application_controller_default, isolate: true });
+  stimulus_reflex_default.initialize(application, { controller: application_controller_default, isolate: false });
   javascript_default.initialize({ consumer: consumer_default });
 
   // node_modules/@popperjs/core/lib/index.js
