@@ -103,4 +103,4 @@ gem "font-awesome-rails"
 gem 'geocoder'
 gem 'paper_trail'
 
-gem "stimulus_reflex", "~> 3.4"
+gem "stimulus_reflex", "= 3.5.0.pre8"

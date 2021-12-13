@@ -5,11 +5,12 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.0",
     "@popperjs/core": "^2.11.0",
+    "@rails/actioncable": "^6.1.4-1",
     "bootstrap": "^5.1.3",
     "esbuild": "^0.14.2",
     "sass": "^1.44.0",
     "stimulus": "^3.0.1",
-    "stimulus_reflex": "3.4.1"
+    "stimulus_reflex": "3.5.0-pre8"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",

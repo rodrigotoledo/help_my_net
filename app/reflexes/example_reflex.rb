@@ -17,12 +17,13 @@ class ExampleReflex < ApplicationReflex
   #     - unsigned  - use an unsigned Global ID to map dataset attribute to a model  eg. element.unsigned[:foo]
   #   - cable_ready - a special cable_ready that can broadcast to the current visitor (no brackets needed)
   #   - reflex_id   - a UUIDv4 that uniquely identies each Reflex
+  #   - tab_id      - a UUIDv4 that uniquely identifies the browser tab
   #
   # Example:
   #
   #   before_reflex do
   #     # throw :abort # this will prevent the Reflex from continuing
-  #     # learn more about callbacks at https://docs.stimulusreflex.com/lifecycle
+  #     # learn more about callbacks at https://docs.stimulusreflex.com/rtfm/lifecycle
   #   end
   #
   #   def example(argument=true)
@@ -30,8 +31,10 @@ class ExampleReflex < ApplicationReflex
   #     # Any declared instance variables will be made available to the Rails controller and view.
   #   end
   #
-  # Learn more at: https://docs.stimulusreflex.com/reflexes#reflex-classes
+  # Learn more at: https://docs.stimulusreflex.com/rtfm/reflex-classes
   def associate
-    morph '#test', 'testing'
+    # task = Task.find(element.dataset[:task_id])
+    # employee = Employee.find(element.dataset[:employee_id])
+    morph '#test', 'testeee'
   end
 end

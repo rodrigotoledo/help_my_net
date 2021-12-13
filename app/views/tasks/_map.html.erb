@@ -60,16 +60,18 @@
 
 
     function setMarkers(map) {
-      var employees = <%= raw Employee.actives.pluck(:name, :latitude, :longitude, :address) %>;
-      var task = <%= raw [task.title, task.address] %>;
-      var taskTitle = task[0];
-      var taskAddress = task[1];
+      var employees = <%= raw Employee.actives.pluck(:id, :name, :latitude, :longitude, :address) %>;
+      var task = <%= raw [task.id, task.title, task.address] %>;
+      var taskId = task[0];
+      var taskTitle = task[1];
+      var taskAddress = task[2];
 
       employees.forEach(employee => {
-        var employeeName = employee[0];
-        var employeeLatitude = employee[1];
-        var employeeLongitude = employee[2];
-        var employeeAddress = employee[2];
+        var employeeId = employee[0];
+        var employeeName = employee[1];
+        var employeeLatitude = employee[2];
+        var employeeLongitude = employee[3];
+        var employeeAddress = employee[4];
 
         var marker = new google.maps.Marker({
           position: { lat: employeeLatitude, lng: employeeLongitude },
@@ -83,7 +85,7 @@
         });
 
         var contentString = '<div><p class="firstHeading">Operador: '+employeeName+'</p>'+
-          '<a class="btn btn-primary btn-sm" data-reflex="click->AssociateEmployee#associate" href="javascript:;">Ativar operador para esta tarefa</a></div>';
+          '<a class="btn btn-primary btn-sm" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->AssociateEmployee#associate" href="javascript:;">Ativar operador para esta tarefa</a></div>';
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
         });

@@ -1,19 +1,38 @@
 (() => {
+  var __create = Object.create;
   var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
   var __esm = (fn2, res) => function __init() {
     return fn2 && (res = (0, fn2[Object.keys(fn2)[0]])(fn2 = 0)), res;
+  };
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
     __markAsModule(target);
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
   };
+  var __reExport = (target, module, desc) => {
+    if (module && typeof module === "object" || typeof module === "function") {
+      for (let key of __getOwnPropNames(module))
+        if (!__hasOwnProp.call(target, key) && key !== "default")
+          __defProp(target, key, { get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable });
+    }
+    return target;
+  };
+  var __toModule = (module) => {
+    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", module && module.__esModule && "default" in module ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
+  };
 
-  // node_modules/@rails/actioncable/src/adapters.js
+  // node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/adapters.js
   var adapters_default;
   var init_adapters = __esm({
-    "node_modules/@rails/actioncable/src/adapters.js"() {
+    "node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/adapters.js"() {
       adapters_default = {
         logger: self.console,
         WebSocket: self.WebSocket
@@ -21,10 +40,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/logger.js
+  // node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/logger.js
   var logger_default;
   var init_logger = __esm({
-    "node_modules/@rails/actioncable/src/logger.js"() {
+    "node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/logger.js"() {
       init_adapters();
       logger_default = {
         log(...messages) {
@@ -37,10 +56,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/connection_monitor.js
+  // node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/connection_monitor.js
   var now, secondsSince, clamp, ConnectionMonitor, connection_monitor_default;
   var init_connection_monitor = __esm({
-    "node_modules/@rails/actioncable/src/connection_monitor.js"() {
+    "node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/connection_monitor.js"() {
       init_logger();
       now = () => new Date().getTime();
       secondsSince = (time) => (now() - time) / 1e3;
@@ -141,10 +160,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/internal.js
+  // node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/internal.js
   var internal_default;
   var init_internal = __esm({
-    "node_modules/@rails/actioncable/src/internal.js"() {
+    "node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/internal.js"() {
       internal_default = {
         "message_types": {
           "welcome": "welcome",
@@ -167,10 +186,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/connection.js
+  // node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/connection.js
   var message_types, protocols, supportedProtocols, indexOf, Connection, connection_default;
   var init_connection = __esm({
-    "node_modules/@rails/actioncable/src/connection.js"() {
+    "node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/connection.js"() {
       init_adapters();
       init_connection_monitor();
       init_internal();
@@ -179,9 +198,9 @@
       supportedProtocols = protocols.slice(0, protocols.length - 1);
       indexOf = [].indexOf;
       Connection = class {
-        constructor(consumer2) {
+        constructor(consumer5) {
           this.open = this.open.bind(this);
-          this.consumer = consumer2;
+          this.consumer = consumer5;
           this.subscriptions = this.consumer.subscriptions;
           this.monitor = new connection_monitor_default(this);
           this.disconnected = true;
@@ -222,8 +241,8 @@
           if (this.isActive()) {
             try {
               return this.close();
-            } catch (error2) {
-              logger_default.log("Failed to reopen WebSocket", error2);
+            } catch (error4) {
+              logger_default.log("Failed to reopen WebSocket", error4);
             } finally {
               logger_default.log(`Reopening WebSocket in ${this.constructor.reopenDelay}ms`);
               setTimeout(this.open, this.constructor.reopenDelay);
@@ -321,10 +340,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/subscription.js
+  // node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/subscription.js
   var extend, Subscription;
   var init_subscription = __esm({
-    "node_modules/@rails/actioncable/src/subscription.js"() {
+    "node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/subscription.js"() {
       extend = function(object, properties) {
         if (properties != null) {
           for (let key in properties) {
@@ -335,9 +354,9 @@
         return object;
       };
       Subscription = class {
-        constructor(consumer2, params = {}, mixin) {
-          this.consumer = consumer2;
-          this.identifier = JSON.stringify(params);
+        constructor(consumer5, params2 = {}, mixin) {
+          this.consumer = consumer5;
+          this.identifier = JSON.stringify(params2);
           extend(this, mixin);
         }
         perform(action, data = {}) {
@@ -354,20 +373,20 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/subscriptions.js
+  // node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/subscriptions.js
   var Subscriptions;
   var init_subscriptions = __esm({
-    "node_modules/@rails/actioncable/src/subscriptions.js"() {
+    "node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/subscriptions.js"() {
       init_subscription();
       Subscriptions = class {
-        constructor(consumer2) {
-          this.consumer = consumer2;
+        constructor(consumer5) {
+          this.consumer = consumer5;
           this.subscriptions = [];
         }
         create(channelName, mixin) {
           const channel = channelName;
-          const params = typeof channel === "object" ? channel : { channel };
-          const subscription = new Subscription(this.consumer, params, mixin);
+          const params2 = typeof channel === "object" ? channel : { channel };
+          const subscription = new Subscription(this.consumer, params2, mixin);
           return this.add(subscription);
         }
         add(subscription) {
@@ -421,29 +440,29 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/consumer.js
-  function createWebSocketURL(url) {
-    if (typeof url === "function") {
-      url = url();
+  // node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/consumer.js
+  function createWebSocketURL(url2) {
+    if (typeof url2 === "function") {
+      url2 = url2();
     }
-    if (url && !/^wss?:/i.test(url)) {
+    if (url2 && !/^wss?:/i.test(url2)) {
       const a = document.createElement("a");
-      a.href = url;
+      a.href = url2;
       a.href = a.href;
       a.protocol = a.protocol.replace("http", "ws");
       return a.href;
     } else {
-      return url;
+      return url2;
     }
   }
   var Consumer;
   var init_consumer = __esm({
-    "node_modules/@rails/actioncable/src/consumer.js"() {
+    "node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/consumer.js"() {
       init_connection();
       init_subscriptions();
       Consumer = class {
-        constructor(url) {
-          this._url = url;
+        constructor(url2) {
+          this._url = url2;
           this.subscriptions = new Subscriptions(this);
           this.connection = new connection_default(this);
         }
@@ -468,7 +487,7 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/index.js
+  // node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/index.js
   var src_exports = {};
   __export(src_exports, {
     Connection: () => connection_default,
@@ -483,8 +502,8 @@
     getConfig: () => getConfig,
     logger: () => logger_default
   });
-  function createConsumer(url = getConfig("url") || internal_default.default_mount_path) {
-    return new Consumer(url);
+  function createConsumer(url2 = getConfig("url") || internal_default.default_mount_path) {
+    return new Consumer(url2);
   }
   function getConfig(name) {
     const element = document.head.querySelector(`meta[name='action-cable-${name}']`);
@@ -493,7 +512,7 @@
     }
   }
   var init_src = __esm({
-    "node_modules/@rails/actioncable/src/index.js"() {
+    "node_modules/@hotwired/turbo-rails/node_modules/@rails/actioncable/src/index.js"() {
       init_connection();
       init_connection_monitor();
       init_consumer();
@@ -502,6 +521,1050 @@
       init_subscriptions();
       init_adapters();
       init_logger();
+    }
+  });
+
+  // node_modules/stimulus_reflex/node_modules/@rails/actioncable/app/assets/javascripts/action_cable.js
+  var require_action_cable = __commonJS({
+    "node_modules/stimulus_reflex/node_modules/@rails/actioncable/app/assets/javascripts/action_cable.js"(exports, module) {
+      (function(global, factory) {
+        typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : factory(global.ActionCable = {});
+      })(exports, function(exports2) {
+        "use strict";
+        var adapters = {
+          logger: self.console,
+          WebSocket: self.WebSocket
+        };
+        var logger = {
+          log: function log() {
+            if (this.enabled) {
+              var _adapters$logger;
+              for (var _len = arguments.length, messages = Array(_len), _key = 0; _key < _len; _key++) {
+                messages[_key] = arguments[_key];
+              }
+              messages.push(Date.now());
+              (_adapters$logger = adapters.logger).log.apply(_adapters$logger, ["[ActionCable]"].concat(messages));
+            }
+          }
+        };
+        var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
+          return typeof obj;
+        } : function(obj) {
+          return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        };
+        var classCallCheck = function(instance, Constructor) {
+          if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+          }
+        };
+        var createClass = function() {
+          function defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+              var descriptor = props[i];
+              descriptor.enumerable = descriptor.enumerable || false;
+              descriptor.configurable = true;
+              if ("value" in descriptor)
+                descriptor.writable = true;
+              Object.defineProperty(target, descriptor.key, descriptor);
+            }
+          }
+          return function(Constructor, protoProps, staticProps) {
+            if (protoProps)
+              defineProperties(Constructor.prototype, protoProps);
+            if (staticProps)
+              defineProperties(Constructor, staticProps);
+            return Constructor;
+          };
+        }();
+        var now2 = function now3() {
+          return new Date().getTime();
+        };
+        var secondsSince2 = function secondsSince3(time) {
+          return (now2() - time) / 1e3;
+        };
+        var clamp2 = function clamp3(number, min2, max2) {
+          return Math.max(min2, Math.min(max2, number));
+        };
+        var ConnectionMonitor2 = function() {
+          function ConnectionMonitor3(connection) {
+            classCallCheck(this, ConnectionMonitor3);
+            this.visibilityDidChange = this.visibilityDidChange.bind(this);
+            this.connection = connection;
+            this.reconnectAttempts = 0;
+          }
+          ConnectionMonitor3.prototype.start = function start3() {
+            if (!this.isRunning()) {
+              this.startedAt = now2();
+              delete this.stoppedAt;
+              this.startPolling();
+              addEventListener("visibilitychange", this.visibilityDidChange);
+              logger.log("ConnectionMonitor started. pollInterval = " + this.getPollInterval() + " ms");
+            }
+          };
+          ConnectionMonitor3.prototype.stop = function stop() {
+            if (this.isRunning()) {
+              this.stoppedAt = now2();
+              this.stopPolling();
+              removeEventListener("visibilitychange", this.visibilityDidChange);
+              logger.log("ConnectionMonitor stopped");
+            }
+          };
+          ConnectionMonitor3.prototype.isRunning = function isRunning() {
+            return this.startedAt && !this.stoppedAt;
+          };
+          ConnectionMonitor3.prototype.recordPing = function recordPing() {
+            this.pingedAt = now2();
+          };
+          ConnectionMonitor3.prototype.recordConnect = function recordConnect() {
+            this.reconnectAttempts = 0;
+            this.recordPing();
+            delete this.disconnectedAt;
+            logger.log("ConnectionMonitor recorded connect");
+          };
+          ConnectionMonitor3.prototype.recordDisconnect = function recordDisconnect() {
+            this.disconnectedAt = now2();
+            logger.log("ConnectionMonitor recorded disconnect");
+          };
+          ConnectionMonitor3.prototype.startPolling = function startPolling() {
+            this.stopPolling();
+            this.poll();
+          };
+          ConnectionMonitor3.prototype.stopPolling = function stopPolling() {
+            clearTimeout(this.pollTimeout);
+          };
+          ConnectionMonitor3.prototype.poll = function poll() {
+            var _this = this;
+            this.pollTimeout = setTimeout(function() {
+              _this.reconnectIfStale();
+              _this.poll();
+            }, this.getPollInterval());
+          };
+          ConnectionMonitor3.prototype.getPollInterval = function getPollInterval() {
+            var _constructor$pollInte = this.constructor.pollInterval, min2 = _constructor$pollInte.min, max2 = _constructor$pollInte.max, multiplier = _constructor$pollInte.multiplier;
+            var interval = multiplier * Math.log(this.reconnectAttempts + 1);
+            return Math.round(clamp2(interval, min2, max2) * 1e3);
+          };
+          ConnectionMonitor3.prototype.reconnectIfStale = function reconnectIfStale() {
+            if (this.connectionIsStale()) {
+              logger.log("ConnectionMonitor detected stale connection. reconnectAttempts = " + this.reconnectAttempts + ", pollInterval = " + this.getPollInterval() + " ms, time disconnected = " + secondsSince2(this.disconnectedAt) + " s, stale threshold = " + this.constructor.staleThreshold + " s");
+              this.reconnectAttempts++;
+              if (this.disconnectedRecently()) {
+                logger.log("ConnectionMonitor skipping reopening recent disconnect");
+              } else {
+                logger.log("ConnectionMonitor reopening");
+                this.connection.reopen();
+              }
+            }
+          };
+          ConnectionMonitor3.prototype.connectionIsStale = function connectionIsStale() {
+            return secondsSince2(this.pingedAt ? this.pingedAt : this.startedAt) > this.constructor.staleThreshold;
+          };
+          ConnectionMonitor3.prototype.disconnectedRecently = function disconnectedRecently() {
+            return this.disconnectedAt && secondsSince2(this.disconnectedAt) < this.constructor.staleThreshold;
+          };
+          ConnectionMonitor3.prototype.visibilityDidChange = function visibilityDidChange() {
+            var _this2 = this;
+            if (document.visibilityState === "visible") {
+              setTimeout(function() {
+                if (_this2.connectionIsStale() || !_this2.connection.isOpen()) {
+                  logger.log("ConnectionMonitor reopening stale connection on visibilitychange. visibilityState = " + document.visibilityState);
+                  _this2.connection.reopen();
+                }
+              }, 200);
+            }
+          };
+          return ConnectionMonitor3;
+        }();
+        ConnectionMonitor2.pollInterval = {
+          min: 3,
+          max: 30,
+          multiplier: 5
+        };
+        ConnectionMonitor2.staleThreshold = 6;
+        var INTERNAL = {
+          message_types: {
+            welcome: "welcome",
+            disconnect: "disconnect",
+            ping: "ping",
+            confirmation: "confirm_subscription",
+            rejection: "reject_subscription"
+          },
+          disconnect_reasons: {
+            unauthorized: "unauthorized",
+            invalid_request: "invalid_request",
+            server_restart: "server_restart"
+          },
+          default_mount_path: "/cable",
+          protocols: ["actioncable-v1-json", "actioncable-unsupported"]
+        };
+        var message_types2 = INTERNAL.message_types, protocols2 = INTERNAL.protocols;
+        var supportedProtocols2 = protocols2.slice(0, protocols2.length - 1);
+        var indexOf2 = [].indexOf;
+        var Connection2 = function() {
+          function Connection3(consumer5) {
+            classCallCheck(this, Connection3);
+            this.open = this.open.bind(this);
+            this.consumer = consumer5;
+            this.subscriptions = this.consumer.subscriptions;
+            this.monitor = new ConnectionMonitor2(this);
+            this.disconnected = true;
+          }
+          Connection3.prototype.send = function send(data) {
+            if (this.isOpen()) {
+              this.webSocket.send(JSON.stringify(data));
+              return true;
+            } else {
+              return false;
+            }
+          };
+          Connection3.prototype.open = function open() {
+            if (this.isActive()) {
+              logger.log("Attempted to open WebSocket, but existing socket is " + this.getState());
+              return false;
+            } else {
+              logger.log("Opening WebSocket, current state is " + this.getState() + ", subprotocols: " + protocols2);
+              if (this.webSocket) {
+                this.uninstallEventHandlers();
+              }
+              this.webSocket = new adapters.WebSocket(this.consumer.url, protocols2);
+              this.installEventHandlers();
+              this.monitor.start();
+              return true;
+            }
+          };
+          Connection3.prototype.close = function close() {
+            var _ref = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {
+              allowReconnect: true
+            }, allowReconnect = _ref.allowReconnect;
+            if (!allowReconnect) {
+              this.monitor.stop();
+            }
+            if (this.isActive()) {
+              return this.webSocket.close();
+            }
+          };
+          Connection3.prototype.reopen = function reopen() {
+            logger.log("Reopening WebSocket, current state is " + this.getState());
+            if (this.isActive()) {
+              try {
+                return this.close();
+              } catch (error4) {
+                logger.log("Failed to reopen WebSocket", error4);
+              } finally {
+                logger.log("Reopening WebSocket in " + this.constructor.reopenDelay + "ms");
+                setTimeout(this.open, this.constructor.reopenDelay);
+              }
+            } else {
+              return this.open();
+            }
+          };
+          Connection3.prototype.getProtocol = function getProtocol() {
+            if (this.webSocket) {
+              return this.webSocket.protocol;
+            }
+          };
+          Connection3.prototype.isOpen = function isOpen() {
+            return this.isState("open");
+          };
+          Connection3.prototype.isActive = function isActive() {
+            return this.isState("open", "connecting");
+          };
+          Connection3.prototype.isProtocolSupported = function isProtocolSupported() {
+            return indexOf2.call(supportedProtocols2, this.getProtocol()) >= 0;
+          };
+          Connection3.prototype.isState = function isState() {
+            for (var _len = arguments.length, states = Array(_len), _key = 0; _key < _len; _key++) {
+              states[_key] = arguments[_key];
+            }
+            return indexOf2.call(states, this.getState()) >= 0;
+          };
+          Connection3.prototype.getState = function getState() {
+            if (this.webSocket) {
+              for (var state in adapters.WebSocket) {
+                if (adapters.WebSocket[state] === this.webSocket.readyState) {
+                  return state.toLowerCase();
+                }
+              }
+            }
+            return null;
+          };
+          Connection3.prototype.installEventHandlers = function installEventHandlers() {
+            for (var eventName in this.events) {
+              var handler = this.events[eventName].bind(this);
+              this.webSocket["on" + eventName] = handler;
+            }
+          };
+          Connection3.prototype.uninstallEventHandlers = function uninstallEventHandlers() {
+            for (var eventName in this.events) {
+              this.webSocket["on" + eventName] = function() {
+              };
+            }
+          };
+          return Connection3;
+        }();
+        Connection2.reopenDelay = 500;
+        Connection2.prototype.events = {
+          message: function message(event) {
+            if (!this.isProtocolSupported()) {
+              return;
+            }
+            var _JSON$parse = JSON.parse(event.data), identifier = _JSON$parse.identifier, message2 = _JSON$parse.message, reason = _JSON$parse.reason, reconnect = _JSON$parse.reconnect, type = _JSON$parse.type;
+            switch (type) {
+              case message_types2.welcome:
+                this.monitor.recordConnect();
+                return this.subscriptions.reload();
+              case message_types2.disconnect:
+                logger.log("Disconnecting. Reason: " + reason);
+                return this.close({
+                  allowReconnect: reconnect
+                });
+              case message_types2.ping:
+                return this.monitor.recordPing();
+              case message_types2.confirmation:
+                return this.subscriptions.notify(identifier, "connected");
+              case message_types2.rejection:
+                return this.subscriptions.reject(identifier);
+              default:
+                return this.subscriptions.notify(identifier, "received", message2);
+            }
+          },
+          open: function open() {
+            logger.log("WebSocket onopen event, using '" + this.getProtocol() + "' subprotocol");
+            this.disconnected = false;
+            if (!this.isProtocolSupported()) {
+              logger.log("Protocol is unsupported. Stopping monitor and disconnecting.");
+              return this.close({
+                allowReconnect: false
+              });
+            }
+          },
+          close: function close(event) {
+            logger.log("WebSocket onclose event");
+            if (this.disconnected) {
+              return;
+            }
+            this.disconnected = true;
+            this.monitor.recordDisconnect();
+            return this.subscriptions.notifyAll("disconnected", {
+              willAttemptReconnect: this.monitor.isRunning()
+            });
+          },
+          error: function error4() {
+            logger.log("WebSocket onerror event");
+          }
+        };
+        var extend3 = function extend4(object, properties) {
+          if (properties != null) {
+            for (var key in properties) {
+              var value = properties[key];
+              object[key] = value;
+            }
+          }
+          return object;
+        };
+        var Subscription2 = function() {
+          function Subscription3(consumer5) {
+            var params2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+            var mixin = arguments[2];
+            classCallCheck(this, Subscription3);
+            this.consumer = consumer5;
+            this.identifier = JSON.stringify(params2);
+            extend3(this, mixin);
+          }
+          Subscription3.prototype.perform = function perform2(action) {
+            var data = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+            data.action = action;
+            return this.send(data);
+          };
+          Subscription3.prototype.send = function send(data) {
+            return this.consumer.send({
+              command: "message",
+              identifier: this.identifier,
+              data: JSON.stringify(data)
+            });
+          };
+          Subscription3.prototype.unsubscribe = function unsubscribe() {
+            return this.consumer.subscriptions.remove(this);
+          };
+          return Subscription3;
+        }();
+        var Subscriptions2 = function() {
+          function Subscriptions3(consumer5) {
+            classCallCheck(this, Subscriptions3);
+            this.consumer = consumer5;
+            this.subscriptions = [];
+          }
+          Subscriptions3.prototype.create = function create(channelName, mixin) {
+            var channel = channelName;
+            var params2 = (typeof channel === "undefined" ? "undefined" : _typeof(channel)) === "object" ? channel : {
+              channel
+            };
+            var subscription = new Subscription2(this.consumer, params2, mixin);
+            return this.add(subscription);
+          };
+          Subscriptions3.prototype.add = function add3(subscription) {
+            this.subscriptions.push(subscription);
+            this.consumer.ensureActiveConnection();
+            this.notify(subscription, "initialized");
+            this.sendCommand(subscription, "subscribe");
+            return subscription;
+          };
+          Subscriptions3.prototype.remove = function remove(subscription) {
+            this.forget(subscription);
+            if (!this.findAll(subscription.identifier).length) {
+              this.sendCommand(subscription, "unsubscribe");
+            }
+            return subscription;
+          };
+          Subscriptions3.prototype.reject = function reject(identifier) {
+            var _this = this;
+            return this.findAll(identifier).map(function(subscription) {
+              _this.forget(subscription);
+              _this.notify(subscription, "rejected");
+              return subscription;
+            });
+          };
+          Subscriptions3.prototype.forget = function forget(subscription) {
+            this.subscriptions = this.subscriptions.filter(function(s) {
+              return s !== subscription;
+            });
+            return subscription;
+          };
+          Subscriptions3.prototype.findAll = function findAll(identifier) {
+            return this.subscriptions.filter(function(s) {
+              return s.identifier === identifier;
+            });
+          };
+          Subscriptions3.prototype.reload = function reload() {
+            var _this2 = this;
+            return this.subscriptions.map(function(subscription) {
+              return _this2.sendCommand(subscription, "subscribe");
+            });
+          };
+          Subscriptions3.prototype.notifyAll = function notifyAll(callbackName) {
+            var _this3 = this;
+            for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+              args[_key - 1] = arguments[_key];
+            }
+            return this.subscriptions.map(function(subscription) {
+              return _this3.notify.apply(_this3, [subscription, callbackName].concat(args));
+            });
+          };
+          Subscriptions3.prototype.notify = function notify(subscription, callbackName) {
+            for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+              args[_key2 - 2] = arguments[_key2];
+            }
+            var subscriptions = void 0;
+            if (typeof subscription === "string") {
+              subscriptions = this.findAll(subscription);
+            } else {
+              subscriptions = [subscription];
+            }
+            return subscriptions.map(function(subscription2) {
+              return typeof subscription2[callbackName] === "function" ? subscription2[callbackName].apply(subscription2, args) : void 0;
+            });
+          };
+          Subscriptions3.prototype.sendCommand = function sendCommand(subscription, command) {
+            var identifier = subscription.identifier;
+            return this.consumer.send({
+              command,
+              identifier
+            });
+          };
+          return Subscriptions3;
+        }();
+        var Consumer2 = function() {
+          function Consumer3(url2) {
+            classCallCheck(this, Consumer3);
+            this._url = url2;
+            this.subscriptions = new Subscriptions2(this);
+            this.connection = new Connection2(this);
+          }
+          Consumer3.prototype.send = function send(data) {
+            return this.connection.send(data);
+          };
+          Consumer3.prototype.connect = function connect() {
+            return this.connection.open();
+          };
+          Consumer3.prototype.disconnect = function disconnect() {
+            return this.connection.close({
+              allowReconnect: false
+            });
+          };
+          Consumer3.prototype.ensureActiveConnection = function ensureActiveConnection() {
+            if (!this.connection.isActive()) {
+              return this.connection.open();
+            }
+          };
+          createClass(Consumer3, [{
+            key: "url",
+            get: function get$$1() {
+              return createWebSocketURL2(this._url);
+            }
+          }]);
+          return Consumer3;
+        }();
+        function createWebSocketURL2(url2) {
+          if (typeof url2 === "function") {
+            url2 = url2();
+          }
+          if (url2 && !/^wss?:/i.test(url2)) {
+            var a = document.createElement("a");
+            a.href = url2;
+            a.href = a.href;
+            a.protocol = a.protocol.replace("http", "ws");
+            return a.href;
+          } else {
+            return url2;
+          }
+        }
+        function createConsumer5() {
+          var url2 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : getConfig2("url") || INTERNAL.default_mount_path;
+          return new Consumer2(url2);
+        }
+        function getConfig2(name) {
+          var element = document.head.querySelector("meta[name='action-cable-" + name + "']");
+          if (element) {
+            return element.getAttribute("content");
+          }
+        }
+        exports2.Connection = Connection2;
+        exports2.ConnectionMonitor = ConnectionMonitor2;
+        exports2.Consumer = Consumer2;
+        exports2.INTERNAL = INTERNAL;
+        exports2.Subscription = Subscription2;
+        exports2.Subscriptions = Subscriptions2;
+        exports2.adapters = adapters;
+        exports2.createWebSocketURL = createWebSocketURL2;
+        exports2.logger = logger;
+        exports2.createConsumer = createConsumer5;
+        exports2.getConfig = getConfig2;
+        Object.defineProperty(exports2, "__esModule", {
+          value: true
+        });
+      });
+    }
+  });
+
+  // node_modules/@rails/actioncable/app/assets/javascripts/action_cable.js
+  var require_action_cable2 = __commonJS({
+    "node_modules/@rails/actioncable/app/assets/javascripts/action_cable.js"(exports, module) {
+      (function(global, factory) {
+        typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : factory(global.ActionCable = {});
+      })(exports, function(exports2) {
+        "use strict";
+        var adapters = {
+          logger: self.console,
+          WebSocket: self.WebSocket
+        };
+        var logger = {
+          log: function log() {
+            if (this.enabled) {
+              var _adapters$logger;
+              for (var _len = arguments.length, messages = Array(_len), _key = 0; _key < _len; _key++) {
+                messages[_key] = arguments[_key];
+              }
+              messages.push(Date.now());
+              (_adapters$logger = adapters.logger).log.apply(_adapters$logger, ["[ActionCable]"].concat(messages));
+            }
+          }
+        };
+        var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
+          return typeof obj;
+        } : function(obj) {
+          return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        };
+        var classCallCheck = function(instance, Constructor) {
+          if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+          }
+        };
+        var createClass = function() {
+          function defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+              var descriptor = props[i];
+              descriptor.enumerable = descriptor.enumerable || false;
+              descriptor.configurable = true;
+              if ("value" in descriptor)
+                descriptor.writable = true;
+              Object.defineProperty(target, descriptor.key, descriptor);
+            }
+          }
+          return function(Constructor, protoProps, staticProps) {
+            if (protoProps)
+              defineProperties(Constructor.prototype, protoProps);
+            if (staticProps)
+              defineProperties(Constructor, staticProps);
+            return Constructor;
+          };
+        }();
+        var now2 = function now3() {
+          return new Date().getTime();
+        };
+        var secondsSince2 = function secondsSince3(time) {
+          return (now2() - time) / 1e3;
+        };
+        var clamp2 = function clamp3(number, min2, max2) {
+          return Math.max(min2, Math.min(max2, number));
+        };
+        var ConnectionMonitor2 = function() {
+          function ConnectionMonitor3(connection) {
+            classCallCheck(this, ConnectionMonitor3);
+            this.visibilityDidChange = this.visibilityDidChange.bind(this);
+            this.connection = connection;
+            this.reconnectAttempts = 0;
+          }
+          ConnectionMonitor3.prototype.start = function start3() {
+            if (!this.isRunning()) {
+              this.startedAt = now2();
+              delete this.stoppedAt;
+              this.startPolling();
+              addEventListener("visibilitychange", this.visibilityDidChange);
+              logger.log("ConnectionMonitor started. pollInterval = " + this.getPollInterval() + " ms");
+            }
+          };
+          ConnectionMonitor3.prototype.stop = function stop() {
+            if (this.isRunning()) {
+              this.stoppedAt = now2();
+              this.stopPolling();
+              removeEventListener("visibilitychange", this.visibilityDidChange);
+              logger.log("ConnectionMonitor stopped");
+            }
+          };
+          ConnectionMonitor3.prototype.isRunning = function isRunning() {
+            return this.startedAt && !this.stoppedAt;
+          };
+          ConnectionMonitor3.prototype.recordPing = function recordPing() {
+            this.pingedAt = now2();
+          };
+          ConnectionMonitor3.prototype.recordConnect = function recordConnect() {
+            this.reconnectAttempts = 0;
+            this.recordPing();
+            delete this.disconnectedAt;
+            logger.log("ConnectionMonitor recorded connect");
+          };
+          ConnectionMonitor3.prototype.recordDisconnect = function recordDisconnect() {
+            this.disconnectedAt = now2();
+            logger.log("ConnectionMonitor recorded disconnect");
+          };
+          ConnectionMonitor3.prototype.startPolling = function startPolling() {
+            this.stopPolling();
+            this.poll();
+          };
+          ConnectionMonitor3.prototype.stopPolling = function stopPolling() {
+            clearTimeout(this.pollTimeout);
+          };
+          ConnectionMonitor3.prototype.poll = function poll() {
+            var _this = this;
+            this.pollTimeout = setTimeout(function() {
+              _this.reconnectIfStale();
+              _this.poll();
+            }, this.getPollInterval());
+          };
+          ConnectionMonitor3.prototype.getPollInterval = function getPollInterval() {
+            var _constructor$pollInte = this.constructor.pollInterval, min2 = _constructor$pollInte.min, max2 = _constructor$pollInte.max, multiplier = _constructor$pollInte.multiplier;
+            var interval = multiplier * Math.log(this.reconnectAttempts + 1);
+            return Math.round(clamp2(interval, min2, max2) * 1e3);
+          };
+          ConnectionMonitor3.prototype.reconnectIfStale = function reconnectIfStale() {
+            if (this.connectionIsStale()) {
+              logger.log("ConnectionMonitor detected stale connection. reconnectAttempts = " + this.reconnectAttempts + ", pollInterval = " + this.getPollInterval() + " ms, time disconnected = " + secondsSince2(this.disconnectedAt) + " s, stale threshold = " + this.constructor.staleThreshold + " s");
+              this.reconnectAttempts++;
+              if (this.disconnectedRecently()) {
+                logger.log("ConnectionMonitor skipping reopening recent disconnect");
+              } else {
+                logger.log("ConnectionMonitor reopening");
+                this.connection.reopen();
+              }
+            }
+          };
+          ConnectionMonitor3.prototype.connectionIsStale = function connectionIsStale() {
+            return secondsSince2(this.pingedAt ? this.pingedAt : this.startedAt) > this.constructor.staleThreshold;
+          };
+          ConnectionMonitor3.prototype.disconnectedRecently = function disconnectedRecently() {
+            return this.disconnectedAt && secondsSince2(this.disconnectedAt) < this.constructor.staleThreshold;
+          };
+          ConnectionMonitor3.prototype.visibilityDidChange = function visibilityDidChange() {
+            var _this2 = this;
+            if (document.visibilityState === "visible") {
+              setTimeout(function() {
+                if (_this2.connectionIsStale() || !_this2.connection.isOpen()) {
+                  logger.log("ConnectionMonitor reopening stale connection on visibilitychange. visibilityState = " + document.visibilityState);
+                  _this2.connection.reopen();
+                }
+              }, 200);
+            }
+          };
+          return ConnectionMonitor3;
+        }();
+        ConnectionMonitor2.pollInterval = {
+          min: 3,
+          max: 30,
+          multiplier: 5
+        };
+        ConnectionMonitor2.staleThreshold = 6;
+        var INTERNAL = {
+          message_types: {
+            welcome: "welcome",
+            disconnect: "disconnect",
+            ping: "ping",
+            confirmation: "confirm_subscription",
+            rejection: "reject_subscription"
+          },
+          disconnect_reasons: {
+            unauthorized: "unauthorized",
+            invalid_request: "invalid_request",
+            server_restart: "server_restart"
+          },
+          default_mount_path: "/cable",
+          protocols: ["actioncable-v1-json", "actioncable-unsupported"]
+        };
+        var message_types2 = INTERNAL.message_types, protocols2 = INTERNAL.protocols;
+        var supportedProtocols2 = protocols2.slice(0, protocols2.length - 1);
+        var indexOf2 = [].indexOf;
+        var Connection2 = function() {
+          function Connection3(consumer5) {
+            classCallCheck(this, Connection3);
+            this.open = this.open.bind(this);
+            this.consumer = consumer5;
+            this.subscriptions = this.consumer.subscriptions;
+            this.monitor = new ConnectionMonitor2(this);
+            this.disconnected = true;
+          }
+          Connection3.prototype.send = function send(data) {
+            if (this.isOpen()) {
+              this.webSocket.send(JSON.stringify(data));
+              return true;
+            } else {
+              return false;
+            }
+          };
+          Connection3.prototype.open = function open() {
+            if (this.isActive()) {
+              logger.log("Attempted to open WebSocket, but existing socket is " + this.getState());
+              return false;
+            } else {
+              logger.log("Opening WebSocket, current state is " + this.getState() + ", subprotocols: " + protocols2);
+              if (this.webSocket) {
+                this.uninstallEventHandlers();
+              }
+              this.webSocket = new adapters.WebSocket(this.consumer.url, protocols2);
+              this.installEventHandlers();
+              this.monitor.start();
+              return true;
+            }
+          };
+          Connection3.prototype.close = function close() {
+            var _ref = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {
+              allowReconnect: true
+            }, allowReconnect = _ref.allowReconnect;
+            if (!allowReconnect) {
+              this.monitor.stop();
+            }
+            if (this.isActive()) {
+              return this.webSocket.close();
+            }
+          };
+          Connection3.prototype.reopen = function reopen() {
+            logger.log("Reopening WebSocket, current state is " + this.getState());
+            if (this.isActive()) {
+              try {
+                return this.close();
+              } catch (error4) {
+                logger.log("Failed to reopen WebSocket", error4);
+              } finally {
+                logger.log("Reopening WebSocket in " + this.constructor.reopenDelay + "ms");
+                setTimeout(this.open, this.constructor.reopenDelay);
+              }
+            } else {
+              return this.open();
+            }
+          };
+          Connection3.prototype.getProtocol = function getProtocol() {
+            if (this.webSocket) {
+              return this.webSocket.protocol;
+            }
+          };
+          Connection3.prototype.isOpen = function isOpen() {
+            return this.isState("open");
+          };
+          Connection3.prototype.isActive = function isActive() {
+            return this.isState("open", "connecting");
+          };
+          Connection3.prototype.isProtocolSupported = function isProtocolSupported() {
+            return indexOf2.call(supportedProtocols2, this.getProtocol()) >= 0;
+          };
+          Connection3.prototype.isState = function isState() {
+            for (var _len = arguments.length, states = Array(_len), _key = 0; _key < _len; _key++) {
+              states[_key] = arguments[_key];
+            }
+            return indexOf2.call(states, this.getState()) >= 0;
+          };
+          Connection3.prototype.getState = function getState() {
+            if (this.webSocket) {
+              for (var state in adapters.WebSocket) {
+                if (adapters.WebSocket[state] === this.webSocket.readyState) {
+                  return state.toLowerCase();
+                }
+              }
+            }
+            return null;
+          };
+          Connection3.prototype.installEventHandlers = function installEventHandlers() {
+            for (var eventName in this.events) {
+              var handler = this.events[eventName].bind(this);
+              this.webSocket["on" + eventName] = handler;
+            }
+          };
+          Connection3.prototype.uninstallEventHandlers = function uninstallEventHandlers() {
+            for (var eventName in this.events) {
+              this.webSocket["on" + eventName] = function() {
+              };
+            }
+          };
+          return Connection3;
+        }();
+        Connection2.reopenDelay = 500;
+        Connection2.prototype.events = {
+          message: function message(event) {
+            if (!this.isProtocolSupported()) {
+              return;
+            }
+            var _JSON$parse = JSON.parse(event.data), identifier = _JSON$parse.identifier, message2 = _JSON$parse.message, reason = _JSON$parse.reason, reconnect = _JSON$parse.reconnect, type = _JSON$parse.type;
+            switch (type) {
+              case message_types2.welcome:
+                this.monitor.recordConnect();
+                return this.subscriptions.reload();
+              case message_types2.disconnect:
+                logger.log("Disconnecting. Reason: " + reason);
+                return this.close({
+                  allowReconnect: reconnect
+                });
+              case message_types2.ping:
+                return this.monitor.recordPing();
+              case message_types2.confirmation:
+                return this.subscriptions.notify(identifier, "connected");
+              case message_types2.rejection:
+                return this.subscriptions.reject(identifier);
+              default:
+                return this.subscriptions.notify(identifier, "received", message2);
+            }
+          },
+          open: function open() {
+            logger.log("WebSocket onopen event, using '" + this.getProtocol() + "' subprotocol");
+            this.disconnected = false;
+            if (!this.isProtocolSupported()) {
+              logger.log("Protocol is unsupported. Stopping monitor and disconnecting.");
+              return this.close({
+                allowReconnect: false
+              });
+            }
+          },
+          close: function close(event) {
+            logger.log("WebSocket onclose event");
+            if (this.disconnected) {
+              return;
+            }
+            this.disconnected = true;
+            this.monitor.recordDisconnect();
+            return this.subscriptions.notifyAll("disconnected", {
+              willAttemptReconnect: this.monitor.isRunning()
+            });
+          },
+          error: function error4() {
+            logger.log("WebSocket onerror event");
+          }
+        };
+        var extend3 = function extend4(object, properties) {
+          if (properties != null) {
+            for (var key in properties) {
+              var value = properties[key];
+              object[key] = value;
+            }
+          }
+          return object;
+        };
+        var Subscription2 = function() {
+          function Subscription3(consumer5) {
+            var params2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+            var mixin = arguments[2];
+            classCallCheck(this, Subscription3);
+            this.consumer = consumer5;
+            this.identifier = JSON.stringify(params2);
+            extend3(this, mixin);
+          }
+          Subscription3.prototype.perform = function perform2(action) {
+            var data = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+            data.action = action;
+            return this.send(data);
+          };
+          Subscription3.prototype.send = function send(data) {
+            return this.consumer.send({
+              command: "message",
+              identifier: this.identifier,
+              data: JSON.stringify(data)
+            });
+          };
+          Subscription3.prototype.unsubscribe = function unsubscribe() {
+            return this.consumer.subscriptions.remove(this);
+          };
+          return Subscription3;
+        }();
+        var Subscriptions2 = function() {
+          function Subscriptions3(consumer5) {
+            classCallCheck(this, Subscriptions3);
+            this.consumer = consumer5;
+            this.subscriptions = [];
+          }
+          Subscriptions3.prototype.create = function create(channelName, mixin) {
+            var channel = channelName;
+            var params2 = (typeof channel === "undefined" ? "undefined" : _typeof(channel)) === "object" ? channel : {
+              channel
+            };
+            var subscription = new Subscription2(this.consumer, params2, mixin);
+            return this.add(subscription);
+          };
+          Subscriptions3.prototype.add = function add3(subscription) {
+            this.subscriptions.push(subscription);
+            this.consumer.ensureActiveConnection();
+            this.notify(subscription, "initialized");
+            this.sendCommand(subscription, "subscribe");
+            return subscription;
+          };
+          Subscriptions3.prototype.remove = function remove(subscription) {
+            this.forget(subscription);
+            if (!this.findAll(subscription.identifier).length) {
+              this.sendCommand(subscription, "unsubscribe");
+            }
+            return subscription;
+          };
+          Subscriptions3.prototype.reject = function reject(identifier) {
+            var _this = this;
+            return this.findAll(identifier).map(function(subscription) {
+              _this.forget(subscription);
+              _this.notify(subscription, "rejected");
+              return subscription;
+            });
+          };
+          Subscriptions3.prototype.forget = function forget(subscription) {
+            this.subscriptions = this.subscriptions.filter(function(s) {
+              return s !== subscription;
+            });
+            return subscription;
+          };
+          Subscriptions3.prototype.findAll = function findAll(identifier) {
+            return this.subscriptions.filter(function(s) {
+              return s.identifier === identifier;
+            });
+          };
+          Subscriptions3.prototype.reload = function reload() {
+            var _this2 = this;
+            return this.subscriptions.map(function(subscription) {
+              return _this2.sendCommand(subscription, "subscribe");
+            });
+          };
+          Subscriptions3.prototype.notifyAll = function notifyAll(callbackName) {
+            var _this3 = this;
+            for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+              args[_key - 1] = arguments[_key];
+            }
+            return this.subscriptions.map(function(subscription) {
+              return _this3.notify.apply(_this3, [subscription, callbackName].concat(args));
+            });
+          };
+          Subscriptions3.prototype.notify = function notify(subscription, callbackName) {
+            for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+              args[_key2 - 2] = arguments[_key2];
+            }
+            var subscriptions = void 0;
+            if (typeof subscription === "string") {
+              subscriptions = this.findAll(subscription);
+            } else {
+              subscriptions = [subscription];
+            }
+            return subscriptions.map(function(subscription2) {
+              return typeof subscription2[callbackName] === "function" ? subscription2[callbackName].apply(subscription2, args) : void 0;
+            });
+          };
+          Subscriptions3.prototype.sendCommand = function sendCommand(subscription, command) {
+            var identifier = subscription.identifier;
+            return this.consumer.send({
+              command,
+              identifier
+            });
+          };
+          return Subscriptions3;
+        }();
+        var Consumer2 = function() {
+          function Consumer3(url2) {
+            classCallCheck(this, Consumer3);
+            this._url = url2;
+            this.subscriptions = new Subscriptions2(this);
+            this.connection = new Connection2(this);
+          }
+          Consumer3.prototype.send = function send(data) {
+            return this.connection.send(data);
+          };
+          Consumer3.prototype.connect = function connect() {
+            return this.connection.open();
+          };
+          Consumer3.prototype.disconnect = function disconnect() {
+            return this.connection.close({
+              allowReconnect: false
+            });
+          };
+          Consumer3.prototype.ensureActiveConnection = function ensureActiveConnection() {
+            if (!this.connection.isActive()) {
+              return this.connection.open();
+            }
+          };
+          createClass(Consumer3, [{
+            key: "url",
+            get: function get$$1() {
+              return createWebSocketURL2(this._url);
+            }
+          }]);
+          return Consumer3;
+        }();
+        function createWebSocketURL2(url2) {
+          if (typeof url2 === "function") {
+            url2 = url2();
+          }
+          if (url2 && !/^wss?:/i.test(url2)) {
+            var a = document.createElement("a");
+            a.href = url2;
+            a.href = a.href;
+            a.protocol = a.protocol.replace("http", "ws");
+            return a.href;
+          } else {
+            return url2;
+          }
+        }
+        function createConsumer5() {
+          var url2 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : getConfig2("url") || INTERNAL.default_mount_path;
+          return new Consumer2(url2);
+        }
+        function getConfig2(name) {
+          var element = document.head.querySelector("meta[name='action-cable-" + name + "']");
+          if (element) {
+            return element.getAttribute("content");
+          }
+        }
+        exports2.Connection = Connection2;
+        exports2.ConnectionMonitor = ConnectionMonitor2;
+        exports2.Consumer = Consumer2;
+        exports2.INTERNAL = INTERNAL;
+        exports2.Subscription = Subscription2;
+        exports2.Subscriptions = Subscriptions2;
+        exports2.adapters = adapters;
+        exports2.createWebSocketURL = createWebSocketURL2;
+        exports2.logger = logger;
+        exports2.createConsumer = createConsumer5;
+        exports2.getConfig = getConfig2;
+        Object.defineProperty(exports2, "__esModule", {
+          value: true
+        });
+      });
     }
   });
 
@@ -674,11 +1737,11 @@
   function expandURL(locatable) {
     return new URL(locatable.toString(), document.baseURI);
   }
-  function getAnchor(url) {
+  function getAnchor(url2) {
     let anchorMatch;
-    if (url.hash) {
-      return url.hash.slice(1);
-    } else if (anchorMatch = url.href.match(/#(.*)$/)) {
+    if (url2.hash) {
+      return url2.hash.slice(1);
+    } else if (anchorMatch = url2.href.match(/#(.*)$/)) {
       return anchorMatch[1];
     }
   }
@@ -686,37 +1749,37 @@
     const action = (submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("formaction")) || form.getAttribute("action") || form.action;
     return expandURL(action);
   }
-  function getExtension(url) {
-    return (getLastPathComponent(url).match(/\.[^.]*$/) || [])[0] || "";
+  function getExtension(url2) {
+    return (getLastPathComponent(url2).match(/\.[^.]*$/) || [])[0] || "";
   }
-  function isHTML(url) {
-    return !!getExtension(url).match(/^(?:|\.(?:htm|html|xhtml))$/);
+  function isHTML(url2) {
+    return !!getExtension(url2).match(/^(?:|\.(?:htm|html|xhtml))$/);
   }
-  function isPrefixedBy(baseURL, url) {
-    const prefix = getPrefix(url);
+  function isPrefixedBy(baseURL, url2) {
+    const prefix = getPrefix(url2);
     return baseURL.href === expandURL(prefix).href || baseURL.href.startsWith(prefix);
   }
   function locationIsVisitable(location2, rootLocation) {
     return isPrefixedBy(location2, rootLocation) && isHTML(location2);
   }
-  function getRequestURL(url) {
-    const anchor = getAnchor(url);
-    return anchor != null ? url.href.slice(0, -(anchor.length + 1)) : url.href;
+  function getRequestURL(url2) {
+    const anchor = getAnchor(url2);
+    return anchor != null ? url2.href.slice(0, -(anchor.length + 1)) : url2.href;
   }
-  function toCacheKey(url) {
-    return getRequestURL(url);
+  function toCacheKey(url2) {
+    return getRequestURL(url2);
   }
   function urlsAreEqual(left2, right2) {
     return expandURL(left2).href == expandURL(right2).href;
   }
-  function getPathComponents(url) {
-    return url.pathname.split("/").slice(1);
+  function getPathComponents(url2) {
+    return url2.pathname.split("/").slice(1);
   }
-  function getLastPathComponent(url) {
-    return getPathComponents(url).slice(-1)[0];
+  function getLastPathComponent(url2) {
+    return getPathComponents(url2).slice(-1)[0];
   }
-  function getPrefix(url) {
-    return addTrailingSlash(url.origin + url.pathname);
+  function getPrefix(url2) {
+    return addTrailingSlash(url2.origin + url2.pathname);
   }
   function addTrailingSlash(value) {
     return value.endsWith("/") ? value : value + "/";
@@ -890,10 +1953,10 @@
         this.delegate.requestStarted(this);
         const response = await fetch(this.url.href, fetchOptions);
         return await this.receive(response);
-      } catch (error2) {
-        if (error2.name !== "AbortError") {
-          this.delegate.requestErrored(this, error2);
-          throw error2;
+      } catch (error4) {
+        if (error4.name !== "AbortError") {
+          this.delegate.requestErrored(this, error4);
+          throw error4;
         }
       } finally {
         this.delegate.requestFinished(this);
@@ -1106,8 +2169,8 @@
         return true;
       }
     }
-    prepareHeadersForRequest(headers, request) {
-      if (!request.isIdempotent) {
+    prepareHeadersForRequest(headers, request2) {
+      if (!request2.isIdempotent) {
         const token = getCookieValue(getMetaContent("csrf-param")) || getMetaContent("csrf-token");
         if (token) {
           headers["X-CSRF-Token"] = token;
@@ -1115,45 +2178,45 @@
         headers["Accept"] = [StreamMessage.contentType, headers["Accept"]].join(", ");
       }
     }
-    requestStarted(request) {
+    requestStarted(request2) {
       var _a;
       this.state = FormSubmissionState.waiting;
       (_a = this.submitter) === null || _a === void 0 ? void 0 : _a.setAttribute("disabled", "");
       dispatch("turbo:submit-start", { target: this.formElement, detail: { formSubmission: this } });
       this.delegate.formSubmissionStarted(this);
     }
-    requestPreventedHandlingResponse(request, response) {
+    requestPreventedHandlingResponse(request2, response) {
       this.result = { success: response.succeeded, fetchResponse: response };
     }
-    requestSucceededWithResponse(request, response) {
+    requestSucceededWithResponse(request2, response) {
       if (response.clientError || response.serverError) {
         this.delegate.formSubmissionFailedWithResponse(this, response);
-      } else if (this.requestMustRedirect(request) && responseSucceededWithoutRedirect(response)) {
-        const error2 = new Error("Form responses must redirect to another location");
-        this.delegate.formSubmissionErrored(this, error2);
+      } else if (this.requestMustRedirect(request2) && responseSucceededWithoutRedirect(response)) {
+        const error4 = new Error("Form responses must redirect to another location");
+        this.delegate.formSubmissionErrored(this, error4);
       } else {
         this.state = FormSubmissionState.receiving;
         this.result = { success: true, fetchResponse: response };
         this.delegate.formSubmissionSucceededWithResponse(this, response);
       }
     }
-    requestFailedWithResponse(request, response) {
+    requestFailedWithResponse(request2, response) {
       this.result = { success: false, fetchResponse: response };
       this.delegate.formSubmissionFailedWithResponse(this, response);
     }
-    requestErrored(request, error2) {
-      this.result = { success: false, error: error2 };
-      this.delegate.formSubmissionErrored(this, error2);
+    requestErrored(request2, error4) {
+      this.result = { success: false, error: error4 };
+      this.delegate.formSubmissionErrored(this, error4);
     }
-    requestFinished(request) {
+    requestFinished(request2) {
       var _a;
       this.state = FormSubmissionState.stopped;
       (_a = this.submitter) === null || _a === void 0 ? void 0 : _a.removeAttribute("disabled");
       dispatch("turbo:submit-end", { target: this.formElement, detail: Object.assign({ formSubmission: this }, this.result) });
       this.delegate.formSubmissionFinished(this);
     }
-    requestMustRedirect(request) {
-      return !request.isIdempotent && this.mustRedirect;
+    requestMustRedirect(request2) {
+      return !request2.isIdempotent && this.mustRedirect;
     }
   };
   function buildFormData(formElement, submitter) {
@@ -1182,15 +2245,15 @@
   function responseSucceededWithoutRedirect(response) {
     return response.statusCode == 200 && !response.redirected;
   }
-  function mergeFormDataEntries(url, entries) {
+  function mergeFormDataEntries(url2, entries) {
     const searchParams = new URLSearchParams();
     for (const [name, value] of entries) {
       if (value instanceof File)
         continue;
       searchParams.append(name, value);
     }
-    url.search = searchParams.toString();
-    return url;
+    url2.search = searchParams.toString();
+    return url2;
   }
   var Snapshot = class {
     constructor(element) {
@@ -1995,9 +3058,9 @@
     requestStarted() {
       this.startRequest();
     }
-    requestPreventedHandlingResponse(request, response) {
+    requestPreventedHandlingResponse(request2, response) {
     }
-    async requestSucceededWithResponse(request, response) {
+    async requestSucceededWithResponse(request2, response) {
       const responseHTML = await response.responseHTML;
       const { redirected, statusCode } = response;
       if (responseHTML == void 0) {
@@ -2007,7 +3070,7 @@
         this.recordResponse({ statusCode, responseHTML, redirected });
       }
     }
-    async requestFailedWithResponse(request, response) {
+    async requestFailedWithResponse(request2, response) {
       const responseHTML = await response.responseHTML;
       const { redirected, statusCode } = response;
       if (responseHTML == void 0) {
@@ -2016,7 +3079,7 @@
         this.recordResponse({ statusCode, responseHTML, redirected });
       }
     }
-    requestErrored(request, error2) {
+    requestErrored(request2, error4) {
       this.recordResponse({ statusCode: SystemStatusCode.networkFailure, redirected: false });
     }
     requestFinished() {
@@ -2261,13 +3324,13 @@
       this.linkInterceptor.stop();
       this.formInterceptor.stop();
     }
-    shouldInterceptLinkClick(element, url) {
+    shouldInterceptLinkClick(element, url2) {
       return this.shouldRedirect(element);
     }
-    linkClickIntercepted(element, url) {
+    linkClickIntercepted(element, url2) {
       const frame = this.findFrameElement(element);
       if (frame) {
-        frame.delegate.linkClickIntercepted(element, url);
+        frame.delegate.linkClickIntercepted(element, url2);
       }
     }
     shouldInterceptFormSubmission(element, submitter) {
@@ -2502,8 +3565,8 @@
         this.view.clearSnapshotCache();
       }
     }
-    formSubmissionErrored(formSubmission, error2) {
-      console.error(error2);
+    formSubmissionErrored(formSubmission, error4) {
+      console.error(error4);
     }
     formSubmissionFinished(formSubmission) {
       if (typeof this.adapter.formSubmissionFinished === "function") {
@@ -3144,8 +4207,8 @@
       return this.view.snapshot;
     }
   };
-  function extendURLWithDeprecatedProperties(url) {
-    Object.defineProperties(url, deprecatedLocationPropertyDescriptors);
+  function extendURLWithDeprecatedProperties(url2) {
+    Object.defineProperties(url2, deprecatedLocationPropertyDescriptors);
   }
   var deprecatedLocationPropertyDescriptors = {
     absoluteURL: {
@@ -3263,9 +4326,9 @@
             this.appearanceObserver.stop();
             await this.element.loaded;
             this.hasBeenLoaded = true;
-          } catch (error2) {
+          } catch (error4) {
             this.currentURL = previousURL;
-            throw error2;
+            throw error4;
           }
         }
       }
@@ -3287,8 +4350,8 @@
           session.frameLoaded(this.element);
           this.fetchResponseLoaded(fetchResponse);
         }
-      } catch (error2) {
-        console.error(error2);
+      } catch (error4) {
+        console.error(error4);
         this.view.invalidate();
       } finally {
         this.fetchResponseLoaded = () => {
@@ -3298,16 +4361,16 @@
     elementAppearedInViewport(element) {
       this.loadSourceURL();
     }
-    shouldInterceptLinkClick(element, url) {
+    shouldInterceptLinkClick(element, url2) {
       if (element.hasAttribute("data-turbo-method")) {
         return false;
       } else {
         return this.shouldInterceptNavigation(element);
       }
     }
-    linkClickIntercepted(element, url) {
+    linkClickIntercepted(element, url2) {
       this.reloadable = true;
-      this.navigateFrame(element, url);
+      this.navigateFrame(element, url2);
     }
     shouldInterceptFormSubmission(element, submitter) {
       return this.shouldInterceptNavigation(element, submitter);
@@ -3322,28 +4385,28 @@
       this.prepareHeadersForRequest(fetchRequest.headers, fetchRequest);
       this.formSubmission.start();
     }
-    prepareHeadersForRequest(headers, request) {
+    prepareHeadersForRequest(headers, request2) {
       headers["Turbo-Frame"] = this.id;
     }
-    requestStarted(request) {
+    requestStarted(request2) {
       markAsBusy(this.element);
     }
-    requestPreventedHandlingResponse(request, response) {
+    requestPreventedHandlingResponse(request2, response) {
       this.resolveVisitPromise();
     }
-    async requestSucceededWithResponse(request, response) {
+    async requestSucceededWithResponse(request2, response) {
       await this.loadResponse(response);
       this.resolveVisitPromise();
     }
-    requestFailedWithResponse(request, response) {
+    requestFailedWithResponse(request2, response) {
       console.error(response);
       this.resolveVisitPromise();
     }
-    requestErrored(request, error2) {
-      console.error(error2);
+    requestErrored(request2, error4) {
+      console.error(error4);
       this.resolveVisitPromise();
     }
-    requestFinished(request) {
+    requestFinished(request2) {
       clearBusyState(this.element);
     }
     formSubmissionStarted({ formElement }) {
@@ -3357,8 +4420,8 @@
     formSubmissionFailedWithResponse(formSubmission, fetchResponse) {
       this.element.delegate.loadResponse(fetchResponse);
     }
-    formSubmissionErrored(formSubmission, error2) {
-      console.error(error2);
+    formSubmissionErrored(formSubmission, error4) {
+      console.error(error4);
     }
     formSubmissionFinished({ formElement }) {
       clearBusyState(formElement, this.findFrameElement(formElement));
@@ -3370,11 +4433,11 @@
     }
     viewInvalidated() {
     }
-    async visit(url) {
+    async visit(url2) {
       var _a;
-      const request = new FetchRequest(this, FetchMethod.get, url, new URLSearchParams(), this.element);
+      const request2 = new FetchRequest(this, FetchMethod.get, url2, new URLSearchParams(), this.element);
       (_a = this.currentFetchRequest) === null || _a === void 0 ? void 0 : _a.cancel();
-      this.currentFetchRequest = request;
+      this.currentFetchRequest = request2;
       return new Promise((resolve) => {
         this.resolveVisitPromise = () => {
           this.resolveVisitPromise = () => {
@@ -3382,14 +4445,14 @@
           this.currentFetchRequest = null;
           resolve();
         };
-        request.perform();
+        request2.perform();
       });
     }
-    navigateFrame(element, url, submitter) {
+    navigateFrame(element, url2, submitter) {
       const frame = this.findFrameElement(element, submitter);
       this.proposeVisitIfNavigatedWithAction(frame, element, submitter);
       frame.setAttribute("reloadable", "");
-      frame.src = url;
+      frame.src = url2;
     }
     proposeVisitIfNavigatedWithAction(frame, element, submitter) {
       const action = getAttribute("data-turbo-action", submitter, element, frame);
@@ -3422,8 +4485,8 @@
           return await this.extractForeignFrameElement(element);
         }
         console.error(`Response has no matching <turbo-frame id="${id}"> element`);
-      } catch (error2) {
-        console.error(error2);
+      } catch (error4) {
+        console.error(error4);
       }
       return new FrameElement();
     }
@@ -3571,8 +4634,8 @@
     async connectedCallback() {
       try {
         await this.render();
-      } catch (error2) {
-        console.error(error2);
+      } catch (error4) {
+        console.error(error4);
       } finally {
         this.disconnect();
       }
@@ -3703,8 +4766,8 @@
     return consumer = newConsumer;
   }
   async function createConsumer2() {
-    const { createConsumer: createConsumer3 } = await Promise.resolve().then(() => (init_src(), src_exports));
-    return createConsumer3();
+    const { createConsumer: createConsumer5 } = await Promise.resolve().then(() => (init_src(), src_exports));
+    return createConsumer5();
   }
   async function subscribeTo(channel, mixin) {
     const { subscriptions } = await getConsumer();
@@ -3812,8 +4875,8 @@
     bindingDisconnected(binding) {
       this.fetchEventListenerForBinding(binding).bindingDisconnected(binding);
     }
-    handleError(error2, message, detail = {}) {
-      this.application.handleError(error2, `Error ${message}`, detail);
+    handleError(error4, message, detail = {}) {
+      this.application.handleError(error4, `Error ${message}`, detail);
     }
     fetchEventListenerForBinding(binding) {
       const { eventTarget, eventName, eventOptions } = binding;
@@ -3918,17 +4981,17 @@
       }
     }
     getParamsFromEventTargetAttributes(eventTarget) {
-      const params = {};
+      const params2 = {};
       const pattern = new RegExp(`^data-${this.identifier}-(.+)-param$`);
       const attributes = Array.from(eventTarget.attributes);
       attributes.forEach(({ name, value }) => {
         const match = name.match(pattern);
         const key = match && match[1];
         if (key) {
-          Object.assign(params, { [camelize(key)]: typecast(value) });
+          Object.assign(params2, { [camelize(key)]: typecast(value) });
         }
       });
-      return params;
+      return params2;
     }
     get eventTargetName() {
       return stringifyEventTarget(this.eventTarget);
@@ -3994,14 +5057,14 @@
     invokeWithEvent(event) {
       const { target, currentTarget } = event;
       try {
-        const { params } = this.action;
-        const actionEvent = Object.assign(event, { params });
+        const { params: params2 } = this.action;
+        const actionEvent = Object.assign(event, { params: params2 });
         this.method.call(this.controller, actionEvent);
         this.context.logDebugActivity(this.methodName, { event, target, currentTarget, action: this.methodName });
-      } catch (error2) {
+      } catch (error4) {
         const { identifier, controller, element, index } = this;
         const detail = { identifier, controller, element, index, event };
-        this.context.handleError(error2, `invoking action "${this.action}"`, detail);
+        this.context.handleError(error4, `invoking action "${this.action}"`, detail);
       }
     }
     willBeInvokedByEvent(event) {
@@ -4497,8 +5560,8 @@
       try {
         const value = this.delegate.parseValueForToken(token);
         return { value };
-      } catch (error2) {
-        return { error: error2 };
+      } catch (error4) {
+        return { error: error4 };
       }
     }
   };
@@ -4725,8 +5788,8 @@
       try {
         this.controller.initialize();
         this.logDebugActivity("initialize");
-      } catch (error2) {
-        this.handleError(error2, "initializing controller");
+      } catch (error4) {
+        this.handleError(error4, "initializing controller");
       }
     }
     connect() {
@@ -4736,16 +5799,16 @@
       try {
         this.controller.connect();
         this.logDebugActivity("connect");
-      } catch (error2) {
-        this.handleError(error2, "connecting controller");
+      } catch (error4) {
+        this.handleError(error4, "connecting controller");
       }
     }
     disconnect() {
       try {
         this.controller.disconnect();
         this.logDebugActivity("disconnect");
-      } catch (error2) {
-        this.handleError(error2, "disconnecting controller");
+      } catch (error4) {
+        this.handleError(error4, "disconnecting controller");
       }
       this.targetObserver.stop();
       this.valueObserver.stop();
@@ -4769,10 +5832,10 @@
     get parentElement() {
       return this.element.parentElement;
     }
-    handleError(error2, message, detail = {}) {
+    handleError(error4, message, detail = {}) {
       const { identifier, controller, element } = this;
       detail = Object.assign({ identifier, controller, element }, detail);
-      this.application.handleError(error2, `Error ${message}`, detail);
+      this.application.handleError(error4, `Error ${message}`, detail);
     }
     targetConnected(element, name) {
       this.invokeControllerMethod(`${name}TargetConnected`, element);
@@ -4891,7 +5954,7 @@
     try {
       testReflectExtension();
       return extendWithReflect;
-    } catch (error2) {
+    } catch (error4) {
       return (constructor) => class extended extends constructor {
       };
     }
@@ -5083,14 +6146,14 @@
     }
   };
   var Scope = class {
-    constructor(schema, element, identifier, logger) {
+    constructor(schema2, element, identifier, logger) {
       this.targets = new TargetSet(this);
       this.classes = new ClassMap(this);
       this.data = new DataMap(this);
       this.containsElement = (element2) => {
         return element2.closest(this.controllerSelector) === this.element;
       };
-      this.schema = schema;
+      this.schema = schema2;
       this.element = element;
       this.identifier = identifier;
       this.guide = new Guide(logger);
@@ -5112,9 +6175,9 @@
     }
   };
   var ScopeObserver = class {
-    constructor(element, schema, delegate) {
+    constructor(element, schema2, delegate) {
       this.element = element;
-      this.schema = schema;
+      this.schema = schema2;
       this.delegate = delegate;
       this.valueListObserver = new ValueListObserver(this.element, this.controllerAttribute, this);
       this.scopesByIdentifierByElement = new WeakMap();
@@ -5212,8 +6275,8 @@
         return module.contexts.find((context) => context.element == element);
       }
     }
-    handleError(error2, message, detail) {
-      this.application.handleError(error2, message, detail);
+    handleError(error4, message, detail) {
+      this.application.handleError(error4, message, detail);
     }
     createScopeForElementAndIdentifier(element, identifier) {
       return new Scope(this.schema, element, identifier, this.logger);
@@ -5250,7 +6313,7 @@
     targetAttributeForScope: (identifier) => `data-${identifier}-target`
   };
   var Application = class {
-    constructor(element = document.documentElement, schema = defaultSchema) {
+    constructor(element = document.documentElement, schema2 = defaultSchema) {
       this.logger = console;
       this.debug = false;
       this.logDebugActivity = (identifier, functionName, detail = {}) => {
@@ -5259,12 +6322,12 @@
         }
       };
       this.element = element;
-      this.schema = schema;
+      this.schema = schema2;
       this.dispatcher = new Dispatcher(this);
       this.router = new Router(this);
     }
-    static start(element, schema) {
-      const application2 = new Application(element, schema);
+    static start(element, schema2) {
+      const application2 = new Application(element, schema2);
       application2.start();
       return application2;
     }
@@ -5301,14 +6364,14 @@
       const context = this.router.getContextForElementAndIdentifier(element, identifier);
       return context ? context.controller : null;
     }
-    handleError(error2, message, detail) {
+    handleError(error4, message, detail) {
       var _a;
       this.logger.error(`%s
 
 %o
 
-%o`, message, error2, detail);
-      (_a = window.onerror) === null || _a === void 0 ? void 0 : _a.call(window, message, "", 0, 0, error2);
+%o`, message, error4, detail);
+      (_a = window.onerror) === null || _a === void 0 ? void 0 : _a.call(window, message, "", 0, 0, error4);
     }
     logFormattedMessage(identifier, functionName, detail = {}) {
       detail = Object.assign({ application: this }, detail);
@@ -5612,8 +6675,2228 @@
     }
   };
 
+  // node_modules/stimulus_reflex/javascript/utils.js
+  var uuidv4 = () => {
+    const crypto = window.crypto || window.msCrypto;
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+  };
+  var serializeForm = (form, options = {}) => {
+    if (!form)
+      return "";
+    const w = options.w || window;
+    const { element } = options;
+    const formData = new w.FormData(form);
+    const data = Array.from(formData, (e) => e.map(encodeURIComponent).join("="));
+    const submitButton = form.querySelector("input[type=submit]");
+    if (element && element.name && element.nodeName === "INPUT" && element.type === "submit") {
+      data.push(`${encodeURIComponent(element.name)}=${encodeURIComponent(element.value)}`);
+    } else if (submitButton && submitButton.name) {
+      data.push(`${encodeURIComponent(submitButton.name)}=${encodeURIComponent(submitButton.value)}`);
+    }
+    return Array.from(data).join("&");
+  };
+  var camelize2 = (value, uppercaseFirstLetter = true) => {
+    if (typeof value !== "string")
+      return "";
+    value = value.replace(/[\s_](.)/g, ($1) => $1.toUpperCase()).replace(/[\s_]/g, "").replace(/^(.)/, ($1) => $1.toLowerCase());
+    if (uppercaseFirstLetter)
+      value = value.substr(0, 1).toUpperCase() + value.substr(1);
+    return value;
+  };
+  var debounce = (callback, delay = 250) => {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        timeoutId = null;
+        callback(...args);
+      }, delay);
+    };
+  };
+  var extractReflexName = (reflexString) => {
+    const match = reflexString.match(/(?:.*->)?(.*?)(?:Reflex)?#/);
+    return match ? match[1] : "";
+  };
+  var emitEvent = (event, detail) => {
+    document.dispatchEvent(new CustomEvent(event, {
+      bubbles: true,
+      cancelable: false,
+      detail
+    }));
+    if (window.jQuery)
+      window.jQuery(document).trigger(event, detail);
+  };
+  var elementToXPath = (element) => {
+    if (element.id !== "")
+      return "//*[@id='" + element.id + "']";
+    if (element === document.body)
+      return "/html/body";
+    let ix = 0;
+    const siblings = element.parentNode.childNodes;
+    for (var i = 0; i < siblings.length; i++) {
+      const sibling = siblings[i];
+      if (sibling === element) {
+        const computedPath = elementToXPath(element.parentNode);
+        const tagName = element.tagName.toLowerCase();
+        const ixInc = ix + 1;
+        return `${computedPath}/${tagName}[${ixInc}]`;
+      }
+      if (sibling.nodeType === 1 && sibling.tagName === element.tagName) {
+        ix++;
+      }
+    }
+  };
+  var XPathToElement = (xpath) => {
+    return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  };
+  var XPathToArray = (xpath, reverse = false) => {
+    const snapshotList = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+    const snapshots = [];
+    for (let i = 0; i < snapshotList.snapshotLength; i++) {
+      snapshots.push(snapshotList.snapshotItem(i));
+    }
+    return reverse ? snapshots.reverse() : snapshots;
+  };
+
+  // node_modules/stimulus_reflex/javascript/debug.js
+  var debugging = false;
+  var debug_default = {
+    get enabled() {
+      return debugging;
+    },
+    get disabled() {
+      return !debugging;
+    },
+    get value() {
+      return debugging;
+    },
+    set(value) {
+      debugging = !!value;
+    },
+    set debug(value) {
+      debugging = !!value;
+    }
+  };
+
+  // node_modules/cable_ready/package.json
+  var version = "5.0.0-pre8";
+
+  // node_modules/cable_ready/javascript/enums.js
+  var inputTags = {
+    INPUT: true,
+    TEXTAREA: true,
+    SELECT: true
+  };
+  var mutableTags = {
+    INPUT: true,
+    TEXTAREA: true,
+    OPTION: true
+  };
+  var textInputTypes = {
+    "datetime-local": true,
+    "select-multiple": true,
+    "select-one": true,
+    color: true,
+    date: true,
+    datetime: true,
+    email: true,
+    month: true,
+    number: true,
+    password: true,
+    range: true,
+    search: true,
+    tel: true,
+    text: true,
+    textarea: true,
+    time: true,
+    url: true,
+    week: true
+  };
+
+  // node_modules/cable_ready/javascript/active_element.js
+  var activeElement;
+  var active_element_default = {
+    get element() {
+      return activeElement;
+    },
+    set(element) {
+      activeElement = element;
+    }
+  };
+
+  // node_modules/cable_ready/javascript/utils.js
+  var isTextInput = (element) => {
+    return inputTags[element.tagName] && textInputTypes[element.type];
+  };
+  var assignFocus = (selector) => {
+    const element = selector && selector.nodeType === Node.ELEMENT_NODE ? selector : document.querySelector(selector);
+    const focusElement = element || active_element_default.element;
+    if (focusElement && focusElement.focus)
+      focusElement.focus();
+  };
+  var dispatch2 = (element, name, detail = {}) => {
+    const init = { bubbles: true, cancelable: true, detail };
+    const evt = new CustomEvent(name, init);
+    element.dispatchEvent(evt);
+    if (window.jQuery)
+      window.jQuery(element).trigger(name, detail);
+  };
+  var xpathToElement = (xpath) => {
+    return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  };
+  var getClassNames = (names) => Array(names).flat();
+  var processElements = (operation, callback) => {
+    Array.from(operation.selectAll ? operation.element : [operation.element]).forEach(callback);
+  };
+  var kebabize = (str) => {
+    return str.split("").map((letter, idx) => {
+      return letter.toUpperCase() === letter ? `${idx !== 0 ? "-" : ""}${letter.toLowerCase()}` : letter;
+    }).join("");
+  };
+  var operate = (operation, callback) => {
+    if (!operation.cancel) {
+      operation.delay ? setTimeout(callback, operation.delay) : callback();
+      return true;
+    }
+    return false;
+  };
+  var before = (target, operation) => dispatch2(target, `cable-ready:before-${kebabize(operation.operation)}`, operation);
+  var after = (target, operation) => dispatch2(target, `cable-ready:after-${kebabize(operation.operation)}`, operation);
+  function debounce2(func, timeout) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func.apply(this, args), timeout);
+    };
+  }
+  function handleErrors(response) {
+    if (!response.ok)
+      throw Error(response.statusText);
+    return response;
+  }
+  async function graciouslyFetch(url2, additionalHeaders) {
+    try {
+      const response = await fetch(url2, {
+        headers: {
+          "X-REQUESTED-WITH": "XmlHttpRequest",
+          ...additionalHeaders
+        }
+      });
+      if (response == void 0)
+        return;
+      handleErrors(response);
+      return response;
+    } catch (e) {
+      console.error(`Could not fetch ${url2}`);
+    }
+  }
+
+  // node_modules/cable_ready/javascript/morph_callbacks.js
+  var shouldMorph = (operation) => (fromEl, toEl) => {
+    return !shouldMorphCallbacks.map((callback) => {
+      return typeof callback === "function" ? callback(operation, fromEl, toEl) : true;
+    }).includes(false);
+  };
+  var didMorph = (operation) => (el) => {
+    didMorphCallbacks.forEach((callback) => {
+      if (typeof callback === "function")
+        callback(operation, el);
+    });
+  };
+  var verifyNotMutable = (detail, fromEl, toEl) => {
+    if (!mutableTags[fromEl.tagName] && fromEl.isEqualNode(toEl))
+      return false;
+    return true;
+  };
+  var verifyNotContentEditable = (detail, fromEl, toEl) => {
+    if (fromEl === active_element_default.element && fromEl.isContentEditable)
+      return false;
+    return true;
+  };
+  var verifyNotPermanent = (detail, fromEl, toEl) => {
+    const { permanentAttributeName } = detail;
+    if (!permanentAttributeName)
+      return true;
+    const permanent = fromEl.closest(`[${permanentAttributeName}]`);
+    if (!permanent && fromEl === active_element_default.element && isTextInput(fromEl)) {
+      const ignore = { value: true };
+      Array.from(toEl.attributes).forEach((attribute) => {
+        if (!ignore[attribute.name])
+          fromEl.setAttribute(attribute.name, attribute.value);
+      });
+      return false;
+    }
+    return !permanent;
+  };
+  var shouldMorphCallbacks = [
+    verifyNotMutable,
+    verifyNotPermanent,
+    verifyNotContentEditable
+  ];
+  var didMorphCallbacks = [];
+
+  // node_modules/morphdom/dist/morphdom-esm.js
+  var DOCUMENT_FRAGMENT_NODE = 11;
+  function morphAttrs(fromNode, toNode) {
+    var toNodeAttrs = toNode.attributes;
+    var attr;
+    var attrName;
+    var attrNamespaceURI;
+    var attrValue;
+    var fromValue;
+    if (toNode.nodeType === DOCUMENT_FRAGMENT_NODE || fromNode.nodeType === DOCUMENT_FRAGMENT_NODE) {
+      return;
+    }
+    for (var i = toNodeAttrs.length - 1; i >= 0; i--) {
+      attr = toNodeAttrs[i];
+      attrName = attr.name;
+      attrNamespaceURI = attr.namespaceURI;
+      attrValue = attr.value;
+      if (attrNamespaceURI) {
+        attrName = attr.localName || attrName;
+        fromValue = fromNode.getAttributeNS(attrNamespaceURI, attrName);
+        if (fromValue !== attrValue) {
+          if (attr.prefix === "xmlns") {
+            attrName = attr.name;
+          }
+          fromNode.setAttributeNS(attrNamespaceURI, attrName, attrValue);
+        }
+      } else {
+        fromValue = fromNode.getAttribute(attrName);
+        if (fromValue !== attrValue) {
+          fromNode.setAttribute(attrName, attrValue);
+        }
+      }
+    }
+    var fromNodeAttrs = fromNode.attributes;
+    for (var d = fromNodeAttrs.length - 1; d >= 0; d--) {
+      attr = fromNodeAttrs[d];
+      attrName = attr.name;
+      attrNamespaceURI = attr.namespaceURI;
+      if (attrNamespaceURI) {
+        attrName = attr.localName || attrName;
+        if (!toNode.hasAttributeNS(attrNamespaceURI, attrName)) {
+          fromNode.removeAttributeNS(attrNamespaceURI, attrName);
+        }
+      } else {
+        if (!toNode.hasAttribute(attrName)) {
+          fromNode.removeAttribute(attrName);
+        }
+      }
+    }
+  }
+  var range;
+  var NS_XHTML = "http://www.w3.org/1999/xhtml";
+  var doc = typeof document === "undefined" ? void 0 : document;
+  var HAS_TEMPLATE_SUPPORT = !!doc && "content" in doc.createElement("template");
+  var HAS_RANGE_SUPPORT = !!doc && doc.createRange && "createContextualFragment" in doc.createRange();
+  function createFragmentFromTemplate(str) {
+    var template2 = doc.createElement("template");
+    template2.innerHTML = str;
+    return template2.content.childNodes[0];
+  }
+  function createFragmentFromRange(str) {
+    if (!range) {
+      range = doc.createRange();
+      range.selectNode(doc.body);
+    }
+    var fragment = range.createContextualFragment(str);
+    return fragment.childNodes[0];
+  }
+  function createFragmentFromWrap(str) {
+    var fragment = doc.createElement("body");
+    fragment.innerHTML = str;
+    return fragment.childNodes[0];
+  }
+  function toElement(str) {
+    str = str.trim();
+    if (HAS_TEMPLATE_SUPPORT) {
+      return createFragmentFromTemplate(str);
+    } else if (HAS_RANGE_SUPPORT) {
+      return createFragmentFromRange(str);
+    }
+    return createFragmentFromWrap(str);
+  }
+  function compareNodeNames(fromEl, toEl) {
+    var fromNodeName = fromEl.nodeName;
+    var toNodeName = toEl.nodeName;
+    var fromCodeStart, toCodeStart;
+    if (fromNodeName === toNodeName) {
+      return true;
+    }
+    fromCodeStart = fromNodeName.charCodeAt(0);
+    toCodeStart = toNodeName.charCodeAt(0);
+    if (fromCodeStart <= 90 && toCodeStart >= 97) {
+      return fromNodeName === toNodeName.toUpperCase();
+    } else if (toCodeStart <= 90 && fromCodeStart >= 97) {
+      return toNodeName === fromNodeName.toUpperCase();
+    } else {
+      return false;
+    }
+  }
+  function createElementNS(name, namespaceURI) {
+    return !namespaceURI || namespaceURI === NS_XHTML ? doc.createElement(name) : doc.createElementNS(namespaceURI, name);
+  }
+  function moveChildren(fromEl, toEl) {
+    var curChild = fromEl.firstChild;
+    while (curChild) {
+      var nextChild = curChild.nextSibling;
+      toEl.appendChild(curChild);
+      curChild = nextChild;
+    }
+    return toEl;
+  }
+  function syncBooleanAttrProp(fromEl, toEl, name) {
+    if (fromEl[name] !== toEl[name]) {
+      fromEl[name] = toEl[name];
+      if (fromEl[name]) {
+        fromEl.setAttribute(name, "");
+      } else {
+        fromEl.removeAttribute(name);
+      }
+    }
+  }
+  var specialElHandlers = {
+    OPTION: function(fromEl, toEl) {
+      var parentNode = fromEl.parentNode;
+      if (parentNode) {
+        var parentName = parentNode.nodeName.toUpperCase();
+        if (parentName === "OPTGROUP") {
+          parentNode = parentNode.parentNode;
+          parentName = parentNode && parentNode.nodeName.toUpperCase();
+        }
+        if (parentName === "SELECT" && !parentNode.hasAttribute("multiple")) {
+          if (fromEl.hasAttribute("selected") && !toEl.selected) {
+            fromEl.setAttribute("selected", "selected");
+            fromEl.removeAttribute("selected");
+          }
+          parentNode.selectedIndex = -1;
+        }
+      }
+      syncBooleanAttrProp(fromEl, toEl, "selected");
+    },
+    INPUT: function(fromEl, toEl) {
+      syncBooleanAttrProp(fromEl, toEl, "checked");
+      syncBooleanAttrProp(fromEl, toEl, "disabled");
+      if (fromEl.value !== toEl.value) {
+        fromEl.value = toEl.value;
+      }
+      if (!toEl.hasAttribute("value")) {
+        fromEl.removeAttribute("value");
+      }
+    },
+    TEXTAREA: function(fromEl, toEl) {
+      var newValue = toEl.value;
+      if (fromEl.value !== newValue) {
+        fromEl.value = newValue;
+      }
+      var firstChild = fromEl.firstChild;
+      if (firstChild) {
+        var oldValue = firstChild.nodeValue;
+        if (oldValue == newValue || !newValue && oldValue == fromEl.placeholder) {
+          return;
+        }
+        firstChild.nodeValue = newValue;
+      }
+    },
+    SELECT: function(fromEl, toEl) {
+      if (!toEl.hasAttribute("multiple")) {
+        var selectedIndex = -1;
+        var i = 0;
+        var curChild = fromEl.firstChild;
+        var optgroup;
+        var nodeName;
+        while (curChild) {
+          nodeName = curChild.nodeName && curChild.nodeName.toUpperCase();
+          if (nodeName === "OPTGROUP") {
+            optgroup = curChild;
+            curChild = optgroup.firstChild;
+          } else {
+            if (nodeName === "OPTION") {
+              if (curChild.hasAttribute("selected")) {
+                selectedIndex = i;
+                break;
+              }
+              i++;
+            }
+            curChild = curChild.nextSibling;
+            if (!curChild && optgroup) {
+              curChild = optgroup.nextSibling;
+              optgroup = null;
+            }
+          }
+        }
+        fromEl.selectedIndex = selectedIndex;
+      }
+    }
+  };
+  var ELEMENT_NODE = 1;
+  var DOCUMENT_FRAGMENT_NODE$1 = 11;
+  var TEXT_NODE = 3;
+  var COMMENT_NODE = 8;
+  function noop() {
+  }
+  function defaultGetNodeKey(node) {
+    if (node) {
+      return node.getAttribute && node.getAttribute("id") || node.id;
+    }
+  }
+  function morphdomFactory(morphAttrs2) {
+    return function morphdom2(fromNode, toNode, options) {
+      if (!options) {
+        options = {};
+      }
+      if (typeof toNode === "string") {
+        if (fromNode.nodeName === "#document" || fromNode.nodeName === "HTML" || fromNode.nodeName === "BODY") {
+          var toNodeHtml = toNode;
+          toNode = doc.createElement("html");
+          toNode.innerHTML = toNodeHtml;
+        } else {
+          toNode = toElement(toNode);
+        }
+      }
+      var getNodeKey = options.getNodeKey || defaultGetNodeKey;
+      var onBeforeNodeAdded = options.onBeforeNodeAdded || noop;
+      var onNodeAdded = options.onNodeAdded || noop;
+      var onBeforeElUpdated = options.onBeforeElUpdated || noop;
+      var onElUpdated = options.onElUpdated || noop;
+      var onBeforeNodeDiscarded = options.onBeforeNodeDiscarded || noop;
+      var onNodeDiscarded = options.onNodeDiscarded || noop;
+      var onBeforeElChildrenUpdated = options.onBeforeElChildrenUpdated || noop;
+      var childrenOnly = options.childrenOnly === true;
+      var fromNodesLookup = Object.create(null);
+      var keyedRemovalList = [];
+      function addKeyedRemoval(key) {
+        keyedRemovalList.push(key);
+      }
+      function walkDiscardedChildNodes(node, skipKeyedNodes) {
+        if (node.nodeType === ELEMENT_NODE) {
+          var curChild = node.firstChild;
+          while (curChild) {
+            var key = void 0;
+            if (skipKeyedNodes && (key = getNodeKey(curChild))) {
+              addKeyedRemoval(key);
+            } else {
+              onNodeDiscarded(curChild);
+              if (curChild.firstChild) {
+                walkDiscardedChildNodes(curChild, skipKeyedNodes);
+              }
+            }
+            curChild = curChild.nextSibling;
+          }
+        }
+      }
+      function removeNode(node, parentNode, skipKeyedNodes) {
+        if (onBeforeNodeDiscarded(node) === false) {
+          return;
+        }
+        if (parentNode) {
+          parentNode.removeChild(node);
+        }
+        onNodeDiscarded(node);
+        walkDiscardedChildNodes(node, skipKeyedNodes);
+      }
+      function indexTree(node) {
+        if (node.nodeType === ELEMENT_NODE || node.nodeType === DOCUMENT_FRAGMENT_NODE$1) {
+          var curChild = node.firstChild;
+          while (curChild) {
+            var key = getNodeKey(curChild);
+            if (key) {
+              fromNodesLookup[key] = curChild;
+            }
+            indexTree(curChild);
+            curChild = curChild.nextSibling;
+          }
+        }
+      }
+      indexTree(fromNode);
+      function handleNodeAdded(el) {
+        onNodeAdded(el);
+        var curChild = el.firstChild;
+        while (curChild) {
+          var nextSibling = curChild.nextSibling;
+          var key = getNodeKey(curChild);
+          if (key) {
+            var unmatchedFromEl = fromNodesLookup[key];
+            if (unmatchedFromEl && compareNodeNames(curChild, unmatchedFromEl)) {
+              curChild.parentNode.replaceChild(unmatchedFromEl, curChild);
+              morphEl(unmatchedFromEl, curChild);
+            } else {
+              handleNodeAdded(curChild);
+            }
+          } else {
+            handleNodeAdded(curChild);
+          }
+          curChild = nextSibling;
+        }
+      }
+      function cleanupFromEl(fromEl, curFromNodeChild, curFromNodeKey) {
+        while (curFromNodeChild) {
+          var fromNextSibling = curFromNodeChild.nextSibling;
+          if (curFromNodeKey = getNodeKey(curFromNodeChild)) {
+            addKeyedRemoval(curFromNodeKey);
+          } else {
+            removeNode(curFromNodeChild, fromEl, true);
+          }
+          curFromNodeChild = fromNextSibling;
+        }
+      }
+      function morphEl(fromEl, toEl, childrenOnly2) {
+        var toElKey = getNodeKey(toEl);
+        if (toElKey) {
+          delete fromNodesLookup[toElKey];
+        }
+        if (!childrenOnly2) {
+          if (onBeforeElUpdated(fromEl, toEl) === false) {
+            return;
+          }
+          morphAttrs2(fromEl, toEl);
+          onElUpdated(fromEl);
+          if (onBeforeElChildrenUpdated(fromEl, toEl) === false) {
+            return;
+          }
+        }
+        if (fromEl.nodeName !== "TEXTAREA") {
+          morphChildren(fromEl, toEl);
+        } else {
+          specialElHandlers.TEXTAREA(fromEl, toEl);
+        }
+      }
+      function morphChildren(fromEl, toEl) {
+        var curToNodeChild = toEl.firstChild;
+        var curFromNodeChild = fromEl.firstChild;
+        var curToNodeKey;
+        var curFromNodeKey;
+        var fromNextSibling;
+        var toNextSibling;
+        var matchingFromEl;
+        outer:
+          while (curToNodeChild) {
+            toNextSibling = curToNodeChild.nextSibling;
+            curToNodeKey = getNodeKey(curToNodeChild);
+            while (curFromNodeChild) {
+              fromNextSibling = curFromNodeChild.nextSibling;
+              if (curToNodeChild.isSameNode && curToNodeChild.isSameNode(curFromNodeChild)) {
+                curToNodeChild = toNextSibling;
+                curFromNodeChild = fromNextSibling;
+                continue outer;
+              }
+              curFromNodeKey = getNodeKey(curFromNodeChild);
+              var curFromNodeType = curFromNodeChild.nodeType;
+              var isCompatible = void 0;
+              if (curFromNodeType === curToNodeChild.nodeType) {
+                if (curFromNodeType === ELEMENT_NODE) {
+                  if (curToNodeKey) {
+                    if (curToNodeKey !== curFromNodeKey) {
+                      if (matchingFromEl = fromNodesLookup[curToNodeKey]) {
+                        if (fromNextSibling === matchingFromEl) {
+                          isCompatible = false;
+                        } else {
+                          fromEl.insertBefore(matchingFromEl, curFromNodeChild);
+                          if (curFromNodeKey) {
+                            addKeyedRemoval(curFromNodeKey);
+                          } else {
+                            removeNode(curFromNodeChild, fromEl, true);
+                          }
+                          curFromNodeChild = matchingFromEl;
+                        }
+                      } else {
+                        isCompatible = false;
+                      }
+                    }
+                  } else if (curFromNodeKey) {
+                    isCompatible = false;
+                  }
+                  isCompatible = isCompatible !== false && compareNodeNames(curFromNodeChild, curToNodeChild);
+                  if (isCompatible) {
+                    morphEl(curFromNodeChild, curToNodeChild);
+                  }
+                } else if (curFromNodeType === TEXT_NODE || curFromNodeType == COMMENT_NODE) {
+                  isCompatible = true;
+                  if (curFromNodeChild.nodeValue !== curToNodeChild.nodeValue) {
+                    curFromNodeChild.nodeValue = curToNodeChild.nodeValue;
+                  }
+                }
+              }
+              if (isCompatible) {
+                curToNodeChild = toNextSibling;
+                curFromNodeChild = fromNextSibling;
+                continue outer;
+              }
+              if (curFromNodeKey) {
+                addKeyedRemoval(curFromNodeKey);
+              } else {
+                removeNode(curFromNodeChild, fromEl, true);
+              }
+              curFromNodeChild = fromNextSibling;
+            }
+            if (curToNodeKey && (matchingFromEl = fromNodesLookup[curToNodeKey]) && compareNodeNames(matchingFromEl, curToNodeChild)) {
+              fromEl.appendChild(matchingFromEl);
+              morphEl(matchingFromEl, curToNodeChild);
+            } else {
+              var onBeforeNodeAddedResult = onBeforeNodeAdded(curToNodeChild);
+              if (onBeforeNodeAddedResult !== false) {
+                if (onBeforeNodeAddedResult) {
+                  curToNodeChild = onBeforeNodeAddedResult;
+                }
+                if (curToNodeChild.actualize) {
+                  curToNodeChild = curToNodeChild.actualize(fromEl.ownerDocument || doc);
+                }
+                fromEl.appendChild(curToNodeChild);
+                handleNodeAdded(curToNodeChild);
+              }
+            }
+            curToNodeChild = toNextSibling;
+            curFromNodeChild = fromNextSibling;
+          }
+        cleanupFromEl(fromEl, curFromNodeChild, curFromNodeKey);
+        var specialElHandler = specialElHandlers[fromEl.nodeName];
+        if (specialElHandler) {
+          specialElHandler(fromEl, toEl);
+        }
+      }
+      var morphedNode = fromNode;
+      var morphedNodeType = morphedNode.nodeType;
+      var toNodeType = toNode.nodeType;
+      if (!childrenOnly) {
+        if (morphedNodeType === ELEMENT_NODE) {
+          if (toNodeType === ELEMENT_NODE) {
+            if (!compareNodeNames(fromNode, toNode)) {
+              onNodeDiscarded(fromNode);
+              morphedNode = moveChildren(fromNode, createElementNS(toNode.nodeName, toNode.namespaceURI));
+            }
+          } else {
+            morphedNode = toNode;
+          }
+        } else if (morphedNodeType === TEXT_NODE || morphedNodeType === COMMENT_NODE) {
+          if (toNodeType === morphedNodeType) {
+            if (morphedNode.nodeValue !== toNode.nodeValue) {
+              morphedNode.nodeValue = toNode.nodeValue;
+            }
+            return morphedNode;
+          } else {
+            morphedNode = toNode;
+          }
+        }
+      }
+      if (morphedNode === toNode) {
+        onNodeDiscarded(fromNode);
+      } else {
+        if (toNode.isSameNode && toNode.isSameNode(morphedNode)) {
+          return;
+        }
+        morphEl(morphedNode, toNode, childrenOnly);
+        if (keyedRemovalList) {
+          for (var i = 0, len = keyedRemovalList.length; i < len; i++) {
+            var elToRemove = fromNodesLookup[keyedRemovalList[i]];
+            if (elToRemove) {
+              removeNode(elToRemove, elToRemove.parentNode, false);
+            }
+          }
+        }
+      }
+      if (!childrenOnly && morphedNode !== fromNode && fromNode.parentNode) {
+        if (morphedNode.actualize) {
+          morphedNode = morphedNode.actualize(fromNode.ownerDocument || doc);
+        }
+        fromNode.parentNode.replaceChild(morphedNode, fromNode);
+      }
+      return morphedNode;
+    };
+  }
+  var morphdom = morphdomFactory(morphAttrs);
+  var morphdom_esm_default = morphdom;
+
+  // node_modules/cable_ready/javascript/operations.js
+  var operations_default = {
+    append: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { html, focusSelector } = operation;
+          element.insertAdjacentHTML("beforeend", html || "");
+          assignFocus(focusSelector);
+        });
+        after(element, operation);
+      });
+    },
+    graft: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { parent, focusSelector } = operation;
+          const parentElement = document.querySelector(parent);
+          if (parentElement) {
+            parentElement.appendChild(element);
+            assignFocus(focusSelector);
+          }
+        });
+        after(element, operation);
+      });
+    },
+    innerHtml: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { html, focusSelector } = operation;
+          element.innerHTML = html || "";
+          assignFocus(focusSelector);
+        });
+        after(element, operation);
+      });
+    },
+    insertAdjacentHtml: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { html, position, focusSelector } = operation;
+          element.insertAdjacentHTML(position || "beforeend", html || "");
+          assignFocus(focusSelector);
+        });
+        after(element, operation);
+      });
+    },
+    insertAdjacentText: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { text, position, focusSelector } = operation;
+          element.insertAdjacentText(position || "beforeend", text || "");
+          assignFocus(focusSelector);
+        });
+        after(element, operation);
+      });
+    },
+    morph: (operation) => {
+      processElements(operation, (element) => {
+        const { html } = operation;
+        const template2 = document.createElement("template");
+        template2.innerHTML = String(html).trim();
+        operation.content = template2.content;
+        const parent = element.parentElement;
+        const ordinal = Array.from(parent.children).indexOf(element);
+        before(element, operation);
+        operate(operation, () => {
+          const { childrenOnly, focusSelector } = operation;
+          morphdom_esm_default(element, childrenOnly ? template2.content : template2.innerHTML, {
+            childrenOnly: !!childrenOnly,
+            onBeforeElUpdated: shouldMorph(operation),
+            onElUpdated: didMorph(operation)
+          });
+          assignFocus(focusSelector);
+        });
+        after(parent.children[ordinal], operation);
+      });
+    },
+    outerHtml: (operation) => {
+      processElements(operation, (element) => {
+        const parent = element.parentElement;
+        const ordinal = Array.from(parent.children).indexOf(element);
+        before(element, operation);
+        operate(operation, () => {
+          const { html, focusSelector } = operation;
+          element.outerHTML = html || "";
+          assignFocus(focusSelector);
+        });
+        after(parent.children[ordinal], operation);
+      });
+    },
+    prepend: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { html, focusSelector } = operation;
+          element.insertAdjacentHTML("afterbegin", html || "");
+          assignFocus(focusSelector);
+        });
+        after(element, operation);
+      });
+    },
+    remove: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { focusSelector } = operation;
+          element.remove();
+          assignFocus(focusSelector);
+        });
+        after(document, operation);
+      });
+    },
+    replace: (operation) => {
+      processElements(operation, (element) => {
+        const parent = element.parentElement;
+        const ordinal = Array.from(parent.children).indexOf(element);
+        before(element, operation);
+        operate(operation, () => {
+          const { html, focusSelector } = operation;
+          element.outerHTML = html || "";
+          assignFocus(focusSelector);
+        });
+        after(parent.children[ordinal], operation);
+      });
+    },
+    textContent: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { text, focusSelector } = operation;
+          element.textContent = text || "";
+          assignFocus(focusSelector);
+        });
+        after(element, operation);
+      });
+    },
+    addCssClass: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { name } = operation;
+          element.classList.add(...getClassNames(name || ""));
+        });
+        after(element, operation);
+      });
+    },
+    removeAttribute: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { name } = operation;
+          element.removeAttribute(name);
+        });
+        after(element, operation);
+      });
+    },
+    removeCssClass: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { name } = operation;
+          element.classList.remove(...getClassNames(name));
+        });
+        after(element, operation);
+      });
+    },
+    setAttribute: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { name, value } = operation;
+          element.setAttribute(name, value || "");
+        });
+        after(element, operation);
+      });
+    },
+    setDatasetProperty: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { name, value } = operation;
+          element.dataset[name] = value || "";
+        });
+        after(element, operation);
+      });
+    },
+    setProperty: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { name, value } = operation;
+          if (name in element)
+            element[name] = value || "";
+        });
+        after(element, operation);
+      });
+    },
+    setStyle: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { name, value } = operation;
+          element.style[name] = value || "";
+        });
+        after(element, operation);
+      });
+    },
+    setStyles: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { styles } = operation;
+          for (let [name, value] of Object.entries(styles))
+            element.style[name] = value || "";
+        });
+        after(element, operation);
+      });
+    },
+    setValue: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { value } = operation;
+          element.value = value || "";
+        });
+        after(element, operation);
+      });
+    },
+    dispatchEvent: (operation) => {
+      processElements(operation, (element) => {
+        before(element, operation);
+        operate(operation, () => {
+          const { name, detail } = operation;
+          dispatch2(element, name, detail);
+        });
+        after(element, operation);
+      });
+    },
+    setMeta: (operation) => {
+      before(document, operation);
+      operate(operation, () => {
+        const { name, content } = operation;
+        let meta = document.head.querySelector(`meta[name='${name}']`);
+        if (!meta) {
+          meta = document.createElement("meta");
+          meta.name = name;
+          document.head.appendChild(meta);
+        }
+        meta.content = content;
+      });
+      after(document, operation);
+    },
+    clearStorage: (operation) => {
+      before(document, operation);
+      operate(operation, () => {
+        const { type } = operation;
+        const storage = type === "session" ? sessionStorage : localStorage;
+        storage.clear();
+      });
+      after(document, operation);
+    },
+    go: (operation) => {
+      before(window, operation);
+      operate(operation, () => {
+        const { delta } = operation;
+        history.go(delta);
+      });
+      after(window, operation);
+    },
+    pushState: (operation) => {
+      before(window, operation);
+      operate(operation, () => {
+        const { state, title, url: url2 } = operation;
+        history.pushState(state || {}, title || "", url2);
+      });
+      after(window, operation);
+    },
+    redirectTo: (operation) => {
+      before(window, operation);
+      operate(operation, () => {
+        let { url: url2, action } = operation;
+        action = action || "advance";
+        if (window.Turbo)
+          window.Turbo.visit(url2, { action });
+        if (window.Turbolinks)
+          window.Turbolinks.visit(url2, { action });
+        if (!window.Turbo && !window.Turbolinks)
+          window.location.href = url2;
+      });
+      after(window, operation);
+    },
+    reload: (operation) => {
+      before(window, operation);
+      operate(operation, () => {
+        window.location.reload();
+      });
+      after(window, operation);
+    },
+    removeStorageItem: (operation) => {
+      before(document, operation);
+      operate(operation, () => {
+        const { key, type } = operation;
+        const storage = type === "session" ? sessionStorage : localStorage;
+        storage.removeItem(key);
+      });
+      after(document, operation);
+    },
+    replaceState: (operation) => {
+      before(window, operation);
+      operate(operation, () => {
+        const { state, title, url: url2 } = operation;
+        history.replaceState(state || {}, title || "", url2);
+      });
+      after(window, operation);
+    },
+    scrollIntoView: (operation) => {
+      const { element } = operation;
+      before(element, operation);
+      operate(operation, () => {
+        element.scrollIntoView(operation);
+      });
+      after(element, operation);
+    },
+    setCookie: (operation) => {
+      before(document, operation);
+      operate(operation, () => {
+        const { cookie } = operation;
+        document.cookie = cookie || "";
+      });
+      after(document, operation);
+    },
+    setFocus: (operation) => {
+      const { element } = operation;
+      before(element, operation);
+      operate(operation, () => {
+        assignFocus(element);
+      });
+      after(element, operation);
+    },
+    setStorageItem: (operation) => {
+      before(document, operation);
+      operate(operation, () => {
+        const { key, value, type } = operation;
+        const storage = type === "session" ? sessionStorage : localStorage;
+        storage.setItem(key, value || "");
+      });
+      after(document, operation);
+    },
+    consoleLog: (operation) => {
+      before(document, operation);
+      operate(operation, () => {
+        const { message, level } = operation;
+        level && ["warn", "info", "error"].includes(level) ? console[level](message || "") : console.log(message || "");
+      });
+      after(document, operation);
+    },
+    consoleTable: (operation) => {
+      before(document, operation);
+      operate(operation, () => {
+        const { data, columns } = operation;
+        console.table(data, columns || []);
+      });
+      after(document, operation);
+    },
+    notification: (operation) => {
+      before(document, operation);
+      operate(operation, () => {
+        const { title, options } = operation;
+        Notification.requestPermission().then((result) => {
+          operation.permission = result;
+          if (result === "granted")
+            new Notification(title || "", options);
+        });
+      });
+      after(document, operation);
+    }
+  };
+
+  // node_modules/cable_ready/javascript/operation_store.js
+  var operations = operations_default;
+  var add2 = (newOperations) => {
+    operations = { ...operations, ...newOperations };
+  };
+  var addOperations = (operations2) => {
+    add2(operations2);
+  };
+  var addOperation = (name, operation) => {
+    const operations2 = {};
+    operations2[name] = operation;
+    add2(operations2);
+  };
+  var operation_store_default = {
+    get all() {
+      return operations;
+    }
+  };
+
+  // node_modules/cable_ready/javascript/action_cable.js
+  var consumer2;
+  var wait = () => new Promise((resolve) => setTimeout(resolve));
+  var retryGetConsumer = async () => {
+    if (!consumer2) {
+      await wait();
+      return retryGetConsumer();
+    } else {
+      return consumer2;
+    }
+  };
+  var action_cable_default = {
+    setConsumer(value) {
+      consumer2 = value;
+    },
+    async getConsumer() {
+      return new Promise((resolve, reject) => {
+        consumer2 = retryGetConsumer();
+        resolve(consumer2);
+      });
+    }
+  };
+
+  // node_modules/cable_ready/javascript/elements/subscribing_element.js
+  var SubscribingElement = class extends HTMLElement {
+    disconnectedCallback() {
+      if (this.channel)
+        this.channel.unsubscribe();
+    }
+    createSubscription(consumer5, channel, receivedCallback) {
+      this.channel = consumer5.subscriptions.create({
+        channel,
+        identifier: this.getAttribute("identifier")
+      }, {
+        received: receivedCallback
+      });
+    }
+    get preview() {
+      return document.documentElement.hasAttribute("data-turbolinks-preview") || document.documentElement.hasAttribute("data-turbo-preview");
+    }
+  };
+
+  // node_modules/cable_ready/javascript/elements/stream_from_element.js
+  var StreamFromElement = class extends SubscribingElement {
+    async connectedCallback() {
+      if (this.preview)
+        return;
+      const consumer5 = await javascript_default.consumer;
+      if (consumer5) {
+        this.createSubscription(consumer5, "CableReady::Stream", this.performOperations);
+      } else {
+        console.error("The `stream_from` helper cannot connect without an ActionCable consumer.\nPlease run `rails generate cable_ready:helpers` to fix this.");
+      }
+    }
+    performOperations(data) {
+      if (data.cableReady)
+        javascript_default.perform(data.operations);
+    }
+  };
+
+  // node_modules/cable_ready/javascript/elements/updates_for_element.js
+  var template = `
+<style>
+  :host {
+    display: block;
+  }
+</style>
+<slot></slot>
+`;
+  function url(ele) {
+    return ele.hasAttribute("url") ? ele.getAttribute("url") : location.href;
+  }
+  var UpdatesForElement = class extends SubscribingElement {
+    constructor() {
+      super();
+      const shadowRoot = this.attachShadow({ mode: "open" });
+      shadowRoot.innerHTML = template;
+    }
+    async connectedCallback() {
+      if (this.preview)
+        return;
+      this.update = debounce2(this.update.bind(this), this.debounce);
+      const consumer5 = await javascript_default.consumer;
+      if (consumer5) {
+        this.createSubscription(consumer5, "CableReady::Stream", this.update);
+      } else {
+        console.error("The `updates-for` helper cannot connect without an ActionCable consumer.\nPlease run `rails generate cable_ready:helpers` to fix this.");
+      }
+    }
+    async update(data) {
+      const identifier = this.getAttribute("identifier");
+      const query = `updates-for[identifier="${identifier}"]`;
+      const blocks = document.querySelectorAll(query);
+      if (blocks[0] !== this)
+        return;
+      const only = this.getAttribute("only");
+      if (only && data.changed && !only.split(" ").some((attribute) => data.changed.includes(attribute)))
+        return;
+      const html = {};
+      const template2 = document.createElement("template");
+      for (let i = 0; i < blocks.length; i++) {
+        blocks[i].setAttribute("updating", "updating");
+        if (!html.hasOwnProperty(url(blocks[i]))) {
+          const response = await graciouslyFetch(url(blocks[i]), {
+            "X-Cable-Ready": "update"
+          });
+          html[url(blocks[i])] = await response.text();
+        }
+        template2.innerHTML = String(html[url(blocks[i])]).trim();
+        await this.resolveTurboFrames(template2.content);
+        const fragments = template2.content.querySelectorAll(query);
+        if (fragments.length <= i) {
+          console.warn("Update aborted due to mismatched number of elements");
+          return;
+        }
+        active_element_default.set(document.activeElement);
+        const operation = {
+          element: blocks[i],
+          html: fragments[i],
+          permanentAttributeName: "data-ignore-updates"
+        };
+        dispatch2(blocks[i], "cable-ready:before-update", operation);
+        morphdom_esm_default(blocks[i], fragments[i], {
+          childrenOnly: true,
+          onBeforeElUpdated: shouldMorph(operation),
+          onElUpdated: (_) => {
+            blocks[i].removeAttribute("updating");
+            dispatch2(blocks[i], "cable-ready:after-update", operation);
+            assignFocus(operation.focusSelector);
+          }
+        });
+      }
+    }
+    async resolveTurboFrames(documentFragment) {
+      const reloadingTurboFrames = [
+        ...documentFragment.querySelectorAll('turbo-frame[src]:not([loading="lazy"])')
+      ];
+      return Promise.all(reloadingTurboFrames.map((frame) => {
+        return new Promise(async (resolve) => {
+          const frameResponse = await graciouslyFetch(frame.getAttribute("src"), {
+            "Turbo-Frame": frame.id,
+            "X-Cable-Ready": "update"
+          });
+          const frameTemplate = document.createElement("template");
+          frameTemplate.innerHTML = await frameResponse.text();
+          await this.resolveTurboFrames(frameTemplate.content);
+          documentFragment.querySelector(`turbo-frame#${frame.id}`).innerHTML = String(frameTemplate.content.querySelector(`turbo-frame#${frame.id}`).innerHTML).trim();
+          resolve();
+        });
+      }));
+    }
+    get debounce() {
+      return this.hasAttribute("debounce") ? parseInt(this.getAttribute("debounce")) : 20;
+    }
+  };
+
+  // node_modules/cable_ready/javascript/cable_ready.js
+  var perform = (operations2, options = { emitMissingElementWarnings: true }) => {
+    const batches = {};
+    operations2.forEach((operation) => {
+      if (!!operation.batch)
+        batches[operation.batch] = batches[operation.batch] ? ++batches[operation.batch] : 1;
+    });
+    operations2.forEach((operation) => {
+      const name = operation.operation;
+      try {
+        if (operation.selector) {
+          operation.element = operation.xpath ? xpathToElement(operation.selector) : document[operation.selectAll ? "querySelectorAll" : "querySelector"](operation.selector);
+        } else {
+          operation.element = document;
+        }
+        if (operation.element || options.emitMissingElementWarnings) {
+          active_element_default.set(document.activeElement);
+          const cableReadyOperation = operation_store_default.all[name];
+          if (cableReadyOperation) {
+            cableReadyOperation(operation);
+            if (!!operation.batch && --batches[operation.batch] === 0)
+              dispatch2(document, "cable-ready:batch-complete", {
+                batch: operation.batch
+              });
+          } else {
+            console.error(`CableReady couldn't find the "${name}" operation. Make sure you use the camelized form when calling an operation method.`);
+          }
+        }
+      } catch (e) {
+        if (operation.element) {
+          console.error(`CableReady detected an error in ${name}: ${e.message}. If you need to support older browsers make sure you've included the corresponding polyfills. https://docs.stimulusreflex.com/setup#polyfills-for-ie11.`);
+          console.error(e);
+        } else {
+          console.warn(`CableReady ${name} failed due to missing DOM element for selector: '${operation.selector}'`);
+        }
+      }
+    });
+  };
+  var performAsync = (operations2, options = { emitMissingElementWarnings: true }) => {
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(perform(operations2, options));
+      } catch (err) {
+        reject(err);
+      }
+    });
+  };
+  var initialize = (initializeOptions = {}) => {
+    const { consumer: consumer5 } = initializeOptions;
+    action_cable_default.setConsumer(consumer5);
+    if (!customElements.get("stream-from"))
+      customElements.define("stream-from", StreamFromElement);
+    if (!customElements.get("updates-for"))
+      customElements.define("updates-for", UpdatesForElement);
+  };
+  var consumer3 = action_cable_default.getConsumer();
+
+  // node_modules/cable_ready/javascript/index.js
+  var javascript_default = {
+    perform,
+    performAsync,
+    shouldMorphCallbacks,
+    didMorphCallbacks,
+    initialize,
+    consumer: consumer3,
+    addOperation,
+    addOperations,
+    version,
+    get DOMOperations() {
+      console.warn("DEPRECATED: Please use `CableReady.operations` instead of `CableReady.DOMOperations`");
+      return operation_store_default.all;
+    },
+    get operations() {
+      return operation_store_default.all;
+    }
+  };
+
+  // node_modules/stimulus_reflex/javascript/schema.js
+  var defaultSchema2 = {
+    reflexAttribute: "data-reflex",
+    reflexPermanentAttribute: "data-reflex-permanent",
+    reflexRootAttribute: "data-reflex-root",
+    reflexSuppressLoggingAttribute: "data-reflex-suppress-logging",
+    reflexDatasetAttribute: "data-reflex-dataset",
+    reflexDatasetAllAttribute: "data-reflex-dataset-all",
+    reflexSerializeFormAttribute: "data-reflex-serialize-form",
+    reflexFormSelectorAttribute: "data-reflex-form-selector",
+    reflexIncludeInnerHtmlAttribute: "data-reflex-include-inner-html",
+    reflexIncludeTextContentAttribute: "data-reflex-include-text-content"
+  };
+  var schema = {};
+  var schema_default = {
+    set(application2) {
+      schema = { ...defaultSchema2, ...application2.schema };
+      for (const attribute in schema)
+        Object.defineProperty(this, attribute.slice(0, -9), {
+          get: () => {
+            return schema[attribute];
+          }
+        });
+    }
+  };
+
+  // node_modules/stimulus_reflex/javascript/isolation_mode.js
+  var isolationMode = false;
+  var isolation_mode_default = {
+    get disabled() {
+      return !isolationMode;
+    },
+    set(value) {
+      isolationMode = value;
+    }
+  };
+
+  // node_modules/stimulus_reflex/javascript/deprecate.js
+  var deprecationWarnings = true;
+  var deprecate_default = {
+    get enabled() {
+      return deprecationWarnings;
+    },
+    get disabled() {
+      return !deprecationWarnings;
+    },
+    get value() {
+      return deprecationWarnings;
+    },
+    set(value) {
+      deprecationWarnings = !!value;
+    },
+    set deprecate(value) {
+      deprecationWarnings = !!value;
+    }
+  };
+
+  // node_modules/stimulus_reflex/javascript/attributes.js
+  var multipleInstances = (element) => {
+    if (["checkbox", "radio"].includes(element.type)) {
+      return document.querySelectorAll(`input[type="${element.type}"][name="${element.name}"]`).length > 1;
+    }
+    return false;
+  };
+  var collectCheckedOptions = (element) => {
+    return Array.from(element.querySelectorAll("option:checked")).concat(Array.from(document.querySelectorAll(`input[type="${element.type}"][name="${element.name}"]`)).filter((elem) => elem.checked)).map((o) => o.value);
+  };
+  var attributeValue = (values = []) => {
+    const value = values.filter((v) => v && String(v).length).map((v) => v.trim()).join(" ").trim();
+    return value.length ? value : null;
+  };
+  var attributeValues = (value) => {
+    if (!value)
+      return [];
+    if (!value.length)
+      return [];
+    return value.split(" ").filter((v) => v.trim().length);
+  };
+  var extractElementAttributes = (element) => {
+    let attrs = Array.from(element.attributes).reduce((memo, attr) => {
+      memo[attr.name] = attr.value;
+      return memo;
+    }, {});
+    attrs.checked = !!element.checked;
+    attrs.selected = !!element.selected;
+    attrs.tag_name = element.tagName;
+    if (element.tagName.match(/select/i) || multipleInstances(element)) {
+      const collectedOptions = collectCheckedOptions(element);
+      attrs.values = collectedOptions;
+      attrs.value = collectedOptions.join(",");
+    } else {
+      attrs.value = element.value;
+    }
+    return attrs;
+  };
+  var getElementsFromTokens = (element, tokens) => {
+    if (!tokens || tokens.length === 0)
+      return [];
+    let elements = [element];
+    const xPath = elementToXPath(element);
+    tokens.forEach((token) => {
+      try {
+        switch (token) {
+          case "combined":
+            if (deprecate_default.enabled)
+              console.warn("In the next version of StimulusReflex, the 'combined' option to data-reflex-dataset will become 'ancestors'.");
+            elements = [
+              ...elements,
+              ...XPathToArray(`${xPath}/ancestor::*`, true)
+            ];
+            break;
+          case "ancestors":
+            elements = [
+              ...elements,
+              ...XPathToArray(`${xPath}/ancestor::*`, true)
+            ];
+            break;
+          case "parent":
+            elements = [...elements, ...XPathToArray(`${xPath}/parent::*`)];
+            break;
+          case "siblings":
+            elements = [
+              ...elements,
+              ...XPathToArray(`${xPath}/preceding-sibling::*|${xPath}/following-sibling::*`)
+            ];
+            break;
+          case "children":
+            elements = [...elements, ...XPathToArray(`${xPath}/child::*`)];
+            break;
+          case "descendants":
+            elements = [...elements, ...XPathToArray(`${xPath}/descendant::*`)];
+            break;
+          default:
+            elements = [...elements, ...document.querySelectorAll(token)];
+        }
+      } catch (error4) {
+        if (debug_default.enabled)
+          console.error(error4);
+      }
+    });
+    return elements;
+  };
+  var extractElementDataset = (element) => {
+    const dataset = element.attributes[schema_default.reflexDataset];
+    const allDataset = element.attributes[schema_default.reflexDatasetAll];
+    const tokens = dataset && dataset.value.split(" ") || [];
+    const allTokens = allDataset && allDataset.value.split(" ") || [];
+    const datasetElements = getElementsFromTokens(element, tokens);
+    const datasetAllElements = getElementsFromTokens(element, allTokens);
+    const datasetAttributes = datasetElements.reduce((acc, ele) => {
+      return { ...extractDataAttributes(ele), ...acc };
+    }, {});
+    const reflexElementAttributes = extractDataAttributes(element);
+    const elementDataset = {
+      dataset: { ...reflexElementAttributes, ...datasetAttributes },
+      datasetAll: {}
+    };
+    datasetAllElements.forEach((element2) => {
+      const elementAttributes = extractDataAttributes(element2);
+      Object.keys(elementAttributes).forEach((key) => {
+        const value = elementAttributes[key];
+        if (elementDataset.datasetAll[key] && Array.isArray(elementDataset.datasetAll[key])) {
+          elementDataset.datasetAll[key].push(value);
+        } else {
+          elementDataset.datasetAll[key] = [value];
+        }
+      });
+    });
+    return elementDataset;
+  };
+  var extractDataAttributes = (element) => {
+    let attrs = {};
+    if (element && element.attributes) {
+      Array.from(element.attributes).forEach((attr) => {
+        if (attr.name.startsWith("data-")) {
+          attrs[attr.name] = attr.value;
+        }
+      });
+    }
+    return attrs;
+  };
+
+  // node_modules/stimulus_reflex/javascript/controllers.js
+  var localReflexControllers = (app, element) => {
+    return attributeValues(element.getAttribute(schema_default.controller)).reduce((memo, name) => {
+      const controller = app.getControllerForElementAndIdentifier(element, name);
+      if (controller && controller.StimulusReflex)
+        memo.push(controller);
+      return memo;
+    }, []);
+  };
+  var allReflexControllers = (app, element) => {
+    let controllers = [];
+    while (element) {
+      controllers = controllers.concat(localReflexControllers(app, element));
+      element = element.parentElement;
+    }
+    return controllers;
+  };
+  var findControllerByReflexName = (reflexName, controllers) => {
+    const controller = controllers.find((controller2) => {
+      if (!controller2.identifier)
+        return;
+      return extractReflexName(reflexName).replace(/([a-z0–9])([A-Z])/g, "$1-$2").replace(/(::)/g, "--").toLowerCase() === controller2.identifier;
+    });
+    return controller || controllers[0];
+  };
+
+  // node_modules/stimulus_reflex/javascript/reflexes.js
+  var reflexes = {};
+  var received = (data) => {
+    if (!data.cableReady)
+      return;
+    let reflexOperations = [];
+    for (let i = data.operations.length - 1; i >= 0; i--) {
+      if (data.operations[i].stimulusReflex) {
+        reflexOperations.push(data.operations[i]);
+        data.operations.splice(i, 1);
+      }
+    }
+    if (reflexOperations.some((operation) => {
+      return operation.stimulusReflex.url !== location.href;
+    }))
+      return;
+    let reflexData;
+    if (reflexOperations.length) {
+      reflexData = reflexOperations[0].stimulusReflex;
+      reflexData.payload = reflexOperations[0].payload;
+    }
+    if (reflexData) {
+      const { reflexId, payload } = reflexData;
+      if (!reflexes[reflexId] && isolation_mode_default.disabled) {
+        const controllerElement = XPathToElement(reflexData.xpathController);
+        const reflexElement = XPathToElement(reflexData.xpathElement);
+        controllerElement.reflexController = controllerElement.reflexController || {};
+        controllerElement.reflexData = controllerElement.reflexData || {};
+        controllerElement.reflexError = controllerElement.reflexError || {};
+        controllerElement.reflexController[reflexId] = reflexes.app.getControllerForElementAndIdentifier(controllerElement, reflexData.reflexController);
+        controllerElement.reflexData[reflexId] = reflexData;
+        dispatchLifecycleEvent("before", reflexElement, controllerElement, reflexId, payload);
+        registerReflex(reflexData);
+      }
+      if (reflexes[reflexId]) {
+        reflexes[reflexId].totalOperations = reflexOperations.length;
+        reflexes[reflexId].pendingOperations = reflexOperations.length;
+        reflexes[reflexId].completedOperations = 0;
+        reflexes[reflexId].piggybackOperations = data.operations;
+        javascript_default.perform(reflexOperations);
+      }
+    } else {
+      if (data.operations.length && reflexes[data.operations[0].reflexId])
+        javascript_default.perform(data.operations);
+    }
+  };
+  var registerReflex = (data) => {
+    const { reflexId } = data;
+    reflexes[reflexId] = { finalStage: "finalize" };
+    const promise = new Promise((resolve, reject) => {
+      reflexes[reflexId].promise = {
+        resolve,
+        reject,
+        data
+      };
+    });
+    promise.reflexId = reflexId;
+    if (debug_default.enabled)
+      promise.catch(() => {
+      });
+    return promise;
+  };
+  var getReflexRoots = (element) => {
+    let list = [];
+    while (list.length === 0 && element) {
+      let reflexRoot = element.getAttribute(schema_default.reflexRoot);
+      if (reflexRoot) {
+        if (reflexRoot.length === 0 && element.id)
+          reflexRoot = `#${element.id}`;
+        const selectors = reflexRoot.split(",").filter((s) => s.trim().length);
+        if (debug_default.enabled && selectors.length === 0) {
+          console.error(`No value found for ${schema_default.reflexRoot}. Add an #id to the element or provide a value for ${schema_default.reflexRoot}.`, element);
+        }
+        list = list.concat(selectors.filter((s) => document.querySelector(s)));
+      }
+      element = element.parentElement ? element.parentElement.closest(`[${schema_default.reflexRoot}]`) : null;
+    }
+    return list;
+  };
+  var setupDeclarativeReflexes = debounce(() => {
+    document.querySelectorAll(`[${schema_default.reflex}]`).forEach((element) => {
+      const controllers = attributeValues(element.getAttribute(schema_default.controller));
+      const reflexAttributeNames = attributeValues(element.getAttribute(schema_default.reflex));
+      const actions = attributeValues(element.getAttribute(schema_default.action));
+      reflexAttributeNames.forEach((reflexName) => {
+        const controller = findControllerByReflexName(reflexName, allReflexControllers(reflexes.app, element));
+        let action;
+        if (controller) {
+          action = `${reflexName.split("->")[0]}->${controller.identifier}#__perform`;
+          if (!actions.includes(action))
+            actions.push(action);
+        } else {
+          action = `${reflexName.split("->")[0]}->stimulus-reflex#__perform`;
+          if (!controllers.includes("stimulus-reflex")) {
+            controllers.push("stimulus-reflex");
+          }
+          if (!actions.includes(action))
+            actions.push(action);
+        }
+      });
+      const controllerValue = attributeValue(controllers);
+      const actionValue = attributeValue(actions);
+      if (controllerValue && element.getAttribute(schema_default.controller) != controllerValue) {
+        element.setAttribute(schema_default.controller, controllerValue);
+      }
+      if (actionValue && element.getAttribute(schema_default.action) != actionValue)
+        element.setAttribute(schema_default.action, actionValue);
+    });
+    emitEvent("stimulus-reflex:ready");
+  }, 20);
+  var reflexes_default = reflexes;
+
+  // node_modules/stimulus_reflex/javascript/lifecycle.js
+  var invokeLifecycleMethod = (stage, reflexElement, controllerElement, reflexId, payload) => {
+    if (!controllerElement || !controllerElement.reflexData[reflexId])
+      return;
+    const controller = controllerElement.reflexController[reflexId];
+    const reflex = controllerElement.reflexData[reflexId].target;
+    const reflexMethodName = reflex.split("#")[1];
+    const specificLifecycleMethodName = ["before", "after", "finalize"].includes(stage) ? `${stage}${camelize2(reflexMethodName)}` : `${camelize2(reflexMethodName, false)}${camelize2(stage)}`;
+    const specificLifecycleMethod = controller[specificLifecycleMethodName];
+    const genericLifecycleMethodName = ["before", "after", "finalize"].includes(stage) ? `${stage}Reflex` : `reflex${camelize2(stage)}`;
+    const genericLifecycleMethod = controller[genericLifecycleMethodName];
+    if (typeof specificLifecycleMethod === "function") {
+      specificLifecycleMethod.call(controller, reflexElement, reflex, controllerElement.reflexError[reflexId], reflexId, payload);
+    }
+    if (typeof genericLifecycleMethod === "function") {
+      genericLifecycleMethod.call(controller, reflexElement, reflex, controllerElement.reflexError[reflexId], reflexId, payload);
+    }
+    if (reflexes_default[reflexId] && stage === reflexes_default[reflexId].finalStage) {
+      Reflect.deleteProperty(controllerElement.reflexController, reflexId);
+      Reflect.deleteProperty(controllerElement.reflexData, reflexId);
+      Reflect.deleteProperty(controllerElement.reflexError, reflexId);
+    }
+  };
+  document.addEventListener("stimulus-reflex:before", (event) => invokeLifecycleMethod("before", event.detail.element, event.detail.controller.element, event.detail.reflexId, event.detail.payload), true);
+  document.addEventListener("stimulus-reflex:success", (event) => {
+    invokeLifecycleMethod("success", event.detail.element, event.detail.controller.element, event.detail.reflexId, event.detail.payload);
+    dispatchLifecycleEvent("after", event.detail.element, event.detail.controller.element, event.detail.reflexId, event.detail.payload);
+  }, true);
+  document.addEventListener("stimulus-reflex:nothing", (event) => {
+    dispatchLifecycleEvent("success", event.detail.element, event.detail.controller.element, event.detail.reflexId, event.detail.payload);
+  }, true);
+  document.addEventListener("stimulus-reflex:error", (event) => {
+    invokeLifecycleMethod("error", event.detail.element, event.detail.controller.element, event.detail.reflexId, event.detail.payload);
+    dispatchLifecycleEvent("after", event.detail.element, event.detail.controller.element, event.detail.reflexId, event.detail.payload);
+  }, true);
+  document.addEventListener("stimulus-reflex:halted", (event) => invokeLifecycleMethod("halted", event.detail.element, event.detail.controller.element, event.detail.reflexId, event.detail.payload), true);
+  document.addEventListener("stimulus-reflex:after", (event) => invokeLifecycleMethod("after", event.detail.element, event.detail.controller.element, event.detail.reflexId, event.detail.payload), true);
+  document.addEventListener("stimulus-reflex:finalize", (event) => invokeLifecycleMethod("finalize", event.detail.element, event.detail.controller.element, event.detail.reflexId, event.detail.payload), true);
+  var dispatchLifecycleEvent = (stage, reflexElement, controllerElement, reflexId, payload) => {
+    if (!controllerElement) {
+      if (debug_default.enabled && !reflexes_default[reflexId].warned) {
+        console.warn(`StimulusReflex was not able execute callbacks or emit events for "${stage}" or later life-cycle stages for this Reflex. The StimulusReflex Controller Element is no longer present in the DOM. Could you move the StimulusReflex Controller to an element higher in your DOM?`);
+        reflexes_default[reflexId].warned = true;
+      }
+      return;
+    }
+    if (!controllerElement.reflexController || controllerElement.reflexController && !controllerElement.reflexController[reflexId]) {
+      if (debug_default.enabled && !reflexes_default[reflexId].warned) {
+        console.warn(`StimulusReflex detected that the StimulusReflex Controller responsible for this Reflex has been replaced with a new instance. Callbacks and events for "${stage}" or later life-cycle stages cannot be executed.`);
+        reflexes_default[reflexId].warned = true;
+      }
+      return;
+    }
+    const { target } = controllerElement.reflexData[reflexId] || {};
+    const controller = controllerElement.reflexController[reflexId] || {};
+    const event = `stimulus-reflex:${stage}`;
+    const action = `${event}:${target.split("#")[1]}`;
+    const detail = {
+      reflex: target,
+      controller,
+      reflexId,
+      element: reflexElement,
+      payload
+    };
+    const options = { bubbles: true, cancelable: false, detail };
+    controllerElement.dispatchEvent(new CustomEvent(event, options));
+    controllerElement.dispatchEvent(new CustomEvent(action, options));
+    if (window.jQuery) {
+      window.jQuery(controllerElement).trigger(event, detail);
+      window.jQuery(controllerElement).trigger(action, detail);
+    }
+  };
+
+  // node_modules/stimulus_reflex/javascript/log.js
+  var request = (reflexId, target, args, controller, element, controllerElement) => {
+    const reflex = reflexes_default[reflexId];
+    if (debug_default.disabled || reflex.promise.data.suppressLogging)
+      return;
+    reflex.timestamp = new Date();
+    console.log(`\u2191 stimulus \u2191 ${target}`, {
+      reflexId,
+      args,
+      controller,
+      element,
+      controllerElement
+    });
+  };
+  var success = (event, halted2) => {
+    const { detail } = event || {};
+    const { selector, payload } = detail || {};
+    const { reflexId, target, morph } = detail.stimulusReflex || {};
+    const reflex = reflexes_default[reflexId];
+    if (debug_default.disabled || reflex.promise.data.suppressLogging)
+      return;
+    const progress = reflex.totalOperations > 1 ? ` ${reflex.completedOperations}/${reflex.totalOperations}` : "";
+    const duration = reflex.timestamp ? `in ${new Date() - reflex.timestamp}ms` : "CLONED";
+    const operation = event.type.split(":")[1].split("-").slice(1).join("_");
+    console.log(`\u2193 reflex \u2193 ${target} \u2192 ${selector || "\u221E"}${progress} ${duration}`, { reflexId, morph, operation, halted: halted2, payload });
+  };
+  var error2 = (event) => {
+    const { detail } = event || {};
+    const { reflexId, target, payload } = detail.stimulusReflex || {};
+    const reflex = reflexes_default[reflexId];
+    if (debug_default.disabled || reflex.promise.data.suppressLogging)
+      return;
+    const duration = reflex.timestamp ? `in ${new Date() - reflex.timestamp}ms` : "CLONED";
+    console.log(`\u2193 reflex \u2193 ${target} ${duration} %cERROR: ${event.detail.body}`, "color: #f00;", { reflexId, payload });
+  };
+  var log_default = { request, success, error: error2 };
+
+  // node_modules/stimulus_reflex/javascript/callbacks.js
+  var beforeDOMUpdate = (event) => {
+    const { stimulusReflex, payload } = event.detail || {};
+    if (!stimulusReflex)
+      return;
+    const { reflexId, xpathElement, xpathController } = stimulusReflex;
+    const controllerElement = XPathToElement(xpathController);
+    const reflexElement = XPathToElement(xpathElement);
+    const reflex = reflexes_default[reflexId];
+    const { promise } = reflex;
+    reflex.pendingOperations--;
+    if (reflex.pendingOperations > 0)
+      return;
+    if (!stimulusReflex.resolveLate)
+      setTimeout(() => promise.resolve({
+        element: reflexElement,
+        event,
+        data: promise.data,
+        payload,
+        reflexId,
+        toString: () => ""
+      }));
+    setTimeout(() => dispatchLifecycleEvent("success", reflexElement, controllerElement, reflexId, payload));
+  };
+  var afterDOMUpdate = (event) => {
+    const { stimulusReflex, payload } = event.detail || {};
+    if (!stimulusReflex)
+      return;
+    const { reflexId, xpathElement, xpathController } = stimulusReflex;
+    const controllerElement = XPathToElement(xpathController);
+    const reflexElement = XPathToElement(xpathElement);
+    const reflex = reflexes_default[reflexId];
+    const { promise } = reflex;
+    reflex.completedOperations++;
+    log_default.success(event, false);
+    if (reflex.completedOperations < reflex.totalOperations)
+      return;
+    if (stimulusReflex.resolveLate)
+      setTimeout(() => promise.resolve({
+        element: reflexElement,
+        event,
+        data: promise.data,
+        payload,
+        reflexId,
+        toString: () => ""
+      }));
+    setTimeout(() => dispatchLifecycleEvent("finalize", reflexElement, controllerElement, reflexId, payload));
+    if (reflex.piggybackOperations.length)
+      javascript_default.perform(reflex.piggybackOperations);
+  };
+  var routeReflexEvent = (event) => {
+    const { stimulusReflex, payload, name, body } = event.detail || {};
+    const eventType = name.split("-")[2];
+    if (!stimulusReflex || !["nothing", "halted", "error"].includes(eventType))
+      return;
+    const { reflexId, xpathElement, xpathController } = stimulusReflex;
+    const reflexElement = XPathToElement(xpathElement);
+    const controllerElement = XPathToElement(xpathController);
+    const reflex = reflexes_default[reflexId];
+    const { promise } = reflex;
+    if (controllerElement) {
+      controllerElement.reflexError = controllerElement.reflexError || {};
+      if (eventType === "error")
+        controllerElement.reflexError[reflexId] = body;
+    }
+    switch (eventType) {
+      case "nothing":
+        nothing(event, payload, promise, reflex, reflexElement);
+        break;
+      case "error":
+        error3(event, payload, promise, reflex, reflexElement);
+        break;
+      case "halted":
+        halted(event, payload, promise, reflex, reflexElement);
+        break;
+    }
+    setTimeout(() => dispatchLifecycleEvent(eventType, reflexElement, controllerElement, reflexId, payload));
+    if (reflex.piggybackOperations.length)
+      javascript_default.perform(reflex.piggybackOperations);
+  };
+  var nothing = (event, payload, promise, reflex, reflexElement) => {
+    reflex.finalStage = "after";
+    log_default.success(event, false);
+    setTimeout(() => promise.resolve({
+      data: promise.data,
+      element: reflexElement,
+      event,
+      payload,
+      reflexId: promise.data.reflexId,
+      toString: () => ""
+    }));
+  };
+  var halted = (event, payload, promise, reflex, reflexElement) => {
+    reflex.finalStage = "halted";
+    log_default.success(event, true);
+    setTimeout(() => promise.resolve({
+      data: promise.data,
+      element: reflexElement,
+      event,
+      payload,
+      reflexId: promise.data.reflexId,
+      toString: () => ""
+    }));
+  };
+  var error3 = (event, payload, promise, reflex, reflexElement) => {
+    reflex.finalStage = "after";
+    log_default.error(event);
+    setTimeout(() => promise.reject({
+      data: promise.data,
+      element: reflexElement,
+      event,
+      payload,
+      reflexId: promise.data.reflexId,
+      error: event.detail.body,
+      toString: () => event.detail.body
+    }));
+  };
+
+  // node_modules/stimulus_reflex/javascript/reflex_data.js
+  var ReflexData = class {
+    constructor(options, reflexElement, controllerElement, reflexController, permanentAttributeName, target, args, url2, tabId2) {
+      this.options = options;
+      this.reflexElement = reflexElement;
+      this.controllerElement = controllerElement;
+      this.reflexController = reflexController;
+      this.permanentAttributeName = permanentAttributeName;
+      this.target = target;
+      this.args = args;
+      this.url = url2;
+      this.tabId = tabId2;
+    }
+    get attrs() {
+      this._attrs = this._attrs || this.options["attrs"] || extractElementAttributes(this.reflexElement);
+      return this._attrs;
+    }
+    get reflexId() {
+      this._reflexId = this._reflexId || this.options["reflexId"] || uuidv4();
+      return this._reflexId;
+    }
+    get selectors() {
+      this._selectors = this._selectors || this.options["selectors"] || getReflexRoots(this.reflexElement);
+      return typeof this._selectors === "string" ? [this._selectors] : this._selectors;
+    }
+    get resolveLate() {
+      return this.options["resolveLate"] || false;
+    }
+    get dataset() {
+      this._dataset = this._dataset || extractElementDataset(this.reflexElement);
+      return this._dataset;
+    }
+    get innerHTML() {
+      return this.includeInnerHtml ? this.reflexElement.innerHTML : "";
+    }
+    get textContent() {
+      return this.includeTextContent ? this.reflexElement.textContent : "";
+    }
+    get xpathController() {
+      return elementToXPath(this.controllerElement);
+    }
+    get xpathElement() {
+      return elementToXPath(this.reflexElement);
+    }
+    get formSelector() {
+      const attr = this.reflexElement.attributes[schema_default.reflexFormSelector] ? this.reflexElement.attributes[schema_default.reflexFormSelector].value : void 0;
+      return this.options["formSelector"] || attr;
+    }
+    get includeInnerHtml() {
+      const attr = this.reflexElement.attributes[schema_default.reflexIncludeInnerHtml] || false;
+      return this.options["includeInnerHTML"] || attr ? attr.value !== "false" : false;
+    }
+    get includeTextContent() {
+      const attr = this.reflexElement.attributes[schema_default.reflexIncludeTextContent] || false;
+      return this.options["includeTextContent"] || attr ? attr.value !== "false" : false;
+    }
+    get suppressLogging() {
+      return this.options["suppressLogging"] || this.reflexElement.attributes[schema_default.reflexSuppressLogging] || false;
+    }
+    valueOf() {
+      return {
+        attrs: this.attrs,
+        dataset: this.dataset,
+        selectors: this.selectors,
+        reflexId: this.reflexId,
+        resolveLate: this.resolveLate,
+        suppressLogging: this.suppressLogging,
+        xpathController: this.xpathController,
+        xpathElement: this.xpathElement,
+        inner_html: this.innerHTML,
+        text_content: this.textContent,
+        formSelector: this.formSelector,
+        reflexController: this.reflexController,
+        permanentAttributeName: this.permanentAttributeName,
+        target: this.target,
+        args: this.args,
+        url: this.url,
+        tabId: this.tabId
+      };
+    }
+  };
+
+  // node_modules/stimulus_reflex/javascript/transports/action_cable.js
+  var import_actioncable = __toModule(require_action_cable());
+  var consumer4;
+  var params;
+  var subscriptionActive;
+  var createSubscription = (controller) => {
+    consumer4 = consumer4 || controller.application.consumer || (0, import_actioncable.createConsumer)();
+    const { channel } = controller.StimulusReflex;
+    const subscription = { channel, ...params };
+    const identifier = JSON.stringify(subscription);
+    controller.StimulusReflex.subscription = consumer4.subscriptions.findAll(identifier)[0] || consumer4.subscriptions.create(subscription, {
+      received,
+      connected,
+      rejected,
+      disconnected
+    });
+  };
+  var connected = () => {
+    subscriptionActive = true;
+    document.body.classList.replace("stimulus-reflex-disconnected", "stimulus-reflex-connected");
+    emitEvent("stimulus-reflex:connected");
+    emitEvent("stimulus-reflex:action-cable:connected");
+  };
+  var rejected = () => {
+    subscriptionActive = false;
+    document.body.classList.replace("stimulus-reflex-connected", "stimulus-reflex-disconnected");
+    emitEvent("stimulus-reflex:rejected");
+    emitEvent("stimulus-reflex:action-cable:rejected");
+    if (Debug.enabled)
+      console.warn("Channel subscription was rejected.");
+  };
+  var disconnected = (willAttemptReconnect) => {
+    subscriptionActive = false;
+    document.body.classList.replace("stimulus-reflex-connected", "stimulus-reflex-disconnected");
+    emitEvent("stimulus-reflex:disconnected", willAttemptReconnect);
+    emitEvent("stimulus-reflex:action-cable:disconnected", willAttemptReconnect);
+  };
+  var action_cable_default2 = {
+    consumer: consumer4,
+    params,
+    get subscriptionActive() {
+      return subscriptionActive;
+    },
+    createSubscription,
+    connected,
+    rejected,
+    disconnected,
+    set(consumerValue, paramsValue) {
+      consumer4 = consumerValue;
+      params = paramsValue;
+    }
+  };
+
+  // node_modules/stimulus_reflex/javascript/stimulus_reflex.js
+  var StimulusReflexController = class extends Controller {
+    constructor(...args) {
+      super(...args);
+      register(this);
+    }
+  };
+  var initialize2 = (application2, { controller, consumer: consumer5, debug, params: params2, isolate, deprecate } = {}) => {
+    action_cable_default2.set(consumer5, params2);
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.remove("stimulus-reflex-connected");
+      document.body.classList.add("stimulus-reflex-disconnected");
+      if (deprecate_default.enabled && consumer5)
+        console.warn("Deprecation warning: the next version of StimulusReflex will obtain a reference to consumer via the Stimulus application object.\nPlease add 'application.consumer = consumer' to your index.js after your Stimulus application has been established, and remove the consumer key from your StimulusReflex initialize() options object.");
+      if (deprecate_default.enabled && isolation_mode_default.disabled)
+        console.warn("Deprecation warning: the next version of StimulusReflex will standardize isolation mode, and the isolate option will be removed.\nPlease update your applications to assume that every tab will be isolated.");
+    }, { once: true });
+    isolation_mode_default.set(!!isolate);
+    reflexes_default.app = application2;
+    schema_default.set(application2);
+    reflexes_default.app.register("stimulus-reflex", controller || StimulusReflexController);
+    debug_default.set(!!debug);
+    if (typeof deprecate !== "undefined")
+      deprecate_default.set(deprecate);
+    const observer = new MutationObserver(setupDeclarativeReflexes);
+    observer.observe(document.documentElement, {
+      attributeFilter: [schema_default.reflex, schema_default.action],
+      childList: true,
+      subtree: true
+    });
+  };
+  var register = (controller, options = {}) => {
+    const channel = "StimulusReflex::Channel";
+    controller.StimulusReflex = { ...options, channel };
+    action_cable_default2.createSubscription(controller);
+    Object.assign(controller, {
+      isActionCableConnectionOpen() {
+        return this.StimulusReflex.subscription.consumer.connection.isOpen();
+      },
+      stimulate() {
+        const url2 = location.href;
+        const args = Array.from(arguments);
+        const target = args.shift() || "StimulusReflex::Reflex#default_reflex";
+        const controllerElement = this.element;
+        const reflexElement = args[0] && args[0].nodeType === Node.ELEMENT_NODE ? args.shift() : controllerElement;
+        if (reflexElement.type === "number" && reflexElement.validity && reflexElement.validity.badInput) {
+          if (debug_default.enabled)
+            console.warn("Reflex aborted: invalid numeric input");
+          return;
+        }
+        const options2 = {};
+        if (args[0] && typeof args[0] === "object" && Object.keys(args[0]).filter((key) => [
+          "attrs",
+          "selectors",
+          "reflexId",
+          "resolveLate",
+          "serializeForm",
+          "suppressLogging",
+          "includeInnerHTML",
+          "includeTextContent"
+        ].includes(key)).length) {
+          const opts = args.shift();
+          Object.keys(opts).forEach((o) => options2[o] = opts[o]);
+        }
+        const reflexData = new ReflexData(options2, reflexElement, controllerElement, this.identifier, schema_default.reflexPermanent, target, args, url2, tabId);
+        const reflexId = reflexData.reflexId;
+        if (!this.isActionCableConnectionOpen())
+          throw "The ActionCable connection is not open! `this.isActionCableConnectionOpen()` must return true before calling `this.stimulate()`";
+        if (!action_cable_default2.subscriptionActive)
+          throw "The ActionCable channel subscription for StimulusReflex was rejected.";
+        controllerElement.reflexController = controllerElement.reflexController || {};
+        controllerElement.reflexData = controllerElement.reflexData || {};
+        controllerElement.reflexError = controllerElement.reflexError || {};
+        controllerElement.reflexController[reflexId] = this;
+        controllerElement.reflexData[reflexId] = reflexData.valueOf();
+        dispatchLifecycleEvent("before", reflexElement, controllerElement, reflexId);
+        setTimeout(() => {
+          const { params: params2 } = controllerElement.reflexData[reflexId] || {};
+          const check = reflexElement.attributes[schema_default.reflexSerializeForm];
+          if (check) {
+            options2["serializeForm"] = check.value !== "false";
+          }
+          const form = reflexElement.closest(reflexData.formSelector) || document.querySelector(reflexData.formSelector) || reflexElement.closest("form");
+          if (deprecate_default.enabled && options2["serializeForm"] === void 0 && form)
+            console.warn(`Deprecation warning: the next version of StimulusReflex will not serialize forms by default.
+Please set ${schema_default.reflexSerializeForm}="true" on your Reflex Controller Element or pass { serializeForm: true } as an option to stimulate.`);
+          const formData = options2["serializeForm"] === false ? "" : serializeForm(form, {
+            element: reflexElement
+          });
+          controllerElement.reflexData[reflexId] = {
+            ...reflexData.valueOf(),
+            params: params2,
+            formData
+          };
+          this.StimulusReflex.subscription.send(controllerElement.reflexData[reflexId]);
+        });
+        const promise = registerReflex(reflexData.valueOf());
+        log_default.request(reflexId, target, args, this.context.scope.identifier, reflexElement, controllerElement);
+        return promise;
+      },
+      __perform(event) {
+        let element = event.target;
+        let reflex;
+        while (element && !reflex) {
+          reflex = element.getAttribute(schema_default.reflex);
+          if (!reflex || !reflex.trim().length)
+            element = element.parentElement;
+        }
+        const match = attributeValues(reflex).find((reflex2) => reflex2.split("->")[0] === event.type);
+        if (match) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.stimulate(match.split("->")[1], element);
+        }
+      }
+    });
+  };
+  var tabId = uuidv4();
+  var useReflex = (controller, options = {}) => {
+    register(controller, options);
+  };
+  document.addEventListener("cable-ready:after-dispatch-event", routeReflexEvent);
+  document.addEventListener("cable-ready:before-inner-html", beforeDOMUpdate);
+  document.addEventListener("cable-ready:before-morph", beforeDOMUpdate);
+  document.addEventListener("cable-ready:after-inner-html", afterDOMUpdate);
+  document.addEventListener("cable-ready:after-morph", afterDOMUpdate);
+  window.addEventListener("load", setupDeclarativeReflexes);
+  var stimulus_reflex_default = {
+    initialize: initialize2,
+    register,
+    useReflex,
+    get debug() {
+      return debug_default.value;
+    },
+    set debug(value) {
+      debug_default.set(!!value);
+    },
+    get deprecate() {
+      return deprecate_default.value;
+    },
+    set deprecate(value) {
+      deprecate_default.set(!!value);
+    }
+  };
+
+  // app/javascript/channels/consumer.js
+  var import_actioncable2 = __toModule(require_action_cable2());
+  var consumer_default = (0, import_actioncable2.createConsumer)();
+
+  // app/javascript/controllers/application_controller.js
+  var application_controller_default = class extends Controller {
+    connect() {
+      stimulus_reflex_default.register(this);
+    }
+    beforeReflex(element, reflex, noop3, reflexId) {
+    }
+    reflexSuccess(element, reflex, noop3, reflexId) {
+    }
+    reflexError(element, reflex, error4, reflexId) {
+    }
+    reflexHalted(element, reflex, error4, reflexId) {
+    }
+    afterReflex(element, reflex, noop3, reflexId) {
+    }
+    finalizeReflex(element, reflex, noop3, reflexId) {
+    }
+  };
+
   // app/javascript/controllers/index.js
   application.register("hello", hello_controller_default);
+  application.consumer = consumer_default;
+  stimulus_reflex_default.initialize(application, { controller: application_controller_default, isolate: true });
+  javascript_default.initialize({ consumer: consumer_default });
 
   // node_modules/@popperjs/core/lib/index.js
   var lib_exports = {};
@@ -6896,7 +10179,7 @@
   }
 
   // node_modules/@popperjs/core/lib/utils/debounce.js
-  function debounce(fn2) {
+  function debounce3(fn2) {
     var pending;
     return function() {
       if (!pending) {
@@ -7135,7 +10418,7 @@
             }
           }
         },
-        update: debounce(function() {
+        update: debounce3(function() {
           return new Promise(function(resolve) {
             instance.forceUpdate();
             resolve(state);
@@ -7319,7 +10602,7 @@
     }
     return findShadowRoot(element.parentNode);
   };
-  var noop = () => {
+  var noop2 = () => {
   };
   var reflow = (element) => {
     element.offsetHeight;
@@ -7392,8 +10675,8 @@
       }
     }, emulatedDuration);
   };
-  var getNextActiveElement = (list, activeElement, shouldGetNext, isCycleAllowed) => {
-    let index = list.indexOf(activeElement);
+  var getNextActiveElement = (list, activeElement2, shouldGetNext, isCycleAllowed) => {
+    let index = list.indexOf(activeElement2);
     if (index === -1) {
       return list[!shouldGetNext && isCycleAllowed ? list.length - 1 : 0];
     }
@@ -8100,9 +11383,9 @@
       this._items = element && element.parentNode ? SelectorEngine.find(SELECTOR_ITEM, element.parentNode) : [];
       return this._items.indexOf(element);
     }
-    _getItemByOrder(order2, activeElement) {
+    _getItemByOrder(order2, activeElement2) {
       const isNext = order2 === ORDER_NEXT;
-      return getNextActiveElement(this._items, activeElement, isNext, this._config.wrap);
+      return getNextActiveElement(this._items, activeElement2, isNext, this._config.wrap);
     }
     _triggerSlideEvent(relatedTarget, eventDirectionName) {
       const targetIndex = this._getItemIndex(relatedTarget);
@@ -8144,9 +11427,9 @@
     }
     _slide(directionOrOrder, element) {
       const order2 = this._directionToOrder(directionOrOrder);
-      const activeElement = SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element);
-      const activeElementIndex = this._getItemIndex(activeElement);
-      const nextElement = element || this._getItemByOrder(order2, activeElement);
+      const activeElement2 = SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element);
+      const activeElementIndex = this._getItemIndex(activeElement2);
+      const nextElement = element || this._getItemByOrder(order2, activeElement2);
       const nextElementIndex = this._getItemIndex(nextElement);
       const isCycling = Boolean(this._interval);
       const isNext = order2 === ORDER_NEXT;
@@ -8164,7 +11447,7 @@
       if (slideEvent.defaultPrevented) {
         return;
       }
-      if (!activeElement || !nextElement) {
+      if (!activeElement2 || !nextElement) {
         return;
       }
       this._isSliding = true;
@@ -8184,18 +11467,18 @@
       if (this._element.classList.contains(CLASS_NAME_SLIDE)) {
         nextElement.classList.add(orderClassName);
         reflow(nextElement);
-        activeElement.classList.add(directionalClassName);
+        activeElement2.classList.add(directionalClassName);
         nextElement.classList.add(directionalClassName);
         const completeCallBack = () => {
           nextElement.classList.remove(directionalClassName, orderClassName);
           nextElement.classList.add(CLASS_NAME_ACTIVE$2);
-          activeElement.classList.remove(CLASS_NAME_ACTIVE$2, orderClassName, directionalClassName);
+          activeElement2.classList.remove(CLASS_NAME_ACTIVE$2, orderClassName, directionalClassName);
           this._isSliding = false;
           setTimeout(triggerSlidEvent, 0);
         };
-        this._queueCallback(completeCallBack, activeElement, true);
+        this._queueCallback(completeCallBack, activeElement2, true);
       } else {
-        activeElement.classList.remove(CLASS_NAME_ACTIVE$2);
+        activeElement2.classList.remove(CLASS_NAME_ACTIVE$2);
         nextElement.classList.add(CLASS_NAME_ACTIVE$2);
         this._isSliding = false;
         triggerSlidEvent();
@@ -8582,7 +11865,7 @@
         this._createPopper(parent);
       }
       if ("ontouchstart" in document.documentElement && !parent.closest(SELECTOR_NAVBAR_NAV)) {
-        [].concat(...document.body.children).forEach((elem) => EventHandler.on(elem, "mouseover", noop));
+        [].concat(...document.body.children).forEach((elem) => EventHandler.on(elem, "mouseover", noop2));
       }
       this._element.focus();
       this._element.setAttribute("aria-expanded", true);
@@ -8617,7 +11900,7 @@
         return;
       }
       if ("ontouchstart" in document.documentElement) {
-        [].concat(...document.body.children).forEach((elem) => EventHandler.off(elem, "mouseover", noop));
+        [].concat(...document.body.children).forEach((elem) => EventHandler.off(elem, "mouseover", noop2));
       }
       if (this._popper) {
         this._popper.destroy();
@@ -9787,7 +13070,7 @@
       }
       if ("ontouchstart" in document.documentElement) {
         [].concat(...document.body.children).forEach((element) => {
-          EventHandler.on(element, "mouseover", noop);
+          EventHandler.on(element, "mouseover", noop2);
         });
       }
       const complete = () => {
@@ -9824,7 +13107,7 @@
       }
       tip.classList.remove(CLASS_NAME_SHOW$2);
       if ("ontouchstart" in document.documentElement) {
-        [].concat(...document.body.children).forEach((element) => EventHandler.off(element, "mouseover", noop));
+        [].concat(...document.body.children).forEach((element) => EventHandler.off(element, "mouseover", noop2));
       }
       this._activeTrigger[TRIGGER_CLICK] = false;
       this._activeTrigger[TRIGGER_FOCUS] = false;
@@ -9856,8 +13139,8 @@
     setContent(tip) {
       this._sanitizeAndSetContent(tip, this.getTitle(), SELECTOR_TOOLTIP_INNER);
     }
-    _sanitizeAndSetContent(template, content, selector) {
-      const templateElement = SelectorEngine.findOne(selector, template);
+    _sanitizeAndSetContent(template2, content, selector) {
+      const templateElement = SelectorEngine.findOne(selector, template2);
       if (!content && templateElement) {
         templateElement.remove();
         return;
@@ -10645,6 +13928,16 @@
   };
   enableDismissTrigger(Toast);
   defineJQueryPlugin(Toast);
+
+  // app/javascript/channels/test_channel.js
+  consumer_default.subscriptions.create("TestChannel", {
+    connected() {
+      this.send({ message: "Client is live" });
+    },
+    received(data) {
+      console.log(data);
+    }
+  });
 })();
 /*!
   * Bootstrap v5.1.3 (https://getbootstrap.com/)

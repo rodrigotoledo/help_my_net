@@ -33,6 +33,10 @@ class AssociateEmployeeReflex < ApplicationReflex
   # Learn more at: https://docs.stimulusreflex.com/reflexes#reflex-classes
 
   def associate
-    morph '#test', 'testing'
+    task = Task.find(element.dataset[:task_id])
+    employee = Employee.find(element.dataset[:employee_id])
+    task.employees << employee
+    task.save!
+    morph '#test', 'Sucesso'
   end
 end
