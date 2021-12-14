@@ -1,0 +1,45 @@
+<section class="chat">
+  <aside class="chat-list">
+    <h3 class="h5">Atendimentos</h3>
+    <div class="card chat-list_items">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-primary text-light">
+          <strong>José da Silva</strong><br>
+          <small>477 Feest Locks</small><br>
+          <small>11/12/2021 - 09:39</small>
+          <br />
+          <a href='#' class='btn btn-light btn-sm'>Acessar atendimento</a>
+        </li>
+        <% 30.times do %>
+        <li class="list-group-item">
+          <strong><%=Faker::Name.female_first_name %></strong><br>
+          <small>
+            <%=Faker::Address.full_address %>,
+            <%=l(Faker::Time.between(from: DateTime.now - 1, to: DateTime.now), format: :short) %>
+          </small>
+          <br />
+          <a href='#' class='btn btn-primary btn-sm'>Acessar atendimento</a>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </aside>
+  <section class="chat-body">
+    <% @ownership = Faker::Name.name_with_middle %>
+    <% @user = Faker::Name.name_with_middle %>
+    <h3 class="h5"><%= @ownership %> atendendo <i><%=@user %></i></h3>
+    <div class="p-3 border rounded-top chat-body_items">
+      <% 20.times do |t| %>
+      <p class="<%=t.odd? ? 'text-start' : 'text-end' %> me-5">
+        <small class="d-block"><%=t.odd? ? @user : "Atendente: #{@ownership}" %></small>
+        <span class="chat-body_bubble <%=t.odd? ? 'bg-primary text-light' : 'bg-light' %>"><%=Faker::Lorem.paragraph %></span>
+      </p>
+      <% end %>
+    </div>
+    <form class="chat-body_form border border-top-0 rounded-bottom bg-light">
+      <label class="form-label visually-hidden" for="mensagem">Mensagem</label>
+      <input type="text" class="form-control" placeholder="Mensagem" id="mensagem">
+      <button class="btn btn-primary">Enviar</button>
+    </form>
+  </section>
+</section>
