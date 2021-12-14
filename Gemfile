@@ -17,6 +17,8 @@ gem 'sqlite3', '~> 1.4'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
+# gem "importmap-rails", ">= 0.3.4"
+
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails', '>= 0.2.2'
 
@@ -95,8 +97,11 @@ gem 'bootstrap_form', '~> 5.0'
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
 gem 'faker'
 gem 'cpf_faker'
-gem 'will_paginate', '~> 3.3'
-gem 'will_paginate-bootstrap'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'
 gem "font-awesome-rails"
 gem 'geocoder'
 gem 'paper_trail'
+
+gem "stimulus_reflex", "= 3.5.0.pre8"
+gem 'hotwire-rails'

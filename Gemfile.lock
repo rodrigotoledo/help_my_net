@@ -83,6 +83,9 @@ GEM
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     builder (3.2.4)
+    cable_ready (5.0.0.pre8)
+      rails (>= 5.2)
+      thread-local (>= 1.1.0)
     capybara (3.36.0)
       addressable
       matrix
@@ -137,6 +140,10 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    hotwire-rails (0.1.3)
+      rails (>= 6.0.0)
+      stimulus-rails
+      turbo-rails
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     io-console (0.5.9)
@@ -307,7 +314,14 @@ GEM
     sqlite3 (1.4.2)
     stimulus-rails (0.7.3)
       rails (>= 6.0.0)
+    stimulus_reflex (3.5.0.pre8)
+      cable_ready (= 5.0.0.pre8)
+      nokogiri
+      rack
+      rails (>= 5.2)
+      redis
     thor (1.1.0)
+    thread-local (1.1.0)
     to_factory (2.1.0)
       activerecord (> 4.0)
       factory_girl (~> 4.5)
@@ -332,8 +346,8 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.1)
-    will_paginate-bootstrap (1.0.2)
-      will_paginate (>= 3.0.3)
+    will_paginate-bootstrap4 (0.2.2)
+      will_paginate (~> 3.0, >= 3.0.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.5.1)
@@ -354,6 +368,7 @@ DEPENDENCIES
   font-awesome-rails
   geocoder
   guard-rspec
+  hotwire-rails
   jbuilder (~> 2.11)
   jsbundling-rails (>= 0.2.2)
   letter_opener
@@ -374,13 +389,14 @@ DEPENDENCIES
   sprockets-rails (>= 3.4.1)
   sqlite3 (~> 1.4)
   stimulus-rails (>= 0.7.3)
+  stimulus_reflex (= 3.5.0.pre8)
   to_factory
   turbo-rails (>= 0.9.0)
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers
-  will_paginate (~> 3.3)
-  will_paginate-bootstrap
+  will_paginate
+  will_paginate-bootstrap4
 
 RUBY VERSION
    ruby 3.0.3p157
