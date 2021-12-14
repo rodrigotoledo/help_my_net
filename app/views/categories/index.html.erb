@@ -1,7 +1,9 @@
 <h1>Categories</h1>
-<%=link_to 'New Register', url_for(action: :new), class: 'btn btn-primary' %>
-
-<%= will_paginate @categories %>
+<div class="text-center mb-4">
+<%= will_paginate @categories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+<hr />
+<%= link_to 'New Register', url_for(action: :new), class: 'btn btn-primary' %>
+</div>
 <table class="table" id="categories">
   <thead class="thead-light">
     <tr>
@@ -14,5 +16,4 @@
     <%= render @categories %>
   </tbody>
 </table>
-<%= will_paginate @categories %>
 
