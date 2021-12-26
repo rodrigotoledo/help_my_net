@@ -1,0 +1,81 @@
+<div id="map" style="height: 400px"></div>
+<% content_for :maps do %>
+  <script>
+    function initMap() {
+      const directionsRenderer = new google.maps.DirectionsRenderer();
+      const myLatLng = { lat: <%=task.latitude%>, lng: <%=task.longitude%> };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: myLatLng,
+      });
+      const contentString =
+        '<div>' +
+          '<h5 class="firstHeading"><%=task.title%></h5>' +
+          '<div id="bodyContent">' +
+            "<p><%=task.description%></p>"
+          "</div>" +
+        "</div>";
+      const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
+      const marker = new google.maps.Marker({
+        position: myLatLng,
+        map,
+        title: "<%=task.title%>",
+      });
+
+      marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          map,
+          shouldFocus: false,
+        });
+      });
+      setMarkers(map);
+      directionsRenderer.setMap(map);
+    }
+
+    function setMarkers(map) {
+      var employees = <%= raw Employee.actives.pluck(:id, :name, :latitude, :longitude, :address) %>;
+      var task = <%= raw [task.id, task.title, task.address] %>;
+      var taskId = task[0];
+      var taskTitle = task[1];
+      var taskAddress = task[2];
+
+      employees.forEach(employee => {
+        var employeeId = employee[0];
+        var employeeName = employee[1];
+        var employeeLatitude = employee[2];
+        var employeeLongitude = employee[3];
+        var employeeAddress = employee[4];
+
+        var marker = new google.maps.Marker({
+          position: { lat: employeeLatitude, lng: employeeLongitude },
+          map,
+          icon: {
+            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+            scale: 3,
+          },
+
+          title: employeeName
+        });
+
+        var contentString = '<div id="<%=dom_id task%>"><p class="firstHeading">Operador: '+employeeName+'</p>'+
+          '<a class="btn btn-primary btn-sm" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->AssociateEmployee#associate" href="javascript:;">Active for this task</a></div>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+        });
+
+        marker.addListener("click", () => {
+          infowindow.open({
+            anchor: marker,
+            map,
+            shouldFocus: false,
+          });
+        });
+
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-du27hJok1T6knOhB4kyy5HGV1CCvjVI&callback=initMap&v=weekly" async></script>
+<% end %>

@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "employee_ids" do %>
+  <%= select_tag 'task[employee_ids][]', options_for_select(Employee.all.map { |t| [t.name, t.id] }, task.employee_ids), multiple: true, size: 10, class: 'form-control' %>
+<% end %>

@@ -1,0 +1,4 @@
+<div>
+  <p class="firstHeading">Operador: <%=employee.name%></p>
+  <%=link_to 'Ativar operador', '#', class: 'btn btn-primary btn-sm', data: { employee_id: employee.id, task_id: task.id, reflex: 'click->AssociateEmployee#associate' } %>
+</div>

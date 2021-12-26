@@ -1,0 +1,14 @@
+<tr id="<%= dom_id employee %>">
+  <td>
+    <%= employee.id %>
+  </td>
+  <td>
+    <%= link_to employee.name, edit_employee_path(employee) %>
+  </td>
+  <td>
+    <%= link_to employee.email %>
+  </td>
+  <td>
+    <%= button_to "Remove this", employee_path(employee), method: :delete, class: 'btn btn-danger' %>
+  </td>
+</tr>
