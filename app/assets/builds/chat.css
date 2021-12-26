@@ -1,10 +1,10 @@
-* {
+/* * {
   box-sizing: border-box;
 }
 main {
   padding: 16px;
   height: 100vh;
-}
+} */
 
 .chat {
   display: flex;
@@ -24,6 +24,7 @@ main {
 
 .chat-body {
   flex-grow: 1;
+  height: 400px;
 }
 
 .chat-body_items {

@@ -5,4 +5,7 @@ class Employee < ApplicationRecord
   validates :email, :document, uniqueness: true
   after_validation :geocode
   geocoded_by :address
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 end

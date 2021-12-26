@@ -59,7 +59,7 @@ class EmployeesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
-      @employee = Employee.find(params[:id])
+      @employee = Employee.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

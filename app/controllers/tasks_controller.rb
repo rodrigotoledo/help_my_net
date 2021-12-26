@@ -17,7 +17,10 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1/edit
-  def edit; end
+  def edit
+    @task.user = current_user
+    @task.save
+  end
 
   # POST /tasks or /tasks.json
   def create
@@ -25,7 +28,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
+        format.html { redirect_to edit_task_path(@task), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +41,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
+        format.html { redirect_to edit_task_path(@task), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,7 +63,7 @@ class TasksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_task
-    @task = Task.find(params[:id])
+    @task = Task.friendly.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

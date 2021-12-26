@@ -1,5 +1,7 @@
 <h1>Editing task</h1>
-<%=link_to 'Open messages', messages_path, target: '_blank', class: 'btn btn-primary' %>
+
+<%= render partial: "messages", locals: {task: @task} %>
+
 <hr>
 <%= render "map", task: @task %>
 <hr>
