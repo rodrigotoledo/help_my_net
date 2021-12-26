@@ -1,0 +1,20 @@
+<%= bootstrap_form_for(task) do |form| %>
+  <%= form.collection_select :category_id, Category.all, :id, :title, include_blank: true %>
+  <div id="select_employee_ids">
+    <%=render partial: 'select_employee_ids', locals: {task: task} %>
+  </div>
+
+  <%= form.text_field :title %>
+  <%= form.text_field :address %>
+
+  <%= form.text_area :description %>
+
+  <%= form.date_field :completed_at %>
+
+  <div>
+    <div class="btn-group" role="group" aria-label="Actions">
+      <%= form.submit %>
+      <%= link_to 'Back to list', url_for(action: :index), class: 'btn btn-outline-secondary' %>
+    </div>
+  </div>
+<% end %>
