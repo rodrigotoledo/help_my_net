@@ -1,0 +1,17 @@
+<tr id="<%= dom_id task %>">
+  <td>
+    <%= task.id %>
+  </td>
+  <td>
+    <%= link_to task.category.title, edit_category_path(task.category) %>
+  </td>
+  <td>
+    <%= link_to task.title, edit_task_path(task) %>
+  </td>
+  <td>
+    <%= l(task.completed_at) if task.completed_at %>
+  </td>
+  <td>
+    <%= button_to "Remove this", task_path(task), method: :delete, class: 'btn btn-danger' %>
+  </td>
+</tr>

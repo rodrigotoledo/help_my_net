@@ -1,0 +1,21 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+  <div class="form-floating">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address", id: "floatingInput", class: "form-control" %>
+    <label for="floatingInput">Email address</label>
+  </div>
+  <div class="form-floating">
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "floatingPassword", placeholder: "Password" %>
+    <label for="floatingPassword">Password</label>
+  </div>
+
+  <div class="checkbox mb-3">
+    <label>
+      <%= f.check_box :remember_me %> Remember me
+    </label>
+  </div>
+  <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+<% end %>
+
+<%= render "devise/shared/links" %>

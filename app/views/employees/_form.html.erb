@@ -1,0 +1,18 @@
+<%= bootstrap_form_for(employee) do |form| %>
+  <%= form.text_field :name %>
+  <%= form.text_field :document %>
+  <%= form.text_field :address %>
+  <%= form.text_field :email, type: :email %>
+  <%= form.text_field :alternative_email, type: :email %>
+  <%= form.text_field :phone_number, type: :tel %>
+  <%= form.text_field :mobile_number, type: :tel %>
+  <%= form.text_field :latitude %>
+  <%= form.text_field :longitude %>
+
+  <div>
+    <div class="btn-group" role="group" aria-label="Actions">
+      <%= form.submit %>
+      <%= link_to 'Back to list', url_for(action: :index), class: 'btn btn-outline-secondary' %>
+    </div>
+  </div>
+<% end %>

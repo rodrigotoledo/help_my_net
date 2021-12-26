@@ -1,0 +1,19 @@
+<h1>Employees</h1>
+<div class="text-center mb-4">
+<%= will_paginate @employees, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+<hr />
+<%= link_to 'New Register', url_for(action: :new), class: 'btn btn-primary' %>
+</div>
+<table class="table" id="employees">
+  <thead class="thead-light">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @employees %>
+  </tbody>
+</table>

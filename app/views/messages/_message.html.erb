@@ -1,0 +1,4 @@
+<p class="<%=message.user.nil? ? 'text-start' : 'text-end' %> me-5" id="<%=dom_id(message)%>">
+  <small class="d-block"><%=message.user.nil? ? message.author.first_name : message.user.first_name %> - <%=l message.created_at, format: :short %></small>
+  <span class="chat-body_bubble <%= message.user.nil? ? 'bg-primary text-light' : 'bg-light' %>"><%=message.message %></span>
+</p>
