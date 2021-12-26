@@ -14,9 +14,9 @@ export default class extends ApplicationController {
    * Important:
    * By default, StimulusReflex overrides the -connect- method so make sure you
    * call super if you intend to do anything else when this controller connects.
-  */
+   */
 
-  connect () {
+  connect() {
     super.connect()
     // add your code here, if applicable
   }
@@ -50,13 +50,12 @@ export default class extends ApplicationController {
   // Assuming you create a "Employee#dance" action in your Reflex class
   // you'll be able to use the following lifecycle methods:
 
-  // beforeDance(element, reflex, noop, reflexId) {
-  //  element.innerText = 'Putting dance shoes on...'
-  // }
+  beforeDance(element, reflex, noop, reflexId) {}
 
-  // danceSuccess(element, reflex, noop, reflexId) {
-  //   element.innerText = '\nDanced like no one was watching! Was someone watching?'
-  // }
+  associateSuccess(element, reflex, noop, reflexId) {
+    alert('aki')
+    //   element.innerText = '\nDanced like no one was watching! Was someone watching?'
+  }
 
   // danceError(element, reflex, error, reflexId) {
   //   console.error('danceError', error);

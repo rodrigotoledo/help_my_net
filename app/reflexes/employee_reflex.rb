@@ -32,5 +32,13 @@ class EmployeeReflex < ApplicationReflex
   #   end
   #
   # Learn more at: https://docs.stimulusreflex.com/rtfm/reflex-classes
+  def associate
+    task = Task.find(element.dataset[:task_id])
+    employee = Employee.find(element.dataset[:employee_id])
+    task.employees << employee
+    task.save!
 
+
+    morph '#select_employee_ids', render(partial: 'tasks/select_employee_ids', locals: { task: task })
+  end
 end

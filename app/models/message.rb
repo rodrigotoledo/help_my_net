@@ -6,7 +6,7 @@ class Message < ApplicationRecord
   validates :message, presence: true
 
 
-  after_create_commit do
+  after_create do
     broadcast_prepend_to "messages", target: "messages_#{self.task_id}"
     broadcast_update_to "messages", target: "count_message_#{self.task_id}", html: self.task.messages.count
   end
