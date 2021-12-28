@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_26_123512) do
+ActiveRecord::Schema.define(version: 2021_12_28_111544) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(version: 2021_12_26_123512) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "jwt_denylist", force: :cascade do |t|
+    t.string "jti", null: false
+    t.datetime "exp", precision: 6, null: false
+    t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "task_id", null: false
     t.integer "user_id"
@@ -77,8 +83,8 @@ ActiveRecord::Schema.define(version: 2021_12_26_123512) do
     t.float "latitude"
     t.float "longitude"
     t.string "slug"
-    t.integer "user_id", null: false
-    t.integer "author_id", null: false
+    t.integer "user_id"
+    t.integer "author_id"
     t.index ["author_id"], name: "index_tasks_on_author_id"
     t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["slug"], name: "index_tasks_on_slug", unique: true
@@ -101,6 +107,8 @@ ActiveRecord::Schema.define(version: 2021_12_26_123512) do
     t.datetime "confirmation_sent_at"
     t.string "slug"
     t.boolean "is_admin", default: false, null: false
+    t.string "access_token"
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true

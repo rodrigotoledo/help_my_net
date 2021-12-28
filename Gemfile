@@ -89,6 +89,8 @@ end
 gem "bootstrap_form", "~> 5.0"
 gem "faker", "~> 2.19"
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
+gem 'devise-jwt'
+gem 'rack-cors'
 
 
 gem 'cpf_faker'
