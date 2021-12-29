@@ -1,6 +1,6 @@
 module Api
   class TasksController < ActionController::Base
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
     protect_from_forgery with: :null_session
     def create
       author = User.find_or_initialize_by(email: author_params[:email])
@@ -16,7 +16,7 @@ module Api
 
     def index
       # ActionCable.server.broadcast 'messages', Faker::Lorem.paragraph
-      render json: Task.all
+      render json: Task.limit(10).as_json(only: [:id, :title])
     end
 
     private

@@ -37,7 +37,8 @@ class EmployeeReflex < ApplicationReflex
     employee = Employee.find(element.dataset[:employee_id])
     task.employees << employee
     task.save!
-
+    message = task.messages.build(message: "Employee associated for this task")
+    message.save!
 
     morph '#select_employee_ids', render(partial: 'tasks/select_employee_ids', locals: { task: task })
   end
