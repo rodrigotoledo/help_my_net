@@ -14,6 +14,18 @@ rails db:drop db:create db:migrate db:seed
 http://localhost:3000
 
 ```
-username: test@test.com.br
+username: test@test.com
 password: aassdd
 ```
+
+## API
+
+### Sign in
+
+The process of sign in it's simple to test, run
+
+```
+curl localhost:3000/api/login --ipv4 --data "username=test@test.com&password=aassdd"
+```
+
+The result should be the **User** instance
