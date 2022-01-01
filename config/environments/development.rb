@@ -1,8 +1,8 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_controller.default_url_options = {host: "localhost", port: 3000}
-  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+  config.action_controller.default_url_options = {host: "3dbd-2804-4308-57d-c700-3440-97b4-e589-6617.ngrok.io"}
+  config.action_mailer.default_url_options = {host: "3dbd-2804-4308-57d-c700-3440-97b4-e589-6617.ngrok.io"}
 
   config.session_store :cache_store
 
@@ -74,8 +74,10 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: '3dbd-2804-4308-57d-c700-3440-97b4-e589-6617.ngrok.io'}
   # config.hosts << "6677-2804-4308-55b-5700-d1cb-2374-1a13-148.ngrok.io"
   config.hosts << "95b2-2804-4308-55b-5700-d1cb-2374-1a13-148.ngrok.io"
   config.hosts << "692a-2804-4308-55b-5700-d1cb-2374-1a13-148.ngrok.io"
+  config.hosts << "5499-2804-4308-57d-c700-3440-97b4-e589-6617.ngrok.io"
+  config.hosts << "3dbd-2804-4308-57d-c700-3440-97b4-e589-6617.ngrok.io"
 end
