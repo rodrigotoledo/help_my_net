@@ -16,6 +16,9 @@ class Task < ApplicationRecord
   after_create do
     broadcast_prepend_to "tasks"
   end
+  after_update do
+    broadcast_update_to "select_employees", target: 'select_employees', partial: 'tasks/select_employees_list', locals: {task: self}
+  end
   after_destroy_commit do
     broadcast_remove_to "tasks"
   end
