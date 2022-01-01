@@ -67,3 +67,7 @@ yarn-debug.log*
 /storage/*
 !/storage/.keep
 /public/uploads
+
+/config/credentials/production.key
+
+/config/credentials/development.key
