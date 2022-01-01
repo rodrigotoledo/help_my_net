@@ -31,6 +31,7 @@ class TasksController < ApplicationController
         format.html { redirect_to edit_task_path(@task), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
+        flash[:error] = 'Have something wrong. Isnt good, look better whats is missing!?!'
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
