@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "new_message" do %>
   <%= form_for(:message, url: task_messages_path(@task), method: :post, html: {class: 'chat-body_form border border-top-0 rounded-bottom bg-light'},
-data:  {controller: "messages", action: "turbo:submit-end->messages#reset"}) do |f| %>
+data:  {controller: "messages", action: "turbo:submit-end->messages#reset", chat_body_id: "messages_#{@task.id}"}) do |f| %>
     <%= f.label :message, class: 'form-label visually-hidden' %>
     <%= f.text_field :message, class: 'form-control', placeholder: 'Message' %>
     <button class="btn btn-primary" type="submit">Send</button>

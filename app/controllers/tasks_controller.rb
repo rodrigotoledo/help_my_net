@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.paginate(page: params[:page])
+    @tasks = Task.order(created_at: :desc).paginate(page: params[:page])
   end
 
   # GET /tasks/1 or /tasks/1.json

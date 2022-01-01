@@ -1,19 +1,20 @@
 <h1>Editing task</h1>
-<a href="javascript:;" data-reflex="click->Employee#associate" class="btn btn-primary">Lets Dance</a>
-
+<%= turbo_stream_from "messages" %>
 <section class="chat">
   <section class="chat-body">
-    <h3 class="h5">Attendant <%= @task.user.first_name %> helping <em><%=@task.author.first_name %></em></h3>
+    <h3 class="h5">Attendant <%= @task.user.first_name %></em></h3>
     <div class="p-3 border rounded-top chat-body_items">
-    <%= turbo_stream_from "messages" %>
+
     <%= turbo_frame_tag "messages_#{@task.id}" do %>
-      <%= render @task.messages.order(created_at: :desc) %>
+      <%= render @task.messages %>
     <% end %>
     </div>
     <%= turbo_frame_tag "new_message", src: new_task_message_path(@task), target: "messages_#{@task.id}" %>
   </section>
 </section>
 
+<hr>
+Messages: <span id="count_message_<%=@task.id%>"><%=@task.messages.count %></span>
 <hr>
 <%= render "map", task: @task %>
 <hr>
