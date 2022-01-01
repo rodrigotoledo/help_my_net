@@ -29,3 +29,12 @@ curl localhost:3000/api/login --ipv4 --data "username=test@test.com&password=aas
 ```
 
 The result should be the **User** instance
+
+### Help me
+
+Hello guys, this is my application using rails 7, hotwire, stimulus reflex. Basically have tasks and each one has an address.
+Also possible employees to the management of the task. Let me show you how it works.
+
+But isn't working on Heroku. Let me try to deploy. Error is
+
+assets/channels/consumer is missing. Can someone help me?

@@ -90,4 +90,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
+
+  config.web_socket_server_url = "wss://help-my-net-ror7.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = [ 'https://help-my-net-ror7.herokuapp.com', /http:\/\/help-my-net-ror7.herokuapp.com.*/ ]
+  config.assets.compile = true
 end
