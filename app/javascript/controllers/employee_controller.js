@@ -52,7 +52,7 @@ export default class extends ApplicationController {
 
   beforeDance(element, reflex, noop, reflexId) {}
 
-  beforeAssociate(element) {
+  associateSuccess(element, reflex, noop, reflexId) {
     console.log(element)
   }
 
