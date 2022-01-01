@@ -1,7 +1,5 @@
 module Api
-  class TasksController < ActionController::Base
-    # before_action :authenticate_user!
-    protect_from_forgery with: :null_session
+  class TasksController < ApplicationController
     def create
       author = User.find_or_initialize_by(email: author_params[:email])
       if author.new_record?
