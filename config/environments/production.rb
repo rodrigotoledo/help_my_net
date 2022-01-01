@@ -98,4 +98,6 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  config.web_socket_server_url = "wss://help-my-net-ror7.herokuapp.com/cable" 
 end

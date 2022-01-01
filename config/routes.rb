@@ -21,8 +21,8 @@ Rails.application.routes.draw do
     #       registrations: 'api/registrations'
     #   }
     resources :tasks
-    mount ActionCable.server => '/cable'
   end
+  mount ActionCable.server => '/cable'
 
 
 end
