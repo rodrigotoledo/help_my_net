@@ -15,4 +15,5 @@ test:
   database: help_my_net_test
 
 production:
+  adapter: postgresql
   url: <%= ENV['DATABASE_URL'] %>
