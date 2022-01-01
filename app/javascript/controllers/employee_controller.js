@@ -52,9 +52,8 @@ export default class extends ApplicationController {
 
   beforeDance(element, reflex, noop, reflexId) {}
 
-  associateSuccess(element, reflex, noop, reflexId) {
-    alert('aki')
-    //   element.innerText = '\nDanced like no one was watching! Was someone watching?'
+  beforeAssociate(element) {
+    console.log(element)
   }
 
   // danceError(element, reflex, error, reflexId) {
@@ -62,9 +61,7 @@ export default class extends ApplicationController {
   //   element.innerText = "\nCouldn\'t dance!"
   // }
 
-  afterDesassociate(element, reflex, noop, reflexId) {
-    alert('aki')
-  }
+  afterDesassociate(element, reflex, noop, reflexId) {}
 
   // finalizeDance(element, reflex, noop, reflexId) {
   //   element.innerText = '\nNow, the cleanup can begin!'

@@ -2,6 +2,7 @@
 <% content_for :maps do %>
   <script>
     function initMap() {
+      const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer();
       const myLatLng = { lat: <%=task.latitude%>, lng: <%=task.longitude%> };
       const map = new google.maps.Map(document.getElementById("map"), {
@@ -32,6 +33,7 @@
         });
       });
       setMarkers(map);
+
       directionsRenderer.setMap(map);
     }
 
@@ -61,7 +63,7 @@
         });
 
         var contentString = '<div id="<%=dom_id task%>"><p class="firstHeading">Operador: '+employeeName+'</p>'+
-          '<a class="btn btn-primary btn-sm" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->Employee#associate" href="javascript:;">Active for this task</a></div>';
+          '<button class="btn btn-primary btn-sm" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->Employee#associate" data-controller="employee">Active for this task</button></div>';
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
         });
