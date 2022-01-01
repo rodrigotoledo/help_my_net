@@ -4,7 +4,7 @@
   <section class="chat-body">
     <h3 class="h5">Attendant <%= @task.user.first_name %></em></h3>
     <div class="p-3 border rounded-top chat-body_items">
-    
+
     <%= turbo_frame_tag "messages_#{@task.id}" do %>
       <%= render @task.messages %>
     <% end %>
@@ -14,7 +14,7 @@
 </section>
 
 <hr>
-Mensagens: <span id="count_message_<%=@task.id%>"><%=@task.messages.count %></span>
+Messages: <span id="count_message_<%=@task.id%>"><%=@task.messages.count %></span>
 <hr>
 <%= render "map", task: @task %>
 <hr>

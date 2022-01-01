@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_12_28_111544) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
@@ -37,8 +40,8 @@ ActiveRecord::Schema.define(version: 2021_12_28_111544) do
   end
 
   create_table "employees_tasks", id: false, force: :cascade do |t|
-    t.integer "task_id", null: false
-    t.integer "employee_id", null: false
+    t.bigint "task_id", null: false
+    t.bigint "employee_id", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -59,9 +62,9 @@ ActiveRecord::Schema.define(version: 2021_12_28_111544) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "task_id", null: false
-    t.integer "user_id"
-    t.integer "author_id"
+    t.bigint "task_id", null: false
+    t.bigint "user_id"
+    t.bigint "author_id"
     t.string "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -73,7 +76,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_111544) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.integer "category_id", null: false
+    t.bigint "category_id", null: false
     t.string "title"
     t.text "description"
     t.date "completed_at"
@@ -83,8 +86,8 @@ ActiveRecord::Schema.define(version: 2021_12_28_111544) do
     t.float "latitude"
     t.float "longitude"
     t.string "slug"
-    t.integer "user_id"
-    t.integer "author_id"
+    t.bigint "user_id"
+    t.bigint "author_id"
     t.index ["author_id"], name: "index_tasks_on_author_id"
     t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["slug"], name: "index_tasks_on_slug", unique: true
@@ -120,7 +123,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_111544) do
     t.bigint "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object", limit: 1073741823
+    t.text "object"
     t.datetime "created_at", precision: 6
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
