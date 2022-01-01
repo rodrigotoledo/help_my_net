@@ -1,0 +1,3 @@
+<% task.employees.each do |employee| %>
+<li class="list-group-item list-group-item-light"><button class='btn btn-danger btn-sm' data-task_id="<%=task.id%>" data-employee_id="<%=employee.id%>" data-reflex="click->Employee#desassociate" data-controller="employee">Remove</button><%=employee.name %></li>
+<% end %>

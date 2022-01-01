@@ -34,10 +34,23 @@ class EmployeeReflex < ApplicationReflex
   # Learn more at: https://docs.stimulusreflex.com/rtfm/reflex-classes
   def associate
     task = Task.find(element.dataset[:task_id])
+    unless task.employees.exists?(element.dataset[:employee_id])
+      employee = Employee.find(element.dataset[:employee_id])
+      task.employees << employee
+      task.save!
+      message = task.messages.build(message: "Employee associated for this task")
+      message.save!
+    end
+
+    morph '#select_employee_ids', render(partial: 'tasks/select_employee_ids', locals: { task: task })
+  end
+
+  def desassociate
+    task = Task.find(element.dataset[:task_id])
     employee = Employee.find(element.dataset[:employee_id])
-    task.employees << employee
+    task.employees.destroy(employee)
     task.save!
-    message = task.messages.build(message: "Employee associated for this task")
+    message = task.messages.build(message: "Employee desassociate for this task")
     message.save!
 
     morph '#select_employee_ids', render(partial: 'tasks/select_employee_ids', locals: { task: task })

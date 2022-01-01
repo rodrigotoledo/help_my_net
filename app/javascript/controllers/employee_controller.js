@@ -62,9 +62,9 @@ export default class extends ApplicationController {
   //   element.innerText = "\nCouldn\'t dance!"
   // }
 
-  // afterDance(element, reflex, noop, reflexId) {
-  //   element.innerText = '\nWhatever that was, it\'s over now.'
-  // }
+  afterDesassociate(element, reflex, noop, reflexId) {
+    alert('aki')
+  }
 
   // finalizeDance(element, reflex, noop, reflexId) {
   //   element.innerText = '\nNow, the cleanup can begin!'
