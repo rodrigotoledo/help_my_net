@@ -101,4 +101,5 @@ Rails.application.configure do
 
   config.web_socket_server_url = "wss://help-my-net-ror7.herokuapp.com/cable"
   config.action_cable.allowed_request_origins = [ 'https://help-my-net-ror7.herokuapp.com', /http:\/\/help-my-net-ror7.herokuapp.com.*/ ]
+  config.assets.compile = true
 end
