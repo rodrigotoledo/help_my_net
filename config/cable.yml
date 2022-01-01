@@ -7,4 +7,4 @@ test:
 
 production:
   adapter: redis
-  url: redis://redistogo:ef0e70f1f321921ffdccb966e766d550@hammerjaw.redistogo.com:10124/
+  url: redis://redistogo:f98ec8e0a69f0a2ddf36dc7698adde67@hammerjaw.redistogo.com:10124/
