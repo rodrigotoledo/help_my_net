@@ -51,6 +51,10 @@ export default class extends ApplicationController {
   // you'll be able to use the following lifecycle methods:
 
   associateSuccess(element, reflex, noop, reflexId) {
+    const myLatLng = {
+      lat: parseFloat(element.dataset.task_latitude),
+      lng: parseFloat(element.dataset.task_longitude),
+    }
     const origin = {
       lat: parseFloat(element.dataset.employee_latitude),
       lng: parseFloat(element.dataset.employee_longitude),
