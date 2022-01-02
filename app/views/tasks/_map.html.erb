@@ -44,8 +44,6 @@
 
     function renderDirections(result, employeeId) {
       if(renderObjectsOrigins.includes(employeeId) == false){
-        var directionsRenderer = new google.maps.DirectionsRenderer();
-        directionsRenderer.setMap(map);
         directionsRenderer.setDirections(result);
         renderObjects.push(directionsRenderer);
         renderObjectsOrigins.push(employeeId);
