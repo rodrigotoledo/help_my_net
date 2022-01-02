@@ -6,6 +6,7 @@
     var directionsRenderer;
     var myLatLng = { lat: <%=task.latitude%>, lng: <%=task.longitude%> };
     var renderObjects = [];
+    var renderObjectsOrigins = [];
     function initMap() {
       directionsService = new google.maps.DirectionsService();
       directionsRenderer = new google.maps.DirectionsRenderer();
@@ -41,21 +42,24 @@
       directionsRenderer.setMap(map);
     }
 
-    function renderDirections(result) {
-      var directionsRenderer = new google.maps.DirectionsRenderer();
-      directionsRenderer.setMap(map);
-      directionsRenderer.setDirections(result);
-      renderObjects.push(directionsRenderer);
-      console.log(renderObjects)
+    function renderDirections(result, employeeId) {
+      if(renderObjectsOrigins.includes(employeeId) == false){
+        var directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+        directionsRenderer.setDirections(result);
+        renderObjects.push(directionsRenderer);
+        renderObjectsOrigins.push(employeeId);
+
+      }
     }
 
-    function requestDirections(start, end) {
+    function requestDirections(start, end, employeeId) {
       directionsService.route({
         origin: start,
         destination: end,
         travelMode: google.maps.DirectionsTravelMode.DRIVING
       }, function(result) {
-        renderDirections(result);
+        renderDirections(result, parseInt(employeeId));
       });
     }
 
@@ -112,7 +116,7 @@
         var employeeAddress = employee[2];
         var employeeLatitude = employee[3];
         var employeeLongitude = employee[4];
-        requestDirections({lat: employeeLatitude, lng: employeeLongitude}, myLatLng);
+        requestDirections({lat: employeeLatitude, lng: employeeLongitude}, myLatLng, employeeId);
       });
     }
   </script>
