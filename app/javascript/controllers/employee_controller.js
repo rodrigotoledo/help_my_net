@@ -55,19 +55,18 @@ export default class extends ApplicationController {
       lat: parseFloat(element.dataset.employee_latitude),
       lng: parseFloat(element.dataset.employee_longitude),
     }
-    requestDirections(origin, myLatLng)
+    requestDirections(origin, myLatLng, element.dataset.employee_id)
   }
 
-  // danceError(element, reflex, error, reflexId) {
-  //   console.error('danceError', error);
-  //   element.innerText = "\nCouldn\'t dance!"
-  // }
-
-  removeSuccess(element) {
+  beforeRemove(element) {
     renderObjects[parseInt(element.dataset.position)].setMap(null)
+    renderObjects[parseInt(element.dataset.position)] = undefined
+    renderObjectsOrigins[parseInt(element.dataset.position)] = undefined
+    renderObjects = renderObjects.filter(function (e) {
+      return e
+    })
+    renderObjectsOrigins = renderObjectsOrigins.filter(function (e) {
+      return e
+    })
   }
-
-  // finalizeDance(element, reflex, noop, reflexId) {
-  //   element.innerText = '\nNow, the cleanup can begin!'
-  // }
 }

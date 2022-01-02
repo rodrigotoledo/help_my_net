@@ -1,5 +1,7 @@
 <% task.employees.each_with_index do |employee, i| %>
 <li class="list-group-item border-0 list-group-item-light" data-controller="employee">
-  <%= fa_icon "trash", text: "Remove #{employee.name}", class: 'fa-2x', data: {position: i, task_id: task.id, employee_id: employee.id, reflex: 'click->Employee#remove', controller: 'employee'} %>
+  <%=link_to 'javascript:;', data: {position: i, task_id: task.id, employee_id: employee.id, reflex: 'click->Employee#remove', controller: 'employee'} do %>
+    <%= fa_icon "trash", text: "Remove #{employee.name}", class: 'fa-2x' %>
+  <% end %>
 </li>
 <% end %>
