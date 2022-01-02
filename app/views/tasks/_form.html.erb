@@ -1,16 +1,14 @@
 <%= bootstrap_form_for(task) do |form| %>
-  <%= form.collection_select :category_id, Category.all, :id, :title, include_blank: true %>
   <div id="select_employee_ids" class="d-none">
     <%=render partial: 'select_employee_ids', locals: {task: task} %>
   </div>
 
   <%= turbo_stream_from "select_employees" %>
   <%= label_tag 'Employees' %>
-  <ul class="list-group select_employees mb-3">
-    <%= turbo_frame_tag "select_employees" do %>
-      <%= render partial: 'select_employees_list', locals: {task: task} %>
-    <% end %>
+  <ul class="list-group list-group-horizontal select_employees mb-3" id="select_employees">
+    <%= render partial: 'select_employees_list', locals: {task: task} %>
   </ul>
+  <%= form.collection_select :category_id, Category.all, :id, :title, include_blank: true %>
 
   <%= form.text_field :title %>
   <%= form.text_field :address %>

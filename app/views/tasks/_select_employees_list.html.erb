@@ -1,3 +1,5 @@
-<% task.employees.each do |employee| %>
-<li class="list-group-item list-group-item-light"><button class='btn btn-danger btn-sm' data-task_id="<%=task.id%>" data-employee_id="<%=employee.id%>" data-reflex="click->Employee#desassociate" data-controller="employee">Remove</button><%=employee.name %></li>
+<% task.employees.each_with_index do |employee, i| %>
+<li class="list-group-item border-0 list-group-item-light" data-controller="employee">
+  <%= fa_icon "trash", text: "Remove #{employee.name}", class: 'fa-2x', data: {position: i, task_id: task.id, employee_id: employee.id, reflex: 'click->Employee#remove', controller: 'employee'} %>
+</li>
 <% end %>
