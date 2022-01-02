@@ -50,10 +50,12 @@ export default class extends ApplicationController {
   // Assuming you create a "Employee#dance" action in your Reflex class
   // you'll be able to use the following lifecycle methods:
 
-  beforeDance(element, reflex, noop, reflexId) {}
-
   associateSuccess(element, reflex, noop, reflexId) {
-    console.log(element)
+    const origin = {
+      lat: parseFloat(element.dataset.employee_latitude),
+      lng: parseFloat(element.dataset.employee_longitude),
+    }
+    requestDirections(origin, myLatLng)
   }
 
   // danceError(element, reflex, error, reflexId) {
@@ -61,7 +63,9 @@ export default class extends ApplicationController {
   //   element.innerText = "\nCouldn\'t dance!"
   // }
 
-  afterDesassociate(element, reflex, noop, reflexId) {}
+  removeSuccess(element) {
+    renderObjects[parseInt(element.dataset.position)].setMap(null)
+  }
 
   // finalizeDance(element, reflex, noop, reflexId) {
   //   element.innerText = '\nNow, the cleanup can begin!'

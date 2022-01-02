@@ -1,11 +1,15 @@
 <div id="map" style="height: 400px"></div>
 <% content_for :maps do %>
   <script>
+    var map;
+    var directionsService;
+    var directionsRenderer;
+    var myLatLng = { lat: <%=task.latitude%>, lng: <%=task.longitude%> };
+    var renderObjects = [];
     function initMap() {
-      const directionsService = new google.maps.DirectionsService();
-      const directionsRenderer = new google.maps.DirectionsRenderer();
-      const myLatLng = { lat: <%=task.latitude%>, lng: <%=task.longitude%> };
-      const map = new google.maps.Map(document.getElementById("map"), {
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer();
+      map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
         center: myLatLng,
       });
@@ -32,30 +36,54 @@
           shouldFocus: false,
         });
       });
-      setMarkers(map);
+      setMarkers();
 
       directionsRenderer.setMap(map);
     }
 
-    function setMarkers(map) {
-      var employees = <%= raw Employee.actives.pluck(:id, :name, :latitude, :longitude, :address) %>;
+    function renderDirections(result) {
+      var directionsRenderer = new google.maps.DirectionsRenderer();
+      directionsRenderer.setMap(map);
+      directionsRenderer.setDirections(result);
+      renderObjects.push(directionsRenderer);
+      console.log(renderObjects)
+    }
+
+    function requestDirections(start, end) {
+      directionsService.route({
+        origin: start,
+        destination: end,
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
+      }, function(result) {
+        renderDirections(result);
+      });
+    }
+
+    function setMarkers() {
+      var directionsRendererOptions = {
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+      }
+      directionsRenderer.setMap(map)
+
+      var activeEmployees = <%= raw Employee.actives.pluck(:id, :name, :address, :latitude, :longitude) %>;
+      var taskEmployees = <%= raw task.employees.pluck(:id, :name, :address, :latitude, :longitude) %>;
       var task = <%= raw [task.id, task.title, task.address] %>;
       var taskId = task[0];
       var taskTitle = task[1];
       var taskAddress = task[2];
 
-      employees.forEach(employee => {
+      activeEmployees.forEach(employee => {
         var employeeId = employee[0];
         var employeeName = employee[1];
-        var employeeLatitude = employee[2];
-        var employeeLongitude = employee[3];
-        var employeeAddress = employee[4];
+        var employeeAddress = employee[2];
+        var employeeLatitude = employee[3];
+        var employeeLongitude = employee[4];
 
         var marker = new google.maps.Marker({
           position: { lat: employeeLatitude, lng: employeeLongitude },
           map,
           icon: {
-            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+            path: google.maps.SymbolPath.CIRCLE,
             scale: 3,
           },
 
@@ -63,7 +91,7 @@
         });
 
         var contentString = '<div id="<%=dom_id task%>"><p class="firstHeading">Operador: '+employeeName+'</p>'+
-          '<button class="btn btn-primary btn-sm" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->Employee#associate" data-controller="employee">Active for this task</button></div>';
+          '<button class="btn btn-primary btn-sm" data-employee_latitude="'+employeeLatitude+'" data-employee_longitude="'+employeeLongitude+'" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->Employee#associate" data-controller="employee">Active for this task</button></div>';
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
         });
@@ -76,6 +104,15 @@
           });
         });
 
+      });
+
+      taskEmployees.forEach(employee => {
+        var employeeId = employee[0];
+        var employeeName = employee[1];
+        var employeeAddress = employee[2];
+        var employeeLatitude = employee[3];
+        var employeeLongitude = employee[4];
+        requestDirections({lat: employeeLatitude, lng: employeeLongitude}, myLatLng);
       });
     }
   </script>
