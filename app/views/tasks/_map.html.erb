@@ -44,7 +44,9 @@
 
     function renderDirections(result, employeeId) {
       if(renderObjectsOrigins.includes(employeeId) == false){
+        var directionsRenderer = new google.maps.DirectionsRenderer({map:map});
         directionsRenderer.setDirections(result);
+
         renderObjects.push(directionsRenderer);
         renderObjectsOrigins.push(employeeId);
 
@@ -93,7 +95,7 @@
         });
 
         var contentString = '<div id="<%=dom_id task%>"><p class="firstHeading">Operador: '+employeeName+'</p>'+
-          '<button class="btn btn-primary btn-sm" data-employee_latitude="'+employeeLatitude+'" data-employee_longitude="'+employeeLongitude+'" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->Employee#associate" data-controller="employee">Active for this task</button></div>';
+          '<button class="btn btn-primary btn-sm" data-task_latitude="'+myLatLng['lat']+'" data-task_longitude="'+myLatLng['lng']+'"  data-employee_latitude="'+employeeLatitude+'" data-employee_longitude="'+employeeLongitude+'" data-task_id="'+taskId+'" data-employee_id="'+employeeId+'" data-reflex="click->Employee#associate" data-controller="employee">Active for this task</button></div>';
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
         });
