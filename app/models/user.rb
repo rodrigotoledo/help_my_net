@@ -11,6 +11,7 @@ class User < ApplicationRecord
   friendly_id :first_name, use: :slugged
   has_many :tasks
   has_many :author_tasks, class_name: "Task", foreign_key: "author_id"
+  has_one :employee
 
   private
 

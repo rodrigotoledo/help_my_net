@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_28_111544) do
+ActiveRecord::Schema.define(version: 2022_01_04_092710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,9 @@ ActiveRecord::Schema.define(version: 2021_12_28_111544) do
     t.float "latitude"
     t.float "longitude"
     t.string "slug"
+    t.bigint "user_id"
     t.index ["slug"], name: "index_employees_on_slug", unique: true
+    t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
   create_table "employees_tasks", id: false, force: :cascade do |t|
@@ -128,6 +130,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_111544) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "employees", "users"
   add_foreign_key "messages", "tasks"
   add_foreign_key "messages", "users"
   add_foreign_key "messages", "users", column: "author_id"

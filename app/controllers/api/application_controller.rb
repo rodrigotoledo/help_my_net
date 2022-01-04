@@ -2,6 +2,7 @@ module Api
   class ApplicationController < ActionController::API
     include AbstractController::Translation
     before_action :authenticate_user_from_token!
+    helper_method :api_user
     respond_to :json
 
     ##
@@ -17,7 +18,7 @@ module Api
       end
     end
 
-    private
+    protected
 
     def authenticate_with_auth_token auth_token
       unless auth_token.include?(':')
@@ -26,11 +27,11 @@ module Api
       end
 
       user_id = auth_token.split(':').first
-      user = User.where(id: user_id).first
+      @api_user = User.where(id: user_id).first
 
-      if user && Devise.secure_compare(user.access_token, auth_token)
+      if @api_user && Devise.secure_compare(@api_user.access_token, auth_token)
         # User can access
-        sign_in user, store: false
+        sign_in @api_user, store: false
       else
         authentication_error
       end
@@ -42,6 +43,10 @@ module Api
     def authentication_error
       # User's token is either invalid or not in the right format
       render json: {error: t('unauthorized')}, status: 401  # Authentication timeout
+    end
+
+    def api_user
+      @api_user
     end
   end
 end
