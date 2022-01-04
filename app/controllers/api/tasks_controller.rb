@@ -13,8 +13,7 @@ module Api
     end
 
     def index
-      # ActionCable.server.broadcast 'messages', Faker::Lorem.paragraph
-      render json: Task.limit(10).as_json(only: [:id, :title])
+      render json: api_user.employee.nearest_tasks.as_json(only: [:id, :title, :address, :latitude, :longitude])
     end
 
     private
