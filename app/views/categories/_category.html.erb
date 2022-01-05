@@ -6,6 +6,6 @@
     <%= link_to category.title, edit_category_path(category) %>
   </td>
   <td>
-    <%= button_to "Remove this", category_path(category), method: :delete, class: 'btn btn-danger' %>
+    <%= link_to "Remove this", category, class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
   </td>
 </tr>
