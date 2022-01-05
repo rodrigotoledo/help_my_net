@@ -12,6 +12,6 @@
     <%= l(task.completed_at) if task.completed_at %>
   </td>
   <td>
-    <%= button_to "Remove this", task_path(task), method: :delete, class: 'btn btn-danger' %>
+    <%= link_to "Remove this", task, class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
   </td>
 </tr>
