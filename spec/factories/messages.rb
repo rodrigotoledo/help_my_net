@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :message do
-    task { nil }
-    user { nil }
-    author { nil }
+    task { create(:task) }
+    user { create(:user) }
     message { "MyString" }
   end
 end
