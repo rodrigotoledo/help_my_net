@@ -411,6 +411,7 @@ DEPENDENCIES
   letter_opener
   paper_trail
   pg
+  pry
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.0)

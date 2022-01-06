@@ -1,11 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Messages", type: :request do
-  describe "GET /index" do
-    it "returns http success" do
-      get "/messages/index"
-      expect(response).to have_http_status(:success)
-    end
-  end
+RSpec.describe "/tasks/messages", type: :request do
 
+  before do
+    sign_in create(:user)
+  end
+  let!(:task) { create(:task) }
 end
