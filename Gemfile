@@ -62,6 +62,7 @@ group :development, :test do
 
   gem 'letter_opener'
   gem 'to_factory'
+  gem 'pry'
 end
 
 group :development do
@@ -83,6 +84,7 @@ group :test do
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov'
   gem 'webdrivers'
+  
 end
 
 

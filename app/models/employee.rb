@@ -9,6 +9,9 @@ class Employee < ApplicationRecord
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+  before_validation do
+    self.user = User.create(email: self.email, password: 'aassdd', password_confirmation: 'aassdd', first_name: name) if self.user.blank?
+  end
 
   def nearest_tasks
     Task.near([latitude, longitude], 100)
