@@ -14,6 +14,6 @@ class Employee < ApplicationRecord
   end
 
   def nearest_tasks
-    Task.near([latitude, longitude], 100)
+    Task.near([latitude, longitude], 10)
   end
 end
