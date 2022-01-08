@@ -50,7 +50,7 @@ export default class extends ApplicationController {
   // Assuming you create a "Employee#dance" action in your Reflex class
   // you'll be able to use the following lifecycle methods:
 
-  associateSuccess(element, reflex, noop, reflexId) {
+  beforeReflex(element, reflex, noop, reflexId) {
     const myLatLng = {
       lat: parseFloat(element.dataset.task_latitude),
       lng: parseFloat(element.dataset.task_longitude),
