@@ -54,5 +54,6 @@ class EmployeeReflex < ApplicationReflex
     message.save!
 
     morph '#select_employee_ids', render(partial: 'tasks/select_employee_ids', locals: { task: task })
+
   end
 end

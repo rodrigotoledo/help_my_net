@@ -16,6 +16,7 @@
 <hr>
 Messages: <span id="count_message_<%=@task.id%>"><%=@task.messages.count %></span>
 <hr>
+<%= stream_from @task %>
 <%= render "map", task: @task %>
 <hr>
 <%= render "form", task: @task %>
