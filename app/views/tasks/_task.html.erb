@@ -1,0 +1,38 @@
+<%= turbo_frame_tag dom_id(task) do %>
+<blockquote>
+  <p>
+    <strong>Title:</strong>
+    <%= task.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= task.description %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= task.address %>
+  </p>
+
+  <p>
+    <strong>Latitude:</strong>
+    <%= task.latitude %>
+  </p>
+
+  <p>
+    <strong>Longitude:</strong>
+    <%= task.longitude %>
+  </p>
+
+  <% if defined?(:show_map) %>
+    <%= render 'layouts/map', owner: task %>
+  <% end %>
+
+  <p>
+    <%=link_to 'Edit this task', edit_task_path(task) %>
+    <%= button_to "Destroy this task", task, method: :delete %>
+  </p>
+
+</blockquote>
+<% end %>

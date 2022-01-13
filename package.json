@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "cable_ready": "^5.0.0-pre8",
+    "mapbox-gl": "^2.6.1",
+    "stimulus_reflex": "3.5.0-pre8"
+  }
+}

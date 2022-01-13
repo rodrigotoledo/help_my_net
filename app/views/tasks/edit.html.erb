@@ -1,0 +1,8 @@
+<%= turbo_frame_tag dom_id(@task) do %>
+  <hr>
+  <h1>Editing task</h1>
+  <blockquote>
+    <%= render "form", task: @task %>
+    <%= link_to 'Cancel', @task %>
+  </blockquote>
+<% end %>

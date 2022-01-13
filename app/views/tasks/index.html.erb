@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+<%= turbo_stream_from "tasks" %>
+
+<%= turbo_frame_tag "form_task" do %>
+  <%= render 'form', task: @task %>
+  <%= link_to 'Cancel', tasks_path %>
+<% end %>
+
+<%= turbo_frame_tag "tasks" do %>
+  <%= render @tasks %>
+<% end %>

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+bundle exec standardrb --fix
+yarn run prettier-standard:format
