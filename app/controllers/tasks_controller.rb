@@ -1,14 +1,17 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show dashboard edit update destroy ]
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = Task.order(created_at: :desc)
     @task = Task.new
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
+  end
+
+  def dashboard
   end
 
   # GET /tasks/new
