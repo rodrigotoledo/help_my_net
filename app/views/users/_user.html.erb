@@ -25,7 +25,7 @@
     <%= user.longitude %>
   </p>
   <% if defined?(:show_map) %>
-    <%= render 'layouts/map', owner: user %>
+    <%= render 'users/map', user: user %>
   <% end %>
 
   <p>

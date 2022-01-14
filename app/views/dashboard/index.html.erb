@@ -1,0 +1,6 @@
+<h1>Dashboard#index</h1>
+<%= turbo_stream_from "dashboard" %>
+
+<%= turbo_frame_tag "dashboard" do %>
+  <%= render collection: @tasks, partial: 'dashboard/task' %>
+<% end %>

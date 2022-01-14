@@ -1,0 +1,16 @@
+<blockquote>
+  <p>
+    <strong>Title:</strong>
+    <%= task.title %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= task.address %>
+  </p>
+
+  <p>
+    <%=link_to 'Dashboard of this task', dashboard_task_path(task), data: { turbo: false } %>
+  </p>
+
+</blockquote>

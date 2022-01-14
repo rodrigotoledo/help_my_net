@@ -1,0 +1,27 @@
+<%= turbo_frame_tag dom_id(@task) do %>
+<h1>Task: <%=@task.title%></h1>
+<blockquote>
+  <p>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @task.address %>
+  </p>
+
+  <p>
+    <strong>Latitude:</strong>
+    <%= @task.latitude %>
+  </p>
+
+  <p>
+    <strong>Longitude:</strong>
+    <%= @task.longitude %>
+  </p>
+
+  <%= render 'tasks/map', task: @task %>
+</blockquote>
+<%=link_to 'Cancel and go to the dashboard', root_path, data: { turbo: false } %>
+<% end %>
