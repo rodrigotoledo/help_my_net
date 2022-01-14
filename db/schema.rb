@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_01_13_114914) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -23,8 +26,8 @@ ActiveRecord::Schema.define(version: 2022_01_13_114914) do
   end
 
   create_table "tasks_users", force: :cascade do |t|
-    t.integer "task_id"
-    t.integer "user_id"
+    t.bigint "task_id"
+    t.bigint "user_id"
     t.index ["task_id"], name: "index_tasks_users_on_task_id"
     t.index ["user_id"], name: "index_tasks_users_on_user_id"
   end
