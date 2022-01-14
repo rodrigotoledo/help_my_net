@@ -138,6 +138,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.13.0-x86_64-linux)
       racc (~> 1.4)
+    pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
@@ -191,7 +192,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     stimulus-rails (1.0.2)
       railties (>= 6.0.0)
     stimulus_reflex (3.5.0.pre8)
@@ -236,13 +236,13 @@ DEPENDENCIES
   geocoder
   importmap-rails
   jbuilder
+  pg
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.1)
   redis (~> 4.0)
   selenium-webdriver
   sprockets-rails
-  sqlite3 (~> 1.4)
   stimulus-rails
   stimulus_reflex (= 3.5.0.pre8)
   turbo-rails
