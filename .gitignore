@@ -34,3 +34,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /node_modules
+/config/credentials/production.key
+
+/config/credentials/development.key
