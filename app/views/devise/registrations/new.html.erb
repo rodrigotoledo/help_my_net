@@ -1,15 +1,7 @@
-<%= form_with(model: user, id: dom_id(user)) do |form| %>
-  <% if user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<h2>Sign up</h2>
 
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
   <div>
     <%= form.label :name, style: "display: block" %>
@@ -22,10 +14,12 @@
   </div>
 
   <div>
-    <%= form.label :password, style: "display: block" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
+    <div style="display: block">
+      <%= form.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+    </div>
     <%= form.password_field :password, autocomplete: "new-password" %>
   </div>
 
@@ -39,7 +33,9 @@
     <%= form.text_field :address %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions">
+    <%= form.submit "Sign up" %>
   </div>
 <% end %>
+
+<%= render "devise/shared/links" %>
