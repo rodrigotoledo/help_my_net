@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :tasks do
     member do
       get 'dashboard'
+      get 'destroy_message'
+    end
+    collection do
     end
   end
   resources :users

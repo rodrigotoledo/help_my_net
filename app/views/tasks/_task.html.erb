@@ -29,6 +29,16 @@
     <%= render 'tasks/map', task: task %>
   <% end %>
 
+  <h3>Messages</h3>
+  <%= turbo_stream_from "messages" %>
+  <%= turbo_frame_tag "messages" do %>
+  <ul>
+    <% task.messages.each do |message|%>
+    <li><%=message.content %> - <%=link_to 'Remove', destroy_message_task_path(task, message_id: message.id) %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
   <p>
     <%=link_to 'Edit this task', edit_task_path(task) %>
     <%= button_to "Destroy this task", task, method: :delete %>

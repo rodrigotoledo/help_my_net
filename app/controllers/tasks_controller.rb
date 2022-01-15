@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show dashboard edit update destroy ]
+  before_action :set_task, only: %i[ show dashboard edit update destroy destroy_message ]
 
   # GET /tasks or /tasks.json
   def index
@@ -59,6 +59,20 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def destroy_message
+    message = @task.messages.find(params[:message_id])
+    respond_to do |format|
+      if message && message.destroy
+        format.html { redirect_to tasks_path, notice: "Message was successfully destroyed." }
+        format.json { render :show, status: :created, location: @task }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: 'tasks/task', locals: {task: @task})}
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
     end
   end
 
