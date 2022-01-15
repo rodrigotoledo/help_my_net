@@ -1,0 +1,12 @@
+<%= turbo_frame_tag dom_id(company) do %>
+<blockquote>
+  <p>
+    <strong>Name:</strong>
+    <%= company.name %>
+  </p>
+  <p>
+    <%=link_to 'Edit this company', edit_company_path(company) %>
+    <%= button_to "Destroy this company", company, method: :delete %>
+  </p>
+</blockquote>
+<% end %>

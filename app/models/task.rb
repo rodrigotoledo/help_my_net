@@ -1,8 +1,10 @@
 class Task < ApplicationRecord
-  validates :title, :description, :address, presence: true
   after_validation :geocode
   geocoded_by :address
+  belongs_to :company
   has_and_belongs_to_many :users, join_table: "tasks_users"
+  validates :title, :description, :address, presence: true
+  validates_associated :company
 
   after_create do
     broadcast_prepend_to "tasks"
