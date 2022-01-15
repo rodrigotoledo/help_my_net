@@ -87,3 +87,4 @@ end
 gem 'geocoder'
 gem "stimulus_reflex", "3.5.0.pre8"
 gem 'rack-cors'
+gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
