@@ -1,5 +1,6 @@
 // Import and register all your controllers from the importmap under controllers/*
 import { Application } from '@hotwired/stimulus'
+import NestedForm from 'stimulus-rails-nested-form'
 
 // Eager load all controllers defined in the import map under controllers/**/*_controller
 import { eagerLoadControllersFrom } from '@hotwired/stimulus-loading'
@@ -9,6 +10,7 @@ import controller from '../controllers/application_controller'
 import CableReady from 'cable_ready'
 
 const application = Application.start()
+application.register('nested-form', NestedForm)
 
 // Configure Stimulus development experience
 application.debug = false

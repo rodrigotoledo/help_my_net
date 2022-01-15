@@ -1,4 +1,4 @@
-<%= form_with(model: task, id: dom_id(task)) do |form| %>
+<%= form_with(model: task, id: dom_id(task), data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
   <% if task.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -25,6 +25,24 @@
     <%= form.label :address, style: "display: block" %>
     <%= form.text_field :address %>
   </div>
+
+  <h3>Messages</h3>
+
+  <template data-nested-form-target="template">
+    <%= form.fields_for :messages, Message.new, child_index: 'NEW_RECORD' do |message_fields| %>
+      <%= render "message_form", form: message_fields %>
+    <% end %>
+  </template>
+  <%= form.fields_for :messages do |message_fields| %>
+    <%= render "message_form", form: message_fields %>
+  <% end %>
+
+  <div data-nested-form-target="target"></div>
+
+  <button type="button" data-action="nested-form#add">
+    Add todo
+  </button>
+
 
   <div>
     <%= form.submit %>
