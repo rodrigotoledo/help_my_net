@@ -30,7 +30,6 @@ export default class extends Controller {
     }
 
     const start = [this.longitudeValue, this.latitudeValue]
-    console.log(this.usersValue[0])
     const coords = this.usersValue[0]
 
     // create a function to make a directions request
@@ -110,49 +109,51 @@ export default class extends Controller {
           'circle-color': '#3887be',
         },
       })
-      // this is where the code from the next step will go
-      const end = {
-        type: 'FeatureCollection',
-        features: [
-          {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-              type: 'Point',
-              coordinates: coords,
+      if (coords !== undefined) {
+        // this is where the code from the next step will go
+        const end = {
+          type: 'FeatureCollection',
+          features: [
+            {
+              type: 'Feature',
+              properties: {},
+              geometry: {
+                type: 'Point',
+                coordinates: coords,
+              },
             },
-          },
-        ],
-      }
-      if (map.getLayer('end')) {
-        map.getSource('end').setData(end)
-      } else {
-        map.addLayer({
-          id: 'end',
-          type: 'circle',
-          source: {
-            type: 'geojson',
-            data: {
-              type: 'FeatureCollection',
-              features: [
-                {
-                  type: 'Feature',
-                  properties: {},
-                  geometry: {
-                    type: 'Point',
-                    coordinates: coords,
+          ],
+        }
+        if (map.getLayer('end')) {
+          map.getSource('end').setData(end)
+        } else {
+          map.addLayer({
+            id: 'end',
+            type: 'circle',
+            source: {
+              type: 'geojson',
+              data: {
+                type: 'FeatureCollection',
+                features: [
+                  {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                      type: 'Point',
+                      coordinates: coords,
+                    },
                   },
-                },
-              ],
+                ],
+              },
             },
-          },
-          paint: {
-            'circle-radius': 10,
-            'circle-color': '#f30',
-          },
-        })
+            paint: {
+              'circle-radius': 10,
+              'circle-color': '#f30',
+            },
+          })
+        }
+        getRoute(coords)
       }
-      getRoute(coords)
     })
   }
 
