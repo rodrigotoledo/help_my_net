@@ -306,6 +306,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     stimulus-rails (1.0.2)
       railties (>= 6.0.0)
     stimulus_reflex (3.5.0.pre8)
@@ -376,6 +377,7 @@ DEPENDENCIES
   shoulda-matchers (~> 5.0)
   simplecov
   sprockets-rails
+  sqlite3 (~> 1.4)
   stimulus-rails
   stimulus_reflex (= 3.5.0.pre8)
   to_factory
