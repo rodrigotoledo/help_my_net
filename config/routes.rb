@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :employees
+  resources :employees
   resources :companies
   devise_for :users
   devise_scope :user do
