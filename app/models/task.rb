@@ -8,11 +8,14 @@ class Task < ApplicationRecord
 
   after_create do
     broadcast_prepend_to "tasks"
+    broadcast_prepend_to "dashboard", target: "dashboard", partial: "dashboard/task", locals: {task: self}
   end
   after_update do
     broadcast_update_to "tasks"
+    broadcast_update_to "dashboard", partial: "dashboard/task", locals: {task: self}
   end
   after_destroy_commit do
     broadcast_remove_to "tasks"
+    broadcast_remove_to "dashboard"
   end
 end
