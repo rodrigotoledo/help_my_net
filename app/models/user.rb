@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :name, :email, :address, presence: true
   after_validation :geocode
   geocoded_by :address
-  has_and_belongs_to_many :tasks, join_table: "tasks_users"
+  has_many :tasks
 
   after_create do
     broadcast_prepend_to "users"
