@@ -17,6 +17,11 @@
   </div>
 
   <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.collection_select :user_id, User.all, :id, :name, include_blank: true %>
+  </div>
+
+  <div>
     <%= form.label :title, style: "display: block" %>
     <%= form.text_field :title %>
   </div>

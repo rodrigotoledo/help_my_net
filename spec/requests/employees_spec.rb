@@ -13,16 +13,20 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/employees", type: :request do
-  
+
   # Employee. As you add validations to Employee, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for(:employee)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {name: ''}
   }
+  let!(:user) { create(:user) }
+  before do
+    sign_in user
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -65,7 +69,7 @@ RSpec.describe "/employees", type: :request do
 
       it "redirects to the created employee" do
         post employees_url, params: { employee: valid_attributes }
-        expect(response).to redirect_to(employee_url(Employee.last))
+        expect(response).to redirect_to(employees_url)
       end
     end
 
@@ -100,7 +104,7 @@ RSpec.describe "/employees", type: :request do
         employee = Employee.create! valid_attributes
         patch employee_url(employee), params: { employee: new_attributes }
         employee.reload
-        expect(response).to redirect_to(employee_url(employee))
+        expect(response).to redirect_to(employees_url)
       end
     end
 
