@@ -1,0 +1,11 @@
+<% if message.user.nil? && message.employee.nil? %>
+  <p class="text-start me-5" id="<%=dom_id(message)%>">
+    <small class="d-block">System - <%=l message.created_at, format: :short %></small>
+    <span class="chat-body_bubble bg-primary text-light"><%=message.message %></span>
+  </p>
+<% else %>
+  <p class="<%=message.user.nil? ? 'text-end' : 'text-start' %> me-5" id="<%=dom_id(message)%>">
+    <small class="d-block"><%=message.user.nil? ? message.employee.name : message.user.name %> - <%=l message.created_at, format: :short %></small>
+    <span class="chat-body_bubble <%= message.user.nil? ? 'bg-primary text-light' : 'bg-light' %>"><%=message.message %></span>
+  </p>
+<% end %>
