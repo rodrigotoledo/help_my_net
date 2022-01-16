@@ -1,9 +1,10 @@
+<%= turbo_frame_tag dom_id(task) do %>
 <blockquote>
   <p>
     <strong>Company:</strong>
     <%= task.company %>
   </p>
-  
+
   <p>
     <strong>Title:</strong>
     <%= task.title %>
@@ -17,5 +18,5 @@
   <p>
     <%=link_to 'Dashboard of this task', dashboard_task_path(task), data: { turbo: false } %>
   </p>
-
 </blockquote>
+<% end %>
