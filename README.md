@@ -1,12 +1,29 @@
 # Setup project
 
-Basic instructions to setup the project. After clone the project, run the commands:
+## Redis setup
 
-```
+This project uses redis.
+
+1. For ubuntu 20.04 machines, you may follow [this article](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04-pt) **step 1**;
+
+## Project Setup Basic
+
+After clone the project, run the commands:
+
+```bash
 gem install bundler --no-doc
 bundle install
+```
+The stimulus command below will ask you to overwrite some files. You may skip it with `n`
+```
+rake stimulus_reflex:install
 rails db:drop db:create db:migrate db:seed
-./bin/dev
+```
+
+## Run the server
+
+```
+rails server
 ```
 
 ## After you can access the application with the credentials:
