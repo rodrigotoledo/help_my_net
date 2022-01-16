@@ -9,9 +9,6 @@ gem "rails", "~> 7.0.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "pg"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
@@ -61,6 +58,7 @@ group :development, :test do
   gem "faker", "~> 2.19"
   gem "better_errors"
   gem "binding_of_caller"
+  gem "sqlite3", "~> 1.4"
 end
 
 group :development do
@@ -88,5 +86,9 @@ gem 'geocoder'
 gem "stimulus_reflex", "3.5.0.pre8"
 gem 'rack-cors'
 gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
+
+group :production do
+  gem "pg"
+end
 
 gem 'database_cleaner-active_record'
