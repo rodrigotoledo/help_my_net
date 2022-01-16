@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   resources :tasks do
+    resources :messages
     member do
       get 'dashboard'
     end
