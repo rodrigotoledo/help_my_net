@@ -1,0 +1,33 @@
+<%= turbo_frame_tag dom_id(employee) do %>
+<blockquote>
+  <p>
+    <strong>Name:</strong>
+    <%= employee.name %>
+  </p>
+
+  <p>
+    <strong>Document:</strong>
+    <%= employee.document %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= employee.address %>
+  </p>
+
+  <p>
+    <strong>Latitude:</strong>
+    <%= employee.latitude %>
+  </p>
+
+  <p>
+    <strong>Longitude:</strong>
+    <%= employee.longitude %>
+  </p>
+
+  <p>
+    <%=link_to 'Edit this employee', edit_employee_path(employee) %>
+    <%= button_to "Destroy this employee", employee, method: :delete %>
+  </p>
+</blockquote>
+<% end %>
