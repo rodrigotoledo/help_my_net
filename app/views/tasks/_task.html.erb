@@ -41,7 +41,10 @@
   </p>
 
   <% if defined?(:show_map) %>
-    <%= render 'tasks/map', task: task %>
+    <%= turbo_stream_from "employees" %>
+    <%= turbo_frame_tag "turbo_map_#{task.id}" do %>
+      <%= render 'tasks/map', task: task %>
+    <% end %>
   <% end %>
 
   <p>
