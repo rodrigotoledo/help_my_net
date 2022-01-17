@@ -24,3 +24,14 @@ header {
 header li {
   display: inline-flex;
 }
+
+.ss-multi-selected,
+.ss-content {
+  width: 60% !important;
+  margin-bottom: 0.5rem;
+}
+
+.ss-main .ss-multi-selected {
+  background-color: transparent !important;
+  height: 40px !important;
+}

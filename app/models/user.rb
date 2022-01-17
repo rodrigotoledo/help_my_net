@@ -17,4 +17,8 @@ class User < ApplicationRecord
   after_destroy_commit do
     broadcast_remove_to "users"
   end
+
+  def to_s
+    name
+  end
 end

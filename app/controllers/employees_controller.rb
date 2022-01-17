@@ -7,6 +7,11 @@ class EmployeesController < ApplicationController
     @employee = Employee.new
   end
 
+  def for_select
+    @employees = Employee.where("name like ?", "%#{params[:query]}%")
+    render json: @employees.map { |employee| { value: employee.id, text: employee.name } }
+  end
+
   # GET /employees/1 or /employees/1.json
   def show
   end

@@ -3,4 +3,10 @@ module TasksHelper
     return [] if user.nil?
     [[user.longitude, user.latitude]]
   end
+
+  def employees_directions(employees)
+    employees.map do |employee|
+      [employee.longitude, employee.latitude]
+    end
+  end
 end

@@ -7,6 +7,7 @@ export default class extends Controller {
     latitude: Number,
     longitude: Number,
     users: Array,
+    employees: Array,
   }
 
   connect(e) {
@@ -23,6 +24,14 @@ export default class extends Controller {
       .addTo(this.map)
     if (this.usersValue !== undefined) {
       this.usersValue.forEach((element) => {
+        new mapboxgl.Marker()
+          .setLngLat([element[0], element[1]])
+          .addTo(this.map)
+      })
+    }
+
+    if (this.employeesValue !== undefined) {
+      this.employeesValue.forEach((element) => {
         new mapboxgl.Marker()
           .setLngLat([element[0], element[1]])
           .addTo(this.map)
@@ -152,7 +161,11 @@ export default class extends Controller {
             },
           })
         }
-        getRoute(coords)
+        if (this.employeesValue !== undefined) {
+          this.employeesValue.forEach((element) => {
+            getRoute(element)
+          })
+        }
       }
     })
   }

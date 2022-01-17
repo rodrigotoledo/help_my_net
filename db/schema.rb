@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_16_193314) do
+ActiveRecord::Schema.define(version: 2022_01_17_094514) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "employee_tasks", force: :cascade do |t|
+    t.integer "employee_id", null: false
+    t.integer "task_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_employee_tasks_on_employee_id"
+    t.index ["task_id"], name: "index_employee_tasks_on_task_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -77,6 +86,8 @@ ActiveRecord::Schema.define(version: 2022_01_16_193314) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "employee_tasks", "employees"
+  add_foreign_key "employee_tasks", "tasks"
   add_foreign_key "messages", "employees"
   add_foreign_key "messages", "tasks"
   add_foreign_key "messages", "users"
