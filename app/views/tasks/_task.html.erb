@@ -6,6 +6,16 @@
   </p>
 
   <p>
+    <strong>User:</strong>
+    <%= task.user %>
+  </p>
+
+  <p>
+    <strong>Employees:</strong>
+    <%= task.employees.map{|t| t.name}.to_sentence %>
+  </p>
+
+  <p>
     <strong>Title:</strong>
     <%= task.title %>
   </p>

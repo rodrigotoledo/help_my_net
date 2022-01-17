@@ -4,6 +4,8 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   after_validation :geocode
+  has_many :employee_tasks
+  has_many :tasks, through: :employee_tasks
   geocoded_by :address
   validates :name, :address, :document, presence: true
 
