@@ -50,6 +50,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   # Use sqlite3 as the database for Active Record
   gem "sqlite3", "~> 1.4"
+  gem 'pry'
 end
 
 group :development do
@@ -66,6 +67,7 @@ gem 'geocoder'
 gem "stimulus_reflex", "3.5.0.pre8"
 gem 'rack-cors'
 gem 'devise', '~> 4.8'
+gem 'devise-jwt'
 gem 'faker'
 
 group :production do
