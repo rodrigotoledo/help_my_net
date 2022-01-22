@@ -1,48 +1,24 @@
-# Setup project
+# README
 
-## Redis setup
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-This project uses redis.
+Things you may want to cover:
 
-1. For ubuntu 20.04 machines, you may follow [this article](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04-pt) **step 1**;
+* Ruby version
 
-## Project Setup Basic
+* System dependencies
 
-After clone the project, run the commands:
+* Configuration
 
-```bash
-gem install bundler --no-doc
-bundle install
-```
-The stimulus command below will ask you to overwrite some files. You may skip it with `n`
-```
-rake stimulus_reflex:install
-rails db:drop db:create db:migrate db:seed
-```
+* Database creation
 
-## Run the server
+* Database initialization
 
-```
-rails server
-```
+* How to run the test suite
 
-## After you can access the application with the credentials:
+* Services (job queues, cache servers, search engines, etc.)
 
-http://localhost:3000
+* Deployment instructions
 
-```
-username: test@test.com
-password: aassdd
-```
-
-## API
-
-### Sign in
-
-The process of sign in it's simple to test, run
-
-```
-curl localhost:3000/api/login --ipv4 --data "username=test@test.com&password=aassdd"
-```
-
-The result should be the **User** instance
+* ...
