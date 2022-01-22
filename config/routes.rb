@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :employees, :controllers => {:registrations => "employee_registrations"}
-  devise_for :users, :controllers => {:registrations => "user_registrations"}
+  resources :messages
+  devise_for :employees
+  resources :tasks
   resources :companies
+  devise_for :users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
-  end
-  resources :tasks do
-    resources :messages
-    member do
-      get 'dashboard'
-    end
   end
   resources :users
   resources :employees do

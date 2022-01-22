@@ -14,10 +14,6 @@
  *= require_self
  */
 
-body {
-  max-width: 70rem !important;
-}
-
 header {
   padding: 0 !important;
 }
