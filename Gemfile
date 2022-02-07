@@ -74,4 +74,6 @@ gem "cpf_cnpj"
 group :production do
   gem "pg"
 end
-gem "pagy", "~> 5.9"
+gem "will_paginate", "~> 3.3"
+
+gem "will_paginate-bootstrap-style", "~> 0.2.4"

@@ -9,5 +9,5 @@
 
 <%= turbo_frame_tag "tasks" do %>
   <%= render @tasks %>
-  <%== pagy_bootstrap_nav(@pagy) %>
+  <%= will_paginate(@tasks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
 <% end %>
