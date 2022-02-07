@@ -6,7 +6,7 @@
   </p>
   <p>
     <%=link_to 'Edit this company', edit_company_path(company) %>
-    <%= button_to "Destroy this company", company, method: :delete %>
+    <%= button_to("Destroy this company", company, method: :delete) if company.tasks.count == 0 %>
   </p>
 </blockquote>
 <% end %>

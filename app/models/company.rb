@@ -1,4 +1,5 @@
 class Company < ApplicationRecord
+  has_many :tasks
   validates :name, presence: true, uniqueness: true
 
   after_create do

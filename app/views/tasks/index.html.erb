@@ -9,4 +9,5 @@
 
 <%= turbo_frame_tag "tasks" do %>
   <%= render @tasks %>
+  <%== pagy_bootstrap_nav(@pagy) %>
 <% end %>

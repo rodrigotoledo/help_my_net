@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.order(created_at: :desc)
+    @pagy, @users = pagy(User.order(created_at: :desc).all)
     @user = User.new
   end
 

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :messages
   devise_for :employees
-  resources :tasks
+  resources :tasks do
+    resources :messages
+    member do
+      get 'dashboard'
+    end
+  end
   resources :companies
   devise_for :users
   devise_scope :user do

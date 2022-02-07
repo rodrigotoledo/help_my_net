@@ -69,7 +69,9 @@ gem 'rack-cors'
 gem 'devise', '~> 4.8'
 gem 'devise-jwt'
 gem 'faker'
+gem "cpf_cnpj"
 
 group :production do
   gem "pg"
 end
+gem "pagy", "~> 5.9"

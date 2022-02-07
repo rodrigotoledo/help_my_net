@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 2022_01_22_182514) do
 
   create_table "messages", force: :cascade do |t|
     t.integer "task_id", null: false
-    t.integer "user_id", null: false
-    t.integer "employee_id", null: false
+    t.integer "user_id"
+    t.integer "employee_id"
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

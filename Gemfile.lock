@@ -76,6 +76,7 @@ GEM
       thread-local (>= 1.1.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.9)
+    cpf_cnpj (0.5.0)
     crass (1.0.6)
     debug (1.4.0)
       irb (>= 1.3.6)
@@ -148,6 +149,8 @@ GEM
     nokogiri (1.13.1-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (5.9.1)
+      activesupport
     pg (1.2.3)
     pry (0.14.1)
       coderay (~> 1.1)
@@ -240,6 +243,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  cpf_cnpj
   debug
   devise (~> 4.8)
   devise-jwt
@@ -247,6 +251,7 @@ DEPENDENCIES
   geocoder
   importmap-rails
   jbuilder
+  pagy (~> 5.9)
   pg
   pry
   puma (~> 5.0)

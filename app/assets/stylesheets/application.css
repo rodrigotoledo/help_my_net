@@ -31,3 +31,8 @@ header li {
   background-color: transparent !important;
   height: 40px !important;
 }
+
+.pagy-bootstrap-nav ul {
+  display: inline-flex;
+  list-style-type: none;
+}
