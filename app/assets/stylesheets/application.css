@@ -32,7 +32,10 @@ header li {
   height: 40px !important;
 }
 
-.pagy-bootstrap-nav ul {
+ul.pagination {
   display: inline-flex;
   list-style-type: none;
+}
+li.active, li.disabled{
+  margin-right: 1rem;
 }

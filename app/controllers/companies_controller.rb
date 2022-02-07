@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies or /companies.json
   def index
-    @pagy, @companies = pagy(Company.order(created_at: :desc).all)
+    @companies = Company.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
     @company = Company.new
   end
 

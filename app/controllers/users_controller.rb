@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @pagy, @users = pagy(User.order(created_at: :desc).all)
+    @users = User.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
     @user = User.new
   end
 
