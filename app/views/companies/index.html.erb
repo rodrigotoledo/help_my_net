@@ -1,12 +1,13 @@
 <p style="color: green"><%= notice %></p>
 <h1>Companies</h1>
-<%= turbo_stream_from "companies" %>
 
 <%= turbo_frame_tag "form_company" do %>
-  <%= render 'form', company: @company %>
-  <%= link_to 'Cancel', companies_path %>
+<%= render 'form', company: @company %>
+<%= link_to 'Cancel', companies_path %>
 <% end %>
 
+<%= turbo_stream_from "companies" %>
 <%= turbo_frame_tag "companies" do %>
   <%= render @companies %>
+  <%== pagy_bootstrap_nav(@pagy) %>
 <% end %>

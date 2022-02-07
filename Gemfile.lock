@@ -74,7 +74,9 @@ GEM
     cable_ready (5.0.0.pre8)
       rails (>= 5.2)
       thread-local (>= 1.1.0)
+    coderay (1.1.3)
     concurrent-ruby (1.1.9)
+    cpf_cnpj (0.5.0)
     crass (1.0.6)
     debug (1.4.0)
       irb (>= 1.3.6)
@@ -85,7 +87,20 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-jwt (0.9.0)
+      devise (~> 4.0)
+      warden-jwt_auth (~> 0.6)
     digest (3.1.0)
+    dry-auto_inject (0.8.0)
+      dry-container (>= 0.3.4)
+    dry-configurable (0.14.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.6)
+    dry-container (0.9.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.13, >= 0.13.0)
+    dry-core (0.7.1)
+      concurrent-ruby (~> 1.0)
     erubi (1.10.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
@@ -104,6 +119,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jwt (2.3.0)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -135,7 +151,12 @@ GEM
     nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (5.9.1)
+      activesupport
     pg (1.2.3)
+    pry (0.14.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     puma (5.5.2)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -204,6 +225,11 @@ GEM
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
+    warden-jwt_auth (0.6.0)
+      dry-auto_inject (~> 0.8)
+      dry-configurable (~> 0.13)
+      jwt (~> 2.1)
+      warden (~> 1.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -220,13 +246,17 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  cpf_cnpj
   debug
   devise (~> 4.8)
+  devise-jwt
   faker
   geocoder
   importmap-rails
   jbuilder
+  pagy (~> 5.9)
   pg
+  pry
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.1)

@@ -22,5 +22,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "dashboard#index"
+  namespace :api, defaults: { format: :json } do
+    resource :login, only: [:create], controller: :sessions
+    # devise_for :users,
+    #   controllers: {
+    #       sessions: 'api/sessions',
+    #       registrations: 'api/registrations'
+    #   }
+    resources :tasks
+  end
   mount ActionCable.server => '/cable'
 end

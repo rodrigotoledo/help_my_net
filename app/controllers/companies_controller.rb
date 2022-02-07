@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies or /companies.json
   def index
-    @companies = Company.order(created_at: :desc)
+    @pagy, @companies = pagy(Company.order(created_at: :desc).all)
     @company = Company.new
   end
 
@@ -43,6 +43,7 @@ class CompaniesController < ApplicationController
         format.html { redirect_to companies_url, notice: "Company was successfully updated." }
         format.json { render :show, status: :ok, location: @company }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@company, partial: 'companies/form', locals: {company: @company})}
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
@@ -54,6 +55,7 @@ class CompaniesController < ApplicationController
     @company.destroy
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: " " }
       format.html { redirect_to companies_url, notice: "Company was successfully destroyed." }
       format.json { head :no_content }
     end

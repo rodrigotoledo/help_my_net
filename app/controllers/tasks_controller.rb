@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.order(created_at: :desc)
+    @pagy, @tasks = pagy(Task.order(created_at: :desc).all)
     @task = Task.new
   end
 

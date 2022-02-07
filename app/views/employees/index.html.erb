@@ -9,4 +9,5 @@
 
 <%= turbo_frame_tag "employees" do %>
   <%= render @employees %>
+  <%== pagy_bootstrap_nav(@pagy) %>
 <% end %>

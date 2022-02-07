@@ -21,24 +21,10 @@
   </p>
 
   <p>
-    <strong>Description:</strong>
-    <%= task.description %>
-  </p>
-
-  <p>
     <strong>Address:</strong>
     <%= task.address %>
   </p>
 
-  <p>
-    <strong>Latitude:</strong>
-    <%= task.latitude %>
-  </p>
-
-  <p>
-    <strong>Longitude:</strong>
-    <%= task.longitude %>
-  </p>
 
   <% if defined?(:show_map) %>
     <%= render 'tasks/map', task: task %>

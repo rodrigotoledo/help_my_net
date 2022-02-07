@@ -1,6 +1,9 @@
-<h1>Dashboard#index</h1>
-<%= turbo_stream_from "dashboard" %>
+<h1>Dashboard</h1>
 
-<%= turbo_frame_tag "dashboard" do %>
-  <%= render collection: @tasks, partial: 'dashboard/task' %>
+<%= turbo_stream_from "tasks" %>
+<%= turbo_frame_tag "tasks", src: tasks_path do %>
+<% end %>
+
+<%= turbo_stream_from "companies" %>
+<%= turbo_frame_tag "companies", src: companies_path do %>
 <% end %>

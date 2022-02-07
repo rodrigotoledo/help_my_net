@@ -9,4 +9,5 @@
 
 <%= turbo_frame_tag "users" do %>
   <%= render @users %>
+  <%== pagy_bootstrap_nav(@pagy) %>
 <% end %>

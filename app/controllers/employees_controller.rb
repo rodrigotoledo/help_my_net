@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees or /employees.json
   def index
-    @employees = Employee.order(created_at: :desc)
+    @pagy, @employees = pagy(Employee.order(created_at: :desc).all)
     @employee = Employee.new
   end
 
