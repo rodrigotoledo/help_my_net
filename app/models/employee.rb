@@ -14,6 +14,9 @@ class Employee < ApplicationRecord
   end
   after_update do
     broadcast_update_to "employees"
+    self.tasks.each do |task|
+      broadcast_update_to "tasks", partial: "tasks/task", locals: {task: task}, target: "task_#{task.id}"
+    end
   end
   after_destroy_commit do
     broadcast_remove_to "employees"
