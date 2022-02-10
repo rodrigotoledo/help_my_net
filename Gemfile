@@ -50,7 +50,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   # Use sqlite3 as the database for Active Record
   gem "sqlite3", "~> 1.4"
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'cucumber-rails'
   gem 'pry'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -77,3 +80,4 @@ end
 gem "will_paginate", "~> 3.3"
 
 gem "will_paginate-bootstrap-style", "~> 0.2.4"
+gem 'guard-rspec', require: false
