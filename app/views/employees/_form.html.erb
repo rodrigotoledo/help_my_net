@@ -1,3 +1,4 @@
+<%= turbo_stream_from "employees" %>
 <%= form_with(model: employee, id: dom_id(employee)) do |form| %>
   <% if employee.errors.any? %>
     <div style="color: red">

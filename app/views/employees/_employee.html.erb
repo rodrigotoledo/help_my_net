@@ -27,7 +27,7 @@
 
   <p>
     <%=link_to 'Edit this employee', edit_employee_path(employee) %>
-    <%= button_to "Destroy this employee", employee, method: :delete %>
+    <%= button_to "Destroy: #{employee.name}", employee, method: :delete %>
   </p>
 </blockquote>
 <% end %>

@@ -54,6 +54,7 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'pry'
   gem 'factory_bot_rails'
+  gem 'cpf_faker'
 end
 
 group :development do
