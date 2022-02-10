@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :messages
-  devise_for :employees
+  devise_for :employees, :controllers => { :registrations => 'employees' }
   resources :tasks do
     resources :messages
     member do
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
   resources :companies
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'users' }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end

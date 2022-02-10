@@ -1,11 +1,8 @@
 <p style="color: green"><%= notice %></p>
 <h1>Users</h1>
-<%= turbo_stream_from "users" %>
 
-<%= turbo_frame_tag "form_user" do %>
-  <%= render 'form', user: @user %>
-  <%= link_to 'Cancel', users_path %>
-<% end %>
+<%= render 'form', user: @user %>
+<%= link_to 'Cancel', users_path %>
 
 <%= turbo_frame_tag "users" do %>
   <%= render @users %>

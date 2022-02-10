@@ -26,12 +26,14 @@ describe 'Employees operations with sign in user' do
       fill_in 'Password confirmation', with: 'aassdd'
       fill_in 'Address', with: 'Belo Horizonte - MG'
       click_on 'Create Employee'
-      expect(page).to have_content("New employee created")
+      expect(page).to have_content("Employee was successfully created.")
     end
 
     it 'should edit a employee' do
       find("a[href='#{edit_employee_path(@employee.id)}']").click
       fill_in 'Name', with: 'New Updated employee'
+      fill_in 'Password', with: 'aassdd'
+      fill_in 'Password confirmation', with: 'aassdd'
       click_on 'Update Employee'
       expect(page).to have_content("New Updated employee")
     end
