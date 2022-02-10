@@ -6,4 +6,8 @@ FactoryBot.define do
     name  { "Admin Faker" }
     address  { "São Paulo - SP" }
   end
+
+  factory :company do
+    name { "some company" }
+  end
 end
