@@ -6,7 +6,7 @@ module TasksHelper
 
   def employees_directions(employees)
     employees.map do |employee|
-      [employee.longitude, employee.latitude]
+      [employee.longitude, employee.latitude, employee.id]
     end
   end
 end

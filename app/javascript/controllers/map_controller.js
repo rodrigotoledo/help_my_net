@@ -68,7 +68,7 @@ export default class extends Controller {
       // otherwise, we'll make a new request
       else {
         map.addLayer({
-          id: 'route',
+          id: 'route_'+end[2],
           type: 'line',
           source: {
             type: 'geojson',
@@ -163,6 +163,7 @@ export default class extends Controller {
         }
         if (this.employeesValue !== undefined) {
           this.employeesValue.forEach((element) => {
+            console.log(element)
             getRoute(element)
           })
         }
