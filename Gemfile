@@ -55,6 +55,14 @@ group :development, :test do
   gem 'pry'
   gem 'factory_bot_rails'
   gem 'cpf_faker'
+
+  gem 'rubocop'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
+  gem 'rufo'
+
+  gem 'to_factory'
 end
 
 group :development do
