@@ -25,6 +25,14 @@
     <%= task.address %>
   </p>
 
+  <p>
+    <strong>Total of messages:</strong>
+    <%= turbo_stream_from "new_message" %>
+    <%= turbo_frame_tag "count_message_#{task.id}" do %>
+      <%=task.messages.count%>
+    <% end %>
+  </p>
+
 
   <% if defined?(:show_map) %>
     <%= render 'tasks/map', task: task %>

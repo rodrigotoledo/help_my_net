@@ -2,16 +2,17 @@
   <hr>
   <h1>Editing task</h1>
 
-  <%= turbo_stream_from "messages" %>
+  
   <section class="chat">
     <section class="chat-body">
       <h3>Attendant <%= @task.user.try(:name) %></em></h3>
       <div class="p-3 border rounded-top chat-body_items">
-
+      <%= turbo_stream_from "messages" %>
       <%= turbo_frame_tag "messages_#{@task.id}" do %>
         <%= render @task.messages %>
       <% end %>
       </div>
+      <%= turbo_stream_from "new_message" %>
       <div>
         <%= turbo_frame_tag "new_message", src: new_task_message_path(@task), target: "messages_#{@task.id}" %>
       </div>

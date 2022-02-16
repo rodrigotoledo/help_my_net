@@ -6,12 +6,13 @@ class Message < ApplicationRecord
   validates :message, presence: true
   validates_associated :task
 
-  after_create do
+  after_create_commit -> {
     broadcast_append_to "messages", target: "messages_#{self.task_id}"
-    broadcast_update_to "messages", target: "count_message_#{self.task_id}", html: self.task.messages.count
-  end
+    broadcast_update_to "new_message", target: "count_message_#{self.task_id}", html: self.task.messages.count
+  }
+
   after_destroy_commit do
     broadcast_remove_to "messages", target: "message_#{self.id}"
-    broadcast_update_to "messages", target: "count_message_#{self.task_id}", html: self.task.messages.count
+    broadcast_update_to "new_message", target: "count_message_#{self.task_id}", html: self.task.messages.count
   end
 end
