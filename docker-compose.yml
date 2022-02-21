@@ -1,0 +1,17 @@
+version: '3'
+services:
+  rails:
+    build: .
+    command: rails s -b 0.0.0.0
+    container_name: help_my_net
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/opt/app
+
+  redis:
+    image: redis:4.0-alpine
+    command: redis-server
+    hostname: redis
+    volumes:
+      - data_redis

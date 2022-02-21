@@ -12,7 +12,7 @@ class Message < ApplicationRecord
   }
 
   after_destroy_commit do
-    broadcast_remove_to "messages", target: "message_#{self.id}"
+    broadcast_remove_to "mtessages", target: "message_#{self.id}"
     broadcast_update_to "new_message", target: "count_message_#{self.task_id}", html: self.task.messages.count
   end
 end
