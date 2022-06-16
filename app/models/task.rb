@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   geocoded_by :address
   belongs_to :company
   belongs_to :user
-  belongs_to :employee
+  belongs_to :employee, optional: true
   has_many :messages, dependent: :destroy
   validates :title, :description, :address, presence: true
   validates_associated :company, :user, :employee

@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_215844) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "employee_id", null: false
+    t.integer "employee_id"
     t.index ["company_id"], name: "index_tasks_on_company_id"
     t.index ["employee_id"], name: "index_tasks_on_employee_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
