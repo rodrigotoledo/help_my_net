@@ -12,10 +12,8 @@
   <% end %>
 
   <div>
-    <%= form.label :employees, style: "display: block" %>
-    <%= form.select :employee_ids,
-          task.employees.map { |employee| [employee.name, employee.id] }, {},
-          multiple: true, data: { controller: :select, 'select-url-value': for_select_employees_url } %>
+    <%= form.label :employee_id, style: "display: block" %>
+    <%= form.collection_select :employee_id, Employee.all, :id, :full_description, include_blank: true %>
   </div>
 
   <div>
@@ -25,7 +23,7 @@
 
   <div>
     <%= form.label :user_id, style: "display: block" %>
-    <%= form.collection_select :user_id, User.all, :id, :name, include_blank: true %>
+    <%= form.collection_select :user_id, User.all, :id, :full_description, include_blank: true %>
   </div>
 
   <div>
