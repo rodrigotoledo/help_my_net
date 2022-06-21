@@ -4,10 +4,13 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   after_validation :geocode
-  has_many :employee_tasks, dependent: :destroy
-  has_many :tasks, through: :employee_tasks
+  has_many :tasks
   geocoded_by :address
   validates :name, :address, :document, presence: true
+
+  def full_description
+    [name, address].join(' - ')
+  end
 
   after_create do
     broadcast_prepend_to "employees"

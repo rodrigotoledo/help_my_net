@@ -4,9 +4,6 @@ module Api
 
     # POST /v1/login
     def create
-
-      binding.pry
-
       @user = User.find_for_database_authentication(email: params[:email])
       return invalid_login_attempt unless @user
 
