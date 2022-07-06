@@ -18,5 +18,7 @@ RUN gem install bundler --no-doc
 
 RUN bundle install
 
+CMD [ "rails", "dev:cache" ]
+
 COPY . $INSTALL_PATH
 
