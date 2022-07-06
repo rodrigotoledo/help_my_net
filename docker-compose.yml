@@ -1,6 +1,6 @@
 version: '3'
 services:
-  rails:
+  web:
     build: .
     command: rails s -b 0.0.0.0
     container_name: help_my_net
@@ -8,6 +8,8 @@ services:
       - 3000:3000
     volumes:
       - .:/opt/app
+    depends_on:
+      - redis
 
   redis:
     image: redis:4.0-alpine
