@@ -76,7 +76,6 @@ group :development do
   # gem "spring"
 end
 gem 'geocoder'
-gem "stimulus_reflex", "3.5.0.pre8"
 gem 'rack-cors'
 gem 'devise', '~> 4.8'
 gem 'devise-jwt'
