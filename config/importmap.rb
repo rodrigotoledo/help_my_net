@@ -70,7 +70,6 @@ pin "uuid/lib/rng.js", to: "https://ga.jspm.io/npm:uuid@3.4.0/lib/rng-browser.js
 pin "uuid/v4", to: "https://ga.jspm.io/npm:uuid@3.4.0/v4.js"
 pin "verror", to: "https://ga.jspm.io/npm:verror@1.10.0/lib/verror.js"
 pin "zlib", to: "https://ga.jspm.io/npm:@jspm/core@2.0.0-beta.14/nodelibs/browser/zlib.js"
-pin "stimulus_reflex", to: "https://ga.jspm.io/npm:stimulus_reflex@3.5.0-pre8/javascript/stimulus_reflex.js"
 pin "@rails/actioncable", to: "https://ga.jspm.io/npm:@rails/actioncable@7.0.1/app/assets/javascripts/actioncable.esm.js"
 pin "cable_ready", to: "https://ga.jspm.io/npm:cable_ready@5.0.0-pre8/javascript/index.js"
 pin "morphdom", to: "https://ga.jspm.io/npm:morphdom@2.6.1/dist/morphdom.js"
