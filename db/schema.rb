@@ -10,20 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_01_22_182514) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_15_215844) do
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "employee_tasks", force: :cascade do |t|
-    t.integer "employee_id", null: false
-    t.integer "task_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_employee_tasks_on_employee_id"
-    t.index ["task_id"], name: "index_employee_tasks_on_task_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -65,7 +56,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_22_182514) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "employee_id"
     t.index ["company_id"], name: "index_tasks_on_company_id"
+    t.index ["employee_id"], name: "index_tasks_on_employee_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -85,11 +78,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_22_182514) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "employee_tasks", "employees"
-  add_foreign_key "employee_tasks", "tasks"
   add_foreign_key "messages", "employees"
   add_foreign_key "messages", "tasks"
   add_foreign_key "messages", "users"
   add_foreign_key "tasks", "companies"
+  add_foreign_key "tasks", "employees"
   add_foreign_key "tasks", "users"
 end

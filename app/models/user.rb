@@ -8,6 +8,10 @@ class User < ApplicationRecord
   after_validation :geocode
   geocoded_by :address
 
+  def full_description
+    [name, address].join(' - ')
+  end
+
   after_create do
     broadcast_prepend_to "users"
   end

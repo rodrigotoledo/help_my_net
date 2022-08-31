@@ -15,9 +15,8 @@ cities = ['Caratinga - MG', 'Ipatinga - MG', 'Belo Horizonte - MG']
 company = Company.create(name: Faker::Company.name)
 employee = Employee.create(address: cities.sample, email: Faker::Internet.email, password: 'aassdd', password_confirmation: 'aassdd', name: Faker::Name.name_with_middle, document: CPF.generate(true) )
 user = User.create(address: cities.sample, email: Faker::Internet.email, password: 'aassdd', password_confirmation: 'aassdd', name: Faker::Name.name_with_middle)
-5.times do
-  task = Task.create(title: Faker::Job.title, description: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true), address: cities.sample, company: company, user: user)
-  task.employees << employee
+2.times do
+  task = Task.create(employee: employee, title: Faker::Job.title, description: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true), address: cities.sample, company: company, user: user)
   task.messages.build(employee_id: employee.id, message: Faker::Lorem.sentence)
   task.messages.build(user_id: user.id, message: Faker::Lorem.sentence)
   task.save
