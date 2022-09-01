@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   resources :companies
   devise_for :users, :controllers => { :registrations => 'users' }
   devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
+    get    '/account/sign_out' => 'devise/sessions#destroy'
+    get    '/account',  to: 'devise/registrations#edit',   as: :edit_account_registration
+    patch  '/account',  to: 'devise/registrations#update', as: :account_registration
+    get    '/account/cancel', to: 'devise/registrations#cancel', as: :cancel_account_registration
   end
   resources :users
   resources :employees do
