@@ -1,16 +1,16 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.3"
+ruby '3.1.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.1"
+gem 'rails', '~> 7.0.4'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.6.4"
+gem 'puma', '~> 5.0'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -25,7 +25,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+gem "redis"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -54,7 +54,6 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'pry'
   gem 'factory_bot_rails'
-  gem 'cpf_faker'
 
   gem 'rubocop'
   gem 'rubocop-performance'
@@ -80,11 +79,10 @@ gem 'rack-cors'
 gem 'devise', '~> 4.8'
 gem 'devise-jwt'
 gem 'faker'
+gem 'cpf_faker'
 gem "cpf_cnpj"
+gem "pg"
 
-group :production do
-  gem "pg"
-end
 gem "will_paginate", "~> 3.3"
 
 gem "will_paginate-bootstrap-style", "~> 0.2.4"

@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_06_15_215844) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -35,9 +38,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_215844) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "task_id", null: false
-    t.integer "user_id"
-    t.integer "employee_id"
+    t.bigint "task_id", null: false
+    t.bigint "user_id"
+    t.bigint "employee_id"
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -52,11 +55,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_215844) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.integer "company_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "company_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.index ["company_id"], name: "index_tasks_on_company_id"
     t.index ["employee_id"], name: "index_tasks_on_employee_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
