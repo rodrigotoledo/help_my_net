@@ -13,17 +13,17 @@
 
   <div>
     <%= form.label :employee_id, style: "display: block" %>
-    <%= form.collection_select :employee_id, Employee.all, :id, :full_description, include_blank: true %>
+    <%= form.collection_select :employee_id, Employee.all, :id, :full_description, { include_blank: true }, { class: 'slim-select' } %>
   </div>
 
   <div>
     <%= form.label :company_id, style: "display: block" %>
-    <%= form.collection_select :company_id, Company.all, :id, :name, include_blank: true %>
+    <%= form.collection_select :company_id, Company.all, :id, :name, { include_blank: true }, { class: 'slim-select' } %>
   </div>
 
   <div>
     <%= form.label :user_id, style: "display: block" %>
-    <%= form.collection_select :user_id, User.all, :id, :full_description, include_blank: true %>
+    <%= form.collection_select :user_id, User.all, :id, :full_description, { include_blank: true }, { class: 'slim-select' } %>
   </div>
 
   <div>
@@ -33,7 +33,7 @@
 
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.rich_text_area :description %>
   </div>
 
   <div>

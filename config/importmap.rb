@@ -78,3 +78,5 @@ pin "slim-select", to: "https://ga.jspm.io/npm:slim-select@1.27.1/dist/slimselec
 pin "mapbox-gl", to: "https://ga.jspm.io/npm:mapbox-gl@2.6.1/dist/mapbox-gl.js"
 pin "@rails/actioncable", to: "actioncable.esm.js"
 pin_all_from "app/javascript/channels", under: "channels"
+pin "trix"
+pin "@rails/actiontext", to: "actiontext.js"
