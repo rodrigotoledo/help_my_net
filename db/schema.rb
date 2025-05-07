@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_30_154346) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
+ActiveRecord::Schema[7.1].define(version: 2025_05_07_002641) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -76,9 +73,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_154346) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.bigint "task_id", null: false
-    t.bigint "user_id"
-    t.bigint "employee_id"
+    t.integer "task_id", null: false
+    t.integer "user_id"
+    t.integer "employee_id"
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -93,11 +90,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_154346) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.bigint "company_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "company_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "employee_id"
+    t.integer "employee_id"
     t.index ["company_id"], name: "index_tasks_on_company_id"
     t.index ["employee_id"], name: "index_tasks_on_employee_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
