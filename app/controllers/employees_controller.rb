@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[ show dashboard edit update destroy ]
+  before_action :set_employee, only: %i[ show edit update destroy ]
 
   # GET /employees or /employees.json
   def index
@@ -34,7 +34,7 @@ class EmployeesController < ApplicationController
         format.html { redirect_to employees_path, notice: "Employee was successfully created." }
         format.json { render :show, status: :created, location: @employee }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@employee, partial: 'employees/form', locals: {employee: @employee})}
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@employee, partial: "employees/form", locals: { employee: @employee }) }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
