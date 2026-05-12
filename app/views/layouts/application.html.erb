@@ -16,19 +16,71 @@
   </head>
 
   <body>
-    <header>
-      <ul>
-        <li><%= link_to "Dashboard", root_path %></li>
-        <li><%= link_to "Tasks", tasks_path %></li>
-        <li><%= link_to "Users", users_path %></li>
-        <li><%= link_to "Employees", employees_path %></li>
-        <li><%= link_to "Companies", companies_path %></li>
-        <% if user_signed_in? %>
-        <li><%= link_to "Edit account", edit_account_registration_path %></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    <div class="app-shell">
+      <aside class="server-rail" aria-label="Workspace">
+        <%= link_to root_path, class: "server-pill", title: "Help My Net" do %>
+          HM
         <% end %>
-      </ul>
-    </header>
-    <%= yield %>
+      </aside>
+
+      <aside class="channel-sidebar" aria-label="Primary navigation">
+        <div class="workspace-header">
+          <strong>Help My Net</strong>
+          <span>Operations</span>
+        </div>
+
+        <nav class="channel-nav">
+          <span class="nav-section">Channels</span>
+          <% if user_signed_in? %>
+            <% navigation_items = [
+              ["Dashboard", root_path, current_page?(root_path)],
+              ["Tasks", tasks_path, controller_name == "tasks"],
+              ["Users", users_path, controller_name == "users"],
+              ["Employees", employees_path, controller_name == "employees"],
+              ["Companies", companies_path, controller_name == "companies"]
+            ] %>
+
+            <% navigation_items.each do |label, path, active| %>
+              <%= link_to path, class: "channel-link #{'is-active' if active}" do %>
+                <span>#</span> <%= label %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path, class: "channel-link #{'is-active' if controller_name == 'sessions'}" do %>
+              <span>#</span> Sign in
+            <% end %>
+
+            <% ["Dashboard", "Tasks", "Users", "Employees", "Companies"].each do |label| %>
+              <span class="channel-link channel-link-disabled">
+                <span>#</span> <%= label %>
+              </span>
+            <% end %>
+          <% end %>
+        </nav>
+
+        <% if user_signed_in? %>
+          <div class="account-panel">
+            <div>
+              <strong><%= current_user.try(:name).presence || current_user.email %></strong>
+              <span>Signed in</span>
+            </div>
+            <div class="account-actions">
+              <%= link_to "Account", edit_account_registration_path %>
+              <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+            </div>
+          </div>
+        <% end %>
+      </aside>
+
+      <main class="content-panel">
+        <% if notice.present? %>
+          <p class="flash flash-notice"><%= notice %></p>
+        <% end %>
+        <% if alert.present? %>
+          <p class="flash flash-alert"><%= alert %></p>
+        <% end %>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
