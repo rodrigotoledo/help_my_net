@@ -1,27 +1,28 @@
-version: "3.8"
-
 services:
-  db:
-    container_name: postgresql_container
-    image: postgres
-    restart: always
-    ports:
-      - "5432:5432"
+  web:
+    build:
+      context: .
+    command: bash -lc "rm -f tmp/pids/server.pid && bundle exec rails db:prepare && bundle exec rails server -b 0.0.0.0"
     environment:
-      POSTGRES_PASSWORD: "" # the password will be postgres
-      POSTGRES_HOST_AUTH_METHOD: trust
+      RAILS_ENV: development
+      REDIS_URL: redis://redis:6379/1
+    ports:
+      - "3000:3000"
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - .:/rails
+      - storage:/rails/storage
+      - tmp:/rails/tmp
+    depends_on:
+      - redis
+      - mailcatcher
 
   redis:
     restart: always
-    image: docker.io/bitnami/redis:6.2
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+    image: redis:7-alpine
     ports:
       - "6379:6379"
     volumes:
-      - "redis:/bitnami/redis/data"
+      - "redis:/data"
 
   mailcatcher:
     restart: always
@@ -32,4 +33,5 @@ services:
 
 volumes:
   redis:
-  pg_data:
+  storage:
+  tmp:
