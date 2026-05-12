@@ -1,9 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+ruby file: ".ruby-version"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3"
+gem "rails", ">= 8.0", "< 9.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -33,7 +34,7 @@ gem "redis"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -49,8 +50,8 @@ group :test do
 end
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem "rspec-rails", "~> 5.0.0"
+  gem "debug", platforms: %i[ mri windows ]
+  gem "rspec-rails", "~> 7.0"
   gem "pry"
   gem "factory_bot_rails"
 
@@ -79,7 +80,6 @@ gem "devise-jwt"
 gem "faker"
 gem "cpf_faker"
 gem "cpf_cnpj"
-gem "pg"
 gem "sqlite3"
 
 gem "will_paginate", "~> 3.3"

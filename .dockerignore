@@ -1,0 +1,12 @@
+.bundle
+.git
+.gitignore
+log/*
+tmp/*
+storage/*
+
+config/master.key
+config/credentials/*.key
+
+Dockerfile
+docker-compose.yml
